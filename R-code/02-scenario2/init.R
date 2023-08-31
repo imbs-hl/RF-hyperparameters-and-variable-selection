@@ -8,7 +8,8 @@ if(!dir.exists(registry_dir_scen2)){
 ## functions
 ## =====================
 ##
-source(file.path(functions_dir, "simulate_bin_target2.R"))
+source(file.path(functions_dir, "simulate_bin_target.R"))
+source(file.path(functions_dir, "test_binary_vita.R"))
 source(file.path(functions_dir, "test_binary.R"))
 source(file.path(functions_dir, "filterout.R"))
 result_dir_scen2 <- file.path(result_dir, "02-scenario/paper")
