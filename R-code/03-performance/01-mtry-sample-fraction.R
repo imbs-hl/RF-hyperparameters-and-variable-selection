@@ -62,9 +62,9 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
                      aes(x = as.numeric(mtry),
                          y = SENS,
                          shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
-    xlab(label = "mtry") +
+    xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
     ylim(c(NA, 0.56)) +
     # ylim(0.32, 0.57) +
@@ -153,7 +153,7 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(factor(sample.fraction)),
                          y = SENS, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     # geom_hline(yintercept = 0.05,
     #            size = 0.5,
@@ -241,13 +241,13 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(mtry),
                         y = FDR, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     geom_hline(yintercept = 0.05,
                size = 0.5,
                color = "black",
                linetype = "dashed") +
-    xlab(label = "mtry") +
+    xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
     ylim(0, 0.20) +
     theme(legend.position = "none",
@@ -325,7 +325,7 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(factor(sample.fraction)),
                         y = FDR, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     geom_hline(yintercept = 0.05,
                size = 0.5,
@@ -407,9 +407,9 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(mtry),
                             y = Jaccard, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
-    xlab("mtry") +
+    xlab("mtry.prop") +
     ylab("Empirical stability") +
     ylim(c(0.980, 0.998)) +
     theme(legend.position = "right",
@@ -488,7 +488,7 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(factor(sample.fraction)),
                             y = Jaccard, shape = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method, linetype = k)) +
     xlab("sample.fraction") +
     ylab(label = "Empirical stability") +

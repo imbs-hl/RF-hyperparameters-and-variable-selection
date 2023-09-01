@@ -58,9 +58,9 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(min.node.size),
                          y = SENS, shape = k, linetype = k)) +
-    geom_point(aes()) +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
-    xlab(label = "min.node.size") +
+    xlab(label = "min.node.size.prop") +
     ylab("Empirical sensitivity") +
     ylim(c(0.40, 0.56)) +
     theme(legend.position = "none",
@@ -215,21 +215,12 @@ plot_sens_replace_scen1 <- function(res_vita_file,
                      aes(x = replace,
                          y = SENS, shape = k)) +
     geom_point(aes(colour = Method)) +
-    # geom_line() +
-    # geom_hline(yintercept = 0.05,
-    #            size = 0.5,
-    #            color = "black",
-    #            linetype = "dashed") +
     xlab(label = "replace") +
     ylab(label = "Empirical sensitivity") +
     ylim(c(0.40, 0.56)) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
-          # axis.ticks.y = element_blank(),
-          # axis.text.y = element_blank(),
-          # axis.ticks.x = element_blank(),
-          # axis.text.x = element_blank(),
           plot.margin = margin(0.22,1,0.22,0, "cm")
     ) +
     ggtitle("(e)") + labs(linetype = "k", shape = "k") +
@@ -296,9 +287,9 @@ plot_jaccard_min_node_scen1 <- function(res_vita_file,
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(min.node.size),
                             y = Jaccard, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
-    xlab("min.node.size") +
+    xlab("min.node.size.prop") +
     ylab("Empirical stability") +
     theme(legend.position = "right",
           text = element_text(size = 14),
@@ -367,7 +358,7 @@ plot_fdr_min_mode_scen1 <- function(res_vita_file,
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(min.node.size),
                         y = FDR, shape = k, linetype = k)) +
-    geom_point() +
+    geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     geom_hline(yintercept = 0.05,
                size = 0.5,
