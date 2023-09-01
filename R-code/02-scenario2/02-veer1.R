@@ -1,3 +1,4 @@
+## This file is for submitting jobs for evaluating Vita and Boruta in study 2.
 source("init.R", chdir = TRUE)
 data("VEER1")
 
