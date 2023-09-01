@@ -56,5 +56,5 @@ data_only_scen1 <- function(n = 100,
                    g = g,
                    p = p,
                    data = train_data)
-  return(res_df)
+  return(res_data)
 }
