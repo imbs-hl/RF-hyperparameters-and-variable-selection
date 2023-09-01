@@ -33,4 +33,7 @@ To generate the figures from study 1 in the article, run the files ```01-mtry-sa
 ### Study 2
 Only run files in this directory once your submitted jobs from ```02-scenario2``` are done.
 
-To generate the figures from study 2 in the article, run the files ```01-sens02.R``` and ```01-fdr02```.
+To generate the figures from study 2 in the article, run the files ```02-mtry-sample-fraction.R``` and ```02-min-node-replace```.
+
+## Generate data only
+Use the files ```01-data-only.R``` and ```02-data-only.R``` to generate the simulated data only. For each study, 100 replicated will be generated.
