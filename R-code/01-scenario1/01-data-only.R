@@ -44,12 +44,7 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
 
 
 ## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
-seed <- if(testing_mode){
-  1:10
-  } else {
-  1:100
-} 
-
+seed <- 1:100
 q_seed <- data.frame(q = rep(q, each = length(seed)),
                      alpha = rep(alpha,
                                  each = length(rep(q, each = length(seed)))),
@@ -92,5 +87,12 @@ run_borutaf <- wrap_batchtools(reg_name = "data-scena1",
                                  "Pomona",
                                  "data.table"
                                ),
-                               config_file = "/imbs/home/cesaire/projects/URF_Shi_and_Harvath/Random-Forest-Clustering/99_batchtools/batchtools.conf.R")
+                               config_file = config_file)
 
+## Load and saved simulated data
+load_data_reg <- batchtools::loadRegistry(
+  file.dir = file.path(registry_dir_scen1, "data-scena1"), writeable = TRUE)
+data_scenario1 <- batchtools::reduceResultsList(ids = 1:100,
+                                                  reg = load_data_reg)
+saveRDS(object = data_scenario1,
+        file = file.path(result_dir_scen1, "study1.rds"))

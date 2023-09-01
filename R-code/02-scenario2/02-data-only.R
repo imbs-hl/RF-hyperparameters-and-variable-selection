@@ -22,7 +22,7 @@ null_case = FALSE
 independence = TRUE
 alpha <- 0.05
 ## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
-seed <- ifelse(testing_mode, 1:10, 1:100)
+seed <- 1:100
 effect_seed<- ifelse(testing_mode, 11:20, 101:200)
 ## Random forests hyperparameter settings
 replace <- c(TRUE, FALSE)
@@ -65,7 +65,7 @@ all_param_seetings <- unique(all_param_seetings, by = "seed")
 ## *****************************************************************************
 ##
 
-run_vita_veer <- wrap_batchtools(reg_name = "data-scena1",
+run_vita_veer <- wrap_batchtools(reg_name = "data-scena2",
                                  work_dir = working_dir,
                                  reg_dir = registry_dir_scen2,
                                  r_function = data_only_scen2,
@@ -85,7 +85,7 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena1",
                                  memory = "5g",
                                  n_cpus = 1L,
                                  walltime = "30",
-                                 partition = "batch",
+                                 partition = "fast",
                                  account = "dzhkomics",
                                  test_job = FALSE,
                                  wait_for_jobs = TRUE,
@@ -93,3 +93,11 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena1",
                                    "devtools"
                                  ),
                                  config_file = config_file)
+
+## Load and saved simulated data
+load_data_reg2 <- batchtools::loadRegistry(
+  file.dir = file.path(registry_dir_scen2, "data-scena2"), writeable = TRUE)
+data_scenario2 <- batchtools::reduceResultsList(ids = 1:100,
+                                                reg = load_data_reg2)
+saveRDS(object = data_scenario2,
+        file = file.path(result_dir_scen2, "study2.rds"))
