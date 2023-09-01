@@ -1,13 +1,9 @@
-## =============================================================================
-##                      mtry
-## =============================================================================
-##
-
-#' Resumes empirical sensitivity with variation of mtry
+#' Functions in this file are used to generate the plots shows in the paper. The
+#' have the same parameters described as followed.
 #'
-#' @param res_vita_file Path to Vita saved job results
-#' @param res_boruta_file Path to Boruta saved job results
-#' @param default_param 
+#' @param res_vita_file Vita results for scenario 1 in RDS format
+#' @param res_boruta_file Vita results for scenario 1 in RDS format
+#' @param default_param Set up parameters to be kept constant
 #'
 #' @return
 #' @export

@@ -1,13 +1,9 @@
-## =============================================================================
-##                      min.node.size
-## =============================================================================
-##
-
-#' Title
+#' Functions in this file are used to generate the plots shows in the paper. The
+#' have the same parameters described as followed.
 #'
-#' @param res_vita_file 
-#' @param res_boruta_file 
-#' @param default_param 
+#' @param res_vita_file Vita results for scenario 1 in RDS format
+#' @param res_boruta_file Vita results for scenario 1 in RDS format
+#' @param default_param Set up parameters to be kept constant
 #'
 #' @return
 #' @export
@@ -498,7 +494,7 @@ theme_set(theme_bw())
 MinReplace01
 
 theme_set(theme_bw())
-ggsave(filename = file.path(result_dir, "01-scenario/paper/MinReplace01.pdf"),
+ggsave(filename = file.path(result_dir, "paper/MinReplace01.pdf"),
        plot = MinReplace01,
        width = 10, height = 7)
 

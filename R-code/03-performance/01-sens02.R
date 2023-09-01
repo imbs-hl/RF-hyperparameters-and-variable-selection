@@ -1,7 +1,14 @@
-## ***********************************************
-##            Replace
-## ***********************************************
-##
+#' Functions in this file are used to generate the plots shows in the paper. The
+#' have the same parameters described as followed.
+#'
+#' @param res_vita_file Vita results for scenario 2 in RDS format
+#' @param res_boruta_file Vita results for scenario 2 in RDS format
+#' @param default_param Set up parameters to be kept constant
+#'
+#' @return
+#' @export
+#'
+#' @examples
 sens02_replace <- function(
   res_vita_file,
   res_boruta_file,
