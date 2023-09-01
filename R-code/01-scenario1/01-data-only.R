@@ -44,7 +44,11 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
 
 
 ## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
-seed <- ifelse(testing_mode, 1:10, 1:100)
+seed <- if(testing_mode){
+  1:10
+  } else {
+  1:100
+} 
 
 q_seed <- data.frame(q = rep(q, each = length(seed)),
                      alpha = rep(alpha,

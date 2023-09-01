@@ -22,7 +22,11 @@ null_case = FALSE
 independence = TRUE
 alpha <- 0.05
 ## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
-seed <- ifelse(testing_mode, 1:10, 1:100)
+seed <- seed <- if(testing_mode){
+  1:10
+} else {
+  1:100
+} 
 effect_seed<- ifelse(testing_mode, 11:20, 101:200)
 ## Random forests hyperparameter settings
 replace <- c(TRUE, FALSE)
