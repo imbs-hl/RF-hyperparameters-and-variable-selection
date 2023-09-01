@@ -10,10 +10,8 @@ if(!dir.exists(registry_dir_scen1)){
 ##
 # source(file.path(functions_dir, "simulate_cor_pred.R"))
 source(file.path(functions_dir, "simulate_cor_bin.R"))
-source(file.path(functions_dir, "alternative_case.R"))
-source(file.path(functions_dir, "alternative_case_vita.R"))
-source(file.path(functions_dir, "alternative_case_vita_new.R"))
-source(file.path(functions_dir, "jaccard.R"))
+source(file.path(functions_dir, "alternative_cor_boruta.R"))
+source(file.path(functions_dir, "alternative_cor_vita.R"))
 source(file.path(functions_dir, "filterout.R"))
 result_dir_scen1 <- file.path(result_dir, "01-scenario")
 dir.create(result_dir_scen1, showWarnings = FALSE, recursive = TRUE)
