@@ -1,3 +1,5 @@
+## See the batchtools package for more details about how to configure this file.
+## https://mllg.github.io/batchtools/articles/batchtools.html#configuration-file-1
 makeClusterFunctionsSlurm <- function (template = "slurm", clusters = NULL, array.jobs = TRUE, 
                                        nodename = "localhost", scheduler.latency = 1, fs.latency = 65) 
 {
