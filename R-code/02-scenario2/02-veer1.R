@@ -33,7 +33,7 @@ replace <- c(TRUE, FALSE)
 sample.fraction <- c(0.200, 0.400, 0.632, 0.800, 1.000)
 mtry <- c(0.5, 0.33, 0.25, 0.1, sqrt(p) / p)
 nodesize.prop <- c(0.01, 0.05, 0.1, 0.2, 1/n)#seq(from = 1/n, to = 21/n, 3/n)
-num.trees <- 15000
+num.trees <- p*3
 
 holdout <- FALSE
 
