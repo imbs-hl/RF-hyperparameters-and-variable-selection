@@ -16,10 +16,6 @@ if(!("pacman" %in% installed.packages())){
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 
-if(!("pacman" %in% installed.packages())){
-  install.apckages("pacman")
-}
-
 if(!("cancerdata" %in% installed.packages())){
   BiocManager::install("cancerdata")
 }
@@ -75,3 +71,9 @@ dir.create(registry_dir, showWarnings = FALSE)
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 ## Batchtools configuration file
 config_file <- "/imbs/home/cesaire/projects/URF_Shi_and_Harvath/Random-Forest-Clustering/99_batchtools/batchtools.conf.R"
+## SLURM partion and acount
+partition = "xxxx"
+account = "xxxx"
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
