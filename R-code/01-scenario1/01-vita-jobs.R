@@ -63,31 +63,31 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
 all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
 all_param_seetings <- as.data.table(all_param_seetings)
 ## Send jobs
-run_borutaf <- wrap_batchtools(reg_name = "vita-cor",
-                               work_dir = working_dir,
-                               reg_dir = registry_dir_scen1,
-                               r_function = alternative_cor_vita,
-                               vec_args = all_param_seetings,
-                               more_args = list(
-                                 n = n,
-                                 g = g,
-                                 p = p,
-                                 null_case = null_case,
-                                 doTrace = 1
-                               ),
-                               name = "vita-cor",
-                               overwrite = TRUE,
-                               memory = "10g",
-                               n_cpus = no.threads,
-                               walltime = "20",
-                               partition = "batch",
-                               account = "dzhkomics",
-                               test_job = FALSE,
-                               wait_for_jobs = TRUE,
-                               packages = c(
-                                 "devtools",
-                                 "Pomona",
-                                 "data.table"
-                               ),
-                               config_file = "/imbs/home/cesaire/projects/URF_Shi_and_Harvath/Random-Forest-Clustering/99_batchtools/batchtools.conf.R")
+run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
+                                work_dir = working_dir,
+                                reg_dir = registry_dir_scen1,
+                                r_function = alternative_cor_vita,
+                                vec_args = all_param_seetings,
+                                more_args = list(
+                                  n = n,
+                                  g = g,
+                                  p = p,
+                                  null_case = null_case,
+                                  doTrace = 1
+                                ),
+                                name = "vita-cor",
+                                overwrite = TRUE,
+                                memory = "10g",
+                                n_cpus = no.threads,
+                                walltime = "20",
+                                partition = partition,
+                                account = account,
+                                test_job = FALSE,
+                                wait_for_jobs = TRUE,
+                                packages = c(
+                                  "devtools",
+                                  "Pomona",
+                                  "data.table"
+                                ),
+                                config_file = config_file)
 

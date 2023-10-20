@@ -62,7 +62,7 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
 all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
 all_param_seetings <- as.data.table(all_param_seetings)
 ## Send jobs
-run_borutaf <- wrap_batchtools(reg_name = "boruta-cor",
+run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                work_dir = working_dir,
                                reg_dir = registry_dir_scen1,
                                r_function = alternative_cor_boruta,
@@ -79,8 +79,8 @@ run_borutaf <- wrap_batchtools(reg_name = "boruta-cor",
                                memory = "10g",
                                n_cpus = no.threads,
                                walltime = "60",
-                               partition = "fast",
-                               account = "dzhkomics",
+                               partition = partition,
+                               account = account,
                                test_job = FALSE,
                                wait_for_jobs = TRUE,
                                packages = c(
