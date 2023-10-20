@@ -17,13 +17,13 @@ maxRuns <- 100
 replace <- c(TRUE, FALSE)
 sample.fraction <- c(0.200, 0.400, 0.632, 0.800, 1.000)
 mtry <- c(0.5, 0.3, 0.2, 0.1, 0.014)
-nodesize.prop <- c(0.01, 0.05, 0.1, 0.15, 0.2)#seq(from = 1/n, to = 21/n, 3/n)
+min.node.size_prop <- c(0.01, 0.05, 0.1, 0.15, 0.2)#seq(from = 1/n, to = 21/n, 3/n)
 num.trees <- 1e4
 
 importance = "impurity_corrected"
 holdout = FALSE
 
-hyperparam_settings <- expand.grid(nodesize.prop,
+hyperparam_settings <- expand.grid(min.node.size_prop,
                                    no.threads,
                                    replace,
                                    sample.fraction,
@@ -95,8 +95,8 @@ run_vita <- wrap_batchtools(reg_name = "jaccard_empirical_vita",
                             memory = "2g",
                             n_cpus = 1,
                             walltime = "5",
-                            partition = "fast",
-                            account = "dzhkomics",
+                            partition = partition,
+                            account = account,
                             test_job = FALSE,
                             wait_for_jobs = TRUE,
                             packages = c(
@@ -143,8 +143,8 @@ run_boruta10 <- wrap_batchtools(reg_name = "jaccard_boruta10",
                                 memory = "2g",
                                 n_cpus = 1,
                                 walltime = "30",
-                                partition = "fast",
-                                account = "dzhkomics",
+                                partition = partition,
+                                account = account,
                                 test_job = FALSE,
                                 wait_for_jobs = TRUE,
                                 packages = c(
@@ -170,8 +170,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "jaccard_boruta50",
                                 memory = "2g",
                                 n_cpus = 1,
                                 walltime = "30",
-                                partition = "fast",
-                                account = "dzhkomics",
+                                partition = partition,
+                                account = account,
                                 test_job = FALSE,
                                 wait_for_jobs = TRUE,
                                 packages = c(

@@ -4,11 +4,6 @@
 #' @param res_vita_file Vita results for scenario 1 in RDS format
 #' @param res_boruta_file Vita results for scenario 1 in RDS format
 #' @param default_param Set up parameters to be kept constant
-#'
-#' @return
-#' @export
-#'
-#' @examples
 plot_sens_min_node_scen1 <- function(res_vita_file,
                                      res_boruta_file,
                                      default_param = c("mtry.prop" = 0.33,
