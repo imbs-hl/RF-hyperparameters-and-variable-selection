@@ -24,11 +24,6 @@
 #' @param sample.fraction Sample fraction.
 #' @param holdout If TRUE, the holdout importance is used.
 #' @param vita_function Vita variable selection function to used.
-#'
-#' @return
-#' @export
-#'
-#' @examples
 data_only_scen2 <- function(data,
                             betas = c(-0.5, -1, -2, -3, 0.5, 1, 2, 3),
                             n_beta,

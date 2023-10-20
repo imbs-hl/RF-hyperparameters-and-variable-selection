@@ -10,7 +10,6 @@
 #' @param independence Do noise variables being independent?
 #' @param null_case If TRUE a null with no relationship between predictors and 
 #'                  the response variables is simulated.
-#' @param p.t See the Pomona package.
 #' @param fdr.adj Indicate wheter p values should be adjusted.
 #' @param num.trees Number of trees.
 #' @param seed Seed for random number generator.
@@ -24,11 +23,6 @@
 #' @param sample.fraction Sample fraction.
 #' @param holdout If TRUE, the holdout importance is used.
 #' @param vita_function Vita variable selection function to used.
-#'
-#' @return
-#' @export
-#'
-#' @examples
 test_binary_pomona <- function(data,
                                betas = c(-0.5, -1, -2, -3, 0.5, 1, 2, 3),
                                n_beta,
@@ -37,7 +31,6 @@ test_binary_pomona <- function(data,
                                subsetsize = 100,
                                independence = TRUE,
                                null_case = TRUE,
-                               p.t = 0.05,
                                fdr.adj = TRUE,
                                num.trees,
                                seed,
@@ -103,7 +96,7 @@ test_binary_pomona <- function(data,
     holdout = holdout,
     ntree = num.trees,
     varname = paste("x", abs(train_data$beta), sep = ""),
-    pValue = 0.01,
+    pValue = 0.01, ## For the output to fit the Boruta one for consistent output structure
     decision = testing_resf$info$selected,
     pvalue_adj = NA,
     p_adj_decision = testing_resf$info$selected,

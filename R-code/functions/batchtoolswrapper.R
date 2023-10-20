@@ -22,7 +22,6 @@
 #' @param name [string] chunk name to appeared in swatch (SLURM)
 #'
 #' @return Nothing, throws an error if not all jobs are finished 
-#' @export
 wrap_batchtools <- function(reg_name,
                             name = "",
                             work_dir = getwd(),

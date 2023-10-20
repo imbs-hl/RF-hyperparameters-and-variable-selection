@@ -7,11 +7,6 @@
 #' @param .sample.fraction Sample fraction is varying
 #' @param .mtry.prop Number of split candidate is varying
 #' @param .q Number of correlated variables 
-#'
-#' @return
-#' @export
-#'
-#' @examples
 fdr_empirical_function <- function(reg_dir,
                                    all_param_seetings = all_param_seetings,
                                    .min.node.size = 0.01,

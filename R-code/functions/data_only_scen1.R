@@ -16,11 +16,6 @@
 #' @param type Either "classification" or "regression"
 #' @param replace To be pass to Pomona
 #' @param sample.fraction Sample fraction
-#'
-#' @return
-#' @export
-#'
-#' @examples
 data_only_scen1 <- function(n = 100,
                             q = 10,
                             g = 1:6,

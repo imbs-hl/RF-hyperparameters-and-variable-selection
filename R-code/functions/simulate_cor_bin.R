@@ -1,4 +1,4 @@
-## Simualte variables with correlated predictor variables
+## Simulate variables with correlated predictor variables
 ##
 #' Title
 #'
@@ -7,11 +7,6 @@
 #' @param g vector of groups, referred to as i in Degenhardt et al. (2019)
 #' @param p total number of predictors
 #' @param null_case if TRUE, the null case scenario is simulated
-#'
-#' @return
-#' @export
-#'
-#' @examples
 simulate_cor_bin <- function(n = 100,
                              q = 10,
                              g = 1:6,

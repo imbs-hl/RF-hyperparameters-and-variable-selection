@@ -9,11 +9,6 @@
 #' @param independence Do noise variables being independent?
 #' @param prop.noise.obs Proportion of noise observation.
 #' @param effectset Set of effect sizes.
-#'
-#' @return
-#' @export
-#'
-#' @examples
 simulate_alt_bin <- function(seed,
                              x,
                              nsignal = 25,
