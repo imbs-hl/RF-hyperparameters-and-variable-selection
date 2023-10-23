@@ -5,7 +5,7 @@ if((partition == "xxxx") | account == "xxxx"){
   stop("Configure your batchtools account.")
 }
 ## Build jobs for alternative case
-## Parameter sets for Borutaf
+## Parameter sets for Boruta
 n <- 100
 q <- c(10, 50)
 g <- 1:6
@@ -47,7 +47,6 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
                                                replace == FALSE), ]
 
 
-## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
 seed <- 1:100
 q_seed <- data.frame(q = rep(q, each = length(seed)),
                      alpha = rep(alpha,
@@ -65,7 +64,7 @@ all_param_seetings <- as.data.table(all_param_seetings)
 all_param_seetings <- unique(all_param_seetings, by = "seed")
 
 ## Send jobs
-run_borutaf <- wrap_batchtools(reg_name = "data-scena1",
+run_boruta <- wrap_batchtools(reg_name = "data-scena1",
                                work_dir = working_dir,
                                reg_dir = registry_dir_scen1,
                                r_function = data_only_scen1,
