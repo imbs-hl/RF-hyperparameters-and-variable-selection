@@ -68,8 +68,8 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
   return(sens_all)
 }
 
-sens_min_node_plot <- plot_sens_min_node_scen1(res_vita_file = "/imbs/home/cesaire/projects/urf_mtry_paper/tuning/R-code/results/01-scenario/vita_cor_sens.RDS",
-                                               res_boruta_file = "/imbs/home/cesaire/projects/urf_mtry_paper/tuning/R-code/results/01-scenario/boruta_cor_sens.RDS",
+sens_min_node_plot <- plot_sens_min_node_scen1(res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
+                                               res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
                                                default_param = c("sample.fraction" = 0.632,
                                                                  "mtry.prop" = 0.014,
                                                                  replace = TRUE))
