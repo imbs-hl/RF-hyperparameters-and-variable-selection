@@ -8,6 +8,7 @@
 #' @param .mtry.prop Number of split candidate is varying
 #' @param .q Number of correlated variables 
 jaccard_empirical_function <- function(reg_dir,
+                                       config_file = config_file,
                                        all_param_settings = all_param_settings,
                                        .min.node.size = 0.01,
                                        .replace = TRUE,
@@ -27,7 +28,8 @@ jaccard_empirical_function <- function(reg_dir,
   ]
   ## Load registries
   my_reg <- batchtools::loadRegistry(
-    file.dir = reg_dir, writeable = FALSE)
+    file.dir = reg_dir, writeable = FALSE,
+    config.file = config_file)
   result_reg <- batchtools::reduceResultsList(
     ids = batchtools::findDone(
       ids = all_param_settings_subset$id,

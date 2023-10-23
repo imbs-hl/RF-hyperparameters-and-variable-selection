@@ -8,6 +8,7 @@
 #' @param .mtry.prop Number of split candidate is varying
 #' @param .q Number of correlated variables 
 fdr_empirical_function <- function(reg_dir,
+                                   config_file = config_file,
                                    all_param_settings = all_param_settings,
                                    .min.node.size = 0.01,
                                    .replace = TRUE,
