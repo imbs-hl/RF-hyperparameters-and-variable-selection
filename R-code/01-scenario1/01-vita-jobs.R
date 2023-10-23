@@ -1,3 +1,7 @@
+## Ensure partition and account are set up.
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
 ## Prepare and send the jobs for simulation study 1 and Vita selection
 ## method to the remote cluster.
 source("init.R", chdir = TRUE)
