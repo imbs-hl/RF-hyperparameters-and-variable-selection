@@ -58,11 +58,11 @@ q_seed <- data.frame(seed = seed, effect_seed = effect_seed,
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 
-all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
-all_param_seetings <- as.data.table(all_param_seetings)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- as.data.table(all_param_settings)
 
 ## We generate the 100 datasets used for all combinations
-all_param_seetings <- unique(all_param_seetings, by = "seed")
+all_param_settings <- unique(all_param_settings, by = "seed")
 
 ## *****************************************************************************
 ##                             Vita Pomona
@@ -73,7 +73,7 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena2",
                                  work_dir = working_dir,
                                  reg_dir = registry_dir_scen2,
                                  r_function = data_only_scen2,
-                                 vec_args = all_param_seetings,
+                                 vec_args = all_param_settings,
                                  more_args = list(
                                    data = data.frame(data_veer),
                                    betas = betas,

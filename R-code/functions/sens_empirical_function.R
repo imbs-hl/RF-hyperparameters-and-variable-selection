@@ -1,14 +1,14 @@
 #' This function estimate the sensitivity from simulated scenarios
 #'
 #' @param reg_dir Registry name
-#' @param all_param_seetings Parameter settings
+#' @param all_param_settings Parameter settings
 #' @param .min.node.size Minimal node size is varying
 #' @param .replace Draw strategy is varying
 #' @param .sample.fraction Sample fraction is varying
 #' @param .mtry.prop Number of split candidate is varying
 #' @param .q Number of correlated variables 
 sens_empirical_function <- function(reg_dir,
-                                   all_param_seetings = all_param_seetings,
+                                   all_param_settings = all_param_settings,
                                    .min.node.size = 0.01,
                                    .replace = TRUE,
                                    .sample.fraction = 0.632,
@@ -18,8 +18,8 @@ sens_empirical_function <- function(reg_dir,
   ## Load subset of parameter settings
   ## ************************************
   ##
-  all_param_seetings[ , id := 1:.N]
-  all_param_seetings_subset <- all_param_seetings[(min.node.size_prop ==  .min.node.size) &
+  all_param_settings[ , id := 1:.N]
+  all_param_settings_subset <- all_param_settings[(min.node.size_prop ==  .min.node.size) &
                                                     (replace ==  .replace) &
                                                     (sample.fraction ==  .sample.fraction) &
                                                     (mtry == .mtry.prop) &
@@ -30,7 +30,7 @@ sens_empirical_function <- function(reg_dir,
     file.dir = reg_dir, writeable = FALSE)
   result_reg <- batchtools::reduceResultsList(
     ids = batchtools::findDone(
-      ids = all_param_seetings_subset$id,
+      ids = all_param_settings_subset$id,
       reg = my_reg
     ),
     reg = my_reg)

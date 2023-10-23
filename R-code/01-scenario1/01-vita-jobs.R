@@ -64,14 +64,14 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
                                        list(...))
 
 
-all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
-all_param_seetings <- as.data.table(all_param_seetings)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- as.data.table(all_param_settings)
 ## Send jobs
 run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                 work_dir = working_dir,
                                 reg_dir = registry_dir_scen1,
                                 r_function = alternative_cor_vita,
-                                vec_args = all_param_seetings,
+                                vec_args = all_param_settings,
                                 more_args = list(
                                   n = n,
                                   g = g,

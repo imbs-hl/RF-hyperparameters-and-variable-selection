@@ -57,18 +57,18 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
                                        list(...))
 
 
-all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
-all_param_seetings <- as.data.table(all_param_seetings)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- as.data.table(all_param_settings)
 
 ## We generate the 100 datasets used for all combinations
-all_param_seetings <- unique(all_param_seetings, by = "seed")
+all_param_settings <- unique(all_param_settings, by = "seed")
 
 ## Send jobs
 run_boruta <- wrap_batchtools(reg_name = "data-scena1",
                                work_dir = working_dir,
                                reg_dir = registry_dir_scen1,
                                r_function = data_only_scen1,
-                               vec_args = all_param_seetings,
+                               vec_args = all_param_settings,
                                more_args = list(
                                  n = n,
                                  g = g,

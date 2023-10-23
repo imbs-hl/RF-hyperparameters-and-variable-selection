@@ -6,7 +6,6 @@ if((partition == "xxxx") | account == "xxxx"){
   stop("Configure your batchtools account.")
 }
 
-source("../functions/alternative_cor_boruta.R")
 ## Parameter sets for Boruta
 n <- 100
 q <- c(10, 50)
@@ -23,6 +22,8 @@ maxRuns <- 100
 replace <- c(TRUE, FALSE)
 sample.fraction <- c(0.200, 0.400, 0.632, 0.800, 1.000)
 mtry <- c(0.5, 0.3, 0.2, 0.1, 0.014)
+## nodesize.prop correspnds to min.node.size.prop in manuscript but for consis-
+## tent reason with Pomona's functions we call it nodesize.prop
 nodesize.prop <- c(0.01, 0.05, 0.1, 0.15, 0.2)
 num.trees <- 1e4
 
@@ -63,14 +64,14 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
                                        list(...))
 
 
-all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
-all_param_seetings <- as.data.table(all_param_seetings)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- as.data.table(all_param_settings)
 ## Send jobs
 run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                work_dir = working_dir,
                                reg_dir = registry_dir_scen1,
                                r_function = alternative_cor_boruta,
-                               vec_args = all_param_seetings,
+                               vec_args = all_param_settings,
                                more_args = list(
                                  n = n,
                                  g = g,
