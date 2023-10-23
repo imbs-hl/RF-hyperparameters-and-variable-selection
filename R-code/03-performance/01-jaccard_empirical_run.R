@@ -1,8 +1,8 @@
+source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
 if((partition == "xxxx") | account == "xxxx"){
   stop("Configure your batchtools account.")
 }
-source("init.R", chdir = TRUE)
 
 ## Build jobs for alternative case
 ## Parameter sets
