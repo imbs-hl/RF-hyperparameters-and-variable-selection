@@ -3,7 +3,7 @@
 
 source("init.R", chdir = TRUE)
 source("../functions/alternative_cor_boruta.R")
-## Parameter sets for Borutaf
+## Parameter sets for Boruta
 n <- 100
 q <- c(10, 50)
 g <- 1:6
@@ -72,15 +72,15 @@ run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                  g = g,
                                  p = p,
                                  null_case = null_case,
-                                 doTrace = 1
+                                 doTrace = doTrace
                                ),
                                name = "boruta-cor",
                                overwrite = TRUE,
-                               memory = "10g",
+                               memory = "1g",
                                n_cpus = no.threads,
                                walltime = "60",
-                               partition = partition,
-                               account = account,
+                              partition = partition, ## Set partition in init-global
+                              account = account, ## Set account in init-global
                                test_job = FALSE,
                                wait_for_jobs = TRUE,
                                packages = c(

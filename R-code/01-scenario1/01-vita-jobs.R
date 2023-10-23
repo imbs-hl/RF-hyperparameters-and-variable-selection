@@ -2,7 +2,7 @@
 ## method to the remote cluster.
 source("init.R", chdir = TRUE)
 ## Build jobs for alternative case
-## Parameter sets for Borutaf
+## Parameter sets for Vita
 n <- 100
 q <- c(10, 50)
 g <- 1:6
@@ -73,15 +73,15 @@ run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                   g = g,
                                   p = p,
                                   null_case = null_case,
-                                  doTrace = 1
+                                  doTrace = doTrace
                                 ),
                                 name = "vita-cor",
                                 overwrite = TRUE,
-                                memory = "10g",
+                                memory = "2g",
                                 n_cpus = no.threads,
                                 walltime = "20",
-                                partition = partition,
-                                account = account,
+                                partition = partition, ## Set partition in init-global
+                                account = account, ## Set account in init-global
                                 test_job = FALSE,
                                 wait_for_jobs = TRUE,
                                 packages = c(

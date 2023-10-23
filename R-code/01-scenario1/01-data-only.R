@@ -75,11 +75,11 @@ run_borutaf <- wrap_batchtools(reg_name = "data-scena1",
                                ),
                                name = "data-cor",
                                overwrite = TRUE,
-                               memory = "10g",
+                               memory = "1g",
                                n_cpus = no.threads,
                                walltime = "20",
-                               partition = partition,
-                               account = account,
+                               partition = partition, ## Set partition in init-global
+                               account = account, ## Set account in init-global
                                test_job = FALSE,
                                wait_for_jobs = TRUE,
                                packages = c(
