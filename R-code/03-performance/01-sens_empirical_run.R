@@ -61,10 +61,10 @@ q_seed <- data.frame(q = rep(q, each = length(seed)),
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 
-all_param_seetings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
-all_param_seetings <- as.data.table(all_param_seetings)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- as.data.table(all_param_settings)
 
-all_param_seeting_unique <- unique(all_param_seetings,
+all_param_setting_unique <- unique(all_param_settings,
                                    by = c("min.node.size_prop",
                                           "no.threads",
                                           "replace",
@@ -73,7 +73,7 @@ all_param_seeting_unique <- unique(all_param_seetings,
                                           "num.trees",
                                           "holdout",
                                           "q"))
-names(all_param_seeting_unique) <- c(".min.node.size",
+names(all_param_setting_unique) <- c(".min.node.size",
                                      "no.threads",
                                      ".replace",
                                      ".sample.fraction",
@@ -83,11 +83,11 @@ names(all_param_seeting_unique) <- c(".min.node.size",
                                      ".q", "alpha", "seed")
 
 ## ****** Remove unecessary parameters
-all_param_seeting_unique$no.threads <- NULL
-all_param_seeting_unique$num.trees <- NULL
-all_param_seeting_unique$seed <- NULL
-all_param_seeting_unique$alpha <- NULL
-all_param_seeting_unique$holdout <- NULL
+all_param_setting_unique$no.threads <- NULL
+all_param_setting_unique$num.trees <- NULL
+all_param_setting_unique$seed <- NULL
+all_param_setting_unique$alpha <- NULL
+all_param_setting_unique$holdout <- NULL
 
 
 ## Send jobs
@@ -95,14 +95,14 @@ run_vita <- wrap_batchtools(reg_name = "sens_empirical_vita",
                             work_dir = working_dir,
                             reg_dir = registry_dir_scen1,
                             r_function = sens_empirical_function,
-                            vec_args = all_param_seeting_unique,
+                            vec_args = all_param_setting_unique,
                             more_args = list(
-                              all_param_seetings = all_param_seetings,
+                              all_param_settings = all_param_settings,
                               reg_dir = file.path(registry_dir_scen1,
                                                   "vita-cor")
                             ),
                             name = "sens_vita",
-                            overwrite = FALSE,
+                            overwrite = TRUE,
                             memory = "2g",
                             n_cpus = 1,
                             walltime = "5",
@@ -123,7 +123,7 @@ reg_vita_sens <- batchtools::loadRegistry(
   file.dir = file.path(config_file, "sens_empirical_vita"), writeable = TRUE)
 vita_sens_reg <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
-    ids = 1:nrow(all_param_seeting_unique),
+    ids = 1:nrow(all_param_setting_unique),
     reg = reg_vita_sens
   ),
   reg = reg_vita_sens)
@@ -143,9 +143,9 @@ run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                 work_dir = working_dir,
                                 reg_dir = registry_dir_scen1,
                                 r_function = sens_empirical_function,
-                                vec_args = all_param_seeting_unique[.q == 10, ],
+                                vec_args = all_param_setting_unique[.q == 10, ],
                                 more_args = list(
-                                  all_param_seetings = all_param_seetings[q == 10, ],
+                                  all_param_settings = all_param_settings[q == 10, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
                                 ),
                                 name = "sens_boruta10",
@@ -169,9 +169,9 @@ run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
                                 work_dir = working_dir,
                                 reg_dir = registry_dir_scen1,
                                 r_function = sens_empirical_function,
-                                vec_args = all_param_seeting_unique[.q == 50, ],
+                                vec_args = all_param_setting_unique[.q == 50, ],
                                 more_args = list(
-                                  all_param_seetings = all_param_seetings[q == 50, ],
+                                  all_param_settings = all_param_settings[q == 50, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor50")
                                 ),
                                 name = "sens_boruta50",
@@ -197,7 +197,7 @@ reg_boruta_sens10 <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1, "sens_boruta10"), writeable = TRUE)
 boruta_sens_reg10 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
-    ids = 1:nrow(all_param_seeting_unique),
+    ids = 1:nrow(all_param_setting_unique),
     reg = reg_boruta_sens10
   ),
   reg = reg_boruta_sens10)
@@ -215,7 +215,7 @@ reg_boruta_sens50 <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1, "sens_boruta50"), writeable = TRUE)
 boruta_sens_reg50 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
-    ids = 1:nrow(all_param_seeting_unique),
+    ids = 1:nrow(all_param_setting_unique),
     reg = reg_boruta_sens50
   ),
   reg = reg_boruta_sens50)
