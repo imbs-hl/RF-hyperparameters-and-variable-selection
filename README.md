@@ -9,7 +9,7 @@ Simulations are parallelized using the R package ```batchtools``` version 0.9.15
 - Ensure the required R packages are installed
 - Set the main directory (```man_dir```) to the directory ```R-code```
 - Configure your batchtools' resources, the path to your batchtools' configuration file, your schedule (e.g. SLURM) partition, and your user account. Please ensure the partition (See batchtools) you use allows you the ```walltime``` (See batchtools) you set.
-- Set the path of your scheduler template file in ```template``` and the name of your cluster node in ```nodename```.
+- Set the path of your scheduler template file in ```template``` and the name of your cluster node in ```nodename```. Ensure that you set the correct R library path in your template file.
 
 ## Simulation study 1
 - Set the directory ```01-scenario1``` as the current working directory.
