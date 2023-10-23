@@ -71,7 +71,9 @@ dir.create(registry_dir, showWarnings = FALSE)
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 ## Batchtools configuration file
 config_file <- file.path(main_dir, "batchtools-config/batchtools.conf.R")
-  
+template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
+nodename <- "login001"
+
 ## SLURM partion and acount
 partition = "xxxx"
 account = "xxxx"
