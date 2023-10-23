@@ -1,3 +1,11 @@
+## Ensure partition and account are set up.
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
+## Ensure partition and account are set up.
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
 ## This file is for submitting jobs to generate data used in simulation study 2.
 source("init.R", chdir = TRUE)
 data("VEER1")

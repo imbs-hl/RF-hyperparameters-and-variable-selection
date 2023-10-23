@@ -75,8 +75,5 @@ template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
 nodename <- "login001"
 
 ## SLURM partion and acount
-partition = "xxxx"
-account = "xxxx"
-if((partition == "xxxx") | account == "xxxx"){
-  stop("Configure your batchtools account.")
-}
+partition = "fast"
+account = "imbs"

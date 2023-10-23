@@ -1,3 +1,11 @@
+## Ensure partition and account are set up.
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
+## Ensure partition and account are set up.
+if((partition == "xxxx") | account == "xxxx"){
+  stop("Configure your batchtools account.")
+}
 ## This file is for submitting jobs for evaluating Vita and Boruta in study 2.
 source("init.R", chdir = TRUE)
 data("VEER1")
