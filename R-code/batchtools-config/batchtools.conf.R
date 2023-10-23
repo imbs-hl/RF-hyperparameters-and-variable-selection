@@ -83,8 +83,8 @@ makeClusterFunctionsSlurm <- function (template = "slurm", clusters = NULL, arra
                        hooks = list(post.do.collection = removeResultFiles))
 }
 
-cluster.functions = makeClusterFunctionsSlurm(template = "~/.batchtools.slurm.tmpl",
-                                              nodename = "login001")
+cluster.functions = makeClusterFunctionsSlurm(template = template,
+                                              nodename = nodename)
 sleep = 3
 default.resources = list(ntasks = 1, ncpus = 1,
                          memory = 6000, partition = partition,
