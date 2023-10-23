@@ -1,4 +1,5 @@
 source("init.R", chdir = TRUE)
+source("../01-scenario1/init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
 if((partition == "xxxx") | account == "xxxx"){
   stop("Configure your batchtools account.")
