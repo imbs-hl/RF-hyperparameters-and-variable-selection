@@ -70,7 +70,8 @@ dir.create(registry_dir, showWarnings = FALSE)
 ## Batchtools wrapper
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 ## Batchtools configuration file
-config_file <- "/imbs/home/cesaire/projects/URF_Shi_and_Harvath/Random-Forest-Clustering/99_batchtools/batchtools.conf.R"
+config_file <- file.path(main_dir, "batchtools-config/batchtools.conf.R")
+  
 ## SLURM partion and acount
 partition = "xxxx"
 account = "xxxx"
