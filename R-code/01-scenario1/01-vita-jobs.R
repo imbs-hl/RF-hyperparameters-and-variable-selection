@@ -93,5 +93,6 @@ run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                   "Pomona",
                                   "data.table"
                                 ),
-                                config_file = config_file)
+                                config_file = config_file,
+                                interactive_session = interactive_session)
 

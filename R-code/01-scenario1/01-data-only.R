@@ -90,7 +90,8 @@ run_boruta <- wrap_batchtools(reg_name = "data-scena1",
                                  "Pomona",
                                  "data.table"
                                ),
-                               config_file = config_file)
+                              config_file = config_file,
+                              interactive_session = interactive_session)
 
 ## Load and saved simulated data
 load_data_reg <- batchtools::loadRegistry(

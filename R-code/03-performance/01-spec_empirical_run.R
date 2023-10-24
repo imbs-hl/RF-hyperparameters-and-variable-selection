@@ -108,7 +108,8 @@ run_vita <- wrap_batchtools(reg_name = "spec_empirical_vita",
                               "devtools",
                               "data.table"
                             ),
-                            config_file = config_file)
+                            config_file = config_file,
+                            interactive_session = interactive_session)
 
 ## =======================================
 ## Resume FDR's result for vita
@@ -158,7 +159,8 @@ run_boruta10 <- wrap_batchtools(reg_name = "spec_boruta10",
                                   "devtools",
                                   "data.table"
                                 ),
-                                config_file = config_file)
+                                config_file = config_file,
+                                interactive_session = interactive_session)
 
 
 ## Send Boruta jobs for q = 50
@@ -185,7 +187,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "spec_boruta50",
                                   "devtools",
                                   "data.table"
                                 ),
-                                config_file = config_file)
+                                config_file = config_file,
+                                interactive_session = interactive_session)
 
 ## ----------------------------------------------
 ## Resume jaccard's result for vita for q = 10

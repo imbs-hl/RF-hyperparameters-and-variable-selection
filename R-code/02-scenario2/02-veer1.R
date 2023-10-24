@@ -56,7 +56,6 @@ names(hyperparam_settings) <- c("nodesize.prop",
 hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
 hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
 
-## We set the number of replicate to 50 for computation reasons
 q_seed <- data.frame(seed = seed, effect_seed = effect_seed,
                      alpha = rep(alpha, each = length(seed)))
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
@@ -70,7 +69,7 @@ all_param_settings <- as.data.table(all_param_settings)
 ## *****************************************************************************
 ##
 
-run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all",
+run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all_test",
                                  work_dir = working_dir,
                                  reg_dir = registry_dir_scen2,
                                  r_function = test_binary_pomona,
@@ -97,17 +96,18 @@ run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all",
                                  packages = c(
                                    "devtools"
                                  ),
-                                 config_file = config_file)
+                                 config_file = config_file,
+                                 interactive_session = interactive_session)
 
 ## *****************************************************************************
 ##                  Save Vita results
 ## *****************************************************************************
 ## Load registries
 reg_vita_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all"),
+  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all_test"),
   writeable = TRUE,
   conf.file = config_file)
-njobs <- 22500
+njobs <- nrow(all_param_settings)
 vita_veer_res <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:njobs,
@@ -129,7 +129,7 @@ saveRDS(object = vita_veer_res_DT,
 ##                             Boruta Pomona
 ## *****************************************************************************
 ##
-run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
+run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all_test",
                                     work_dir = working_dir,
                                     reg_dir = registry_dir_scen2,
                                     r_function = test_binary,
@@ -156,7 +156,8 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
                                       "devtools",
                                       "data.table"
                                     ),
-                                    config_file = config_file)
+                                   config_file = config_file,
+                                   interactive_session = interactive_session)
 
 
 ## *****************************************************************************
@@ -167,7 +168,7 @@ reg_boruta_veer <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
   writeable = TRUE,
   conf.file = config_file)
-njobs <- 22500
+njobs <- nrow(all_param_settings)
 boruta_veer_res <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:njobs,

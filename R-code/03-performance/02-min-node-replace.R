@@ -399,6 +399,6 @@ arrange_MinReplace02 <- ggpubr::ggarrange(
 
 arrange_MinReplace02
 
-ggsave(filename = file.path(result_dir, "02-scenario/paper/MinReplace02.pdf"),
+ggsave(filename = file.path(result_dir, "MinReplace02.pdf"),
        plot = arrange_MinReplace02,
        width = 7, height = 7)

@@ -38,7 +38,8 @@ wrap_batchtools <- function(reg_name,
                             test_job = FALSE,
                             wait_for_jobs = TRUE,
                             packages = character(0),
-                            config_file){
+                            config_file,
+                            interactive_session = FALSE){
   
   
   library(batchtools, quietly = TRUE)
@@ -89,7 +90,7 @@ wrap_batchtools <- function(reg_name,
   } else {   
     ## submit unfinished jobs, i.e. for first run: all
     ids <- batchtools::findNotDone(reg = reg)
-    if(nrow(ids) > 0){
+    if((nrow(ids) > 0) & (!interactive_session)){
       message(nrow(ids), ' jobs found, (re)submitting')
       ids[ , chunk := 1]
       batchtools::submitJobs(
@@ -103,6 +104,17 @@ wrap_batchtools <- function(reg_name,
           walltime = walltime,
           partition = partition,
           chunks.as.arrayjobs = TRUE),
+        reg = reg)
+    } else {
+      ## Submit jobs in interactive session
+      batchtools::submitJobs(
+        ids = ids, 
+        resources = list(
+          name = name,
+          ntasks = 1, 
+          ncpus = n_cpus, 
+          memory = memory,
+          walltime = walltime),
         reg = reg)
     }
     if(wait_for_jobs){

@@ -96,7 +96,8 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena2",
                                  packages = c(
                                    "devtools"
                                  ),
-                                 config_file = config_file)
+                                 config_file = config_file,
+                                 interactive_session = interactive_session)
 
 ## Load and saved simulated data
 load_data_reg2 <- batchtools::loadRegistry(

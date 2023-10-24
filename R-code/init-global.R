@@ -67,13 +67,21 @@ dir.create(registry_dir, showWarnings = FALSE)
 ##      Batchtools configurations
 ## =============================================================================
 ##
+## Do the jobs should be ran in interactive session?
+interactive_session <- FALSE
 ## Batchtools wrapper
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 ## Batchtools configuration file
-config_file <- file.path(main_dir, "batchtools-config/batchtools.conf.R")
+config_file <- if(!interactive_session){
+file.path(main_dir, "batchtools-config/batchtools.conf.R")
+} else {
+  file.path(main_dir, "batchtools-config/batchtools.multicore.R")
+}
+## Template file and cluster node name. Only useful in cluster session
+## i.e. interactive_session = TRUE
 template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
 nodename <- "login001"
 
-## SLURM partion and acount
+## SLURM partition and account
 partition = "xxxx"
 account = "xxxx"

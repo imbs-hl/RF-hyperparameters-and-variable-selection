@@ -93,4 +93,5 @@ run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                  "Pomona",
                                  "data.table"
                                ),
-                               config_file = config_file)
+                               config_file = config_file,
+                              interactive_session = interactive_session)
