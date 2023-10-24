@@ -15,6 +15,7 @@ sens_empirical_function <- function(reg_dir,
                                    .sample.fraction = 0.632,
                                    .mtry.prop = 0.01,
                                    .q = 10){
+  source("init.R", chdir = TRUE)
   ## ************************************
   ## Load subset of parameter settings
   ## ************************************
