@@ -46,6 +46,7 @@ test_binary <- function(data,
                         replace = TRUE,
                         sample.fraction =  ifelse(replace, 1, 0.632),
                         holdout = FALSE,
+                        pValue = 0.01,
                         boruta_function = Pomona::var.sel.boruta
 ){
   source("init.R", chdir = TRUE)
@@ -99,7 +100,7 @@ test_binary <- function(data,
     holdout = holdout,
     ntree = num.trees,
     varname = paste("x", abs(train_data$beta), sep = ""),
-    pValue = 0.01, # Just to harmonize header of output results with that of Boruta
+    pValue = pValue, # Just to harmonize header of output results with that of Boruta
     decision = testing_resf$info$selected,
     pvalue_adj = NA,
     p_adj_decision = testing_resf$info$selected,

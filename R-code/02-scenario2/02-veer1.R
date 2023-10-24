@@ -125,7 +125,10 @@ saveRDS(object = vita_veer_res_DT,
         file = file.path(result_dir_scen2, "vita_veer_mean_res.RDS"))
 
 
-## Send jobs
+## *****************************************************************************
+##                             Boruta Pomona
+## *****************************************************************************
+##
 run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
                                     work_dir = working_dir,
                                     reg_dir = registry_dir_scen2,
@@ -157,7 +160,7 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
 
 
 ## *****************************************************************************
-##                  Save Vita results
+##                  Save Boruta results
 ## *****************************************************************************
 ## Load registries
 reg_boruta_veer <- batchtools::loadRegistry(
