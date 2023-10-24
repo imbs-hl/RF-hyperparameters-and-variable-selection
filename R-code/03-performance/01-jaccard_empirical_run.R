@@ -146,7 +146,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "jaccard_boruta10",
                                   all_param_settings = all_param_settings[q == 10, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
                                 ),
-                                name = "jaccard_boruta10",
+                                name = "jaccard_boruta",
                                 overwrite = TRUE,
                                 memory = "2g",
                                 n_cpus = 1,
@@ -172,7 +172,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "jaccard_boruta50",
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[q == 50, ],
                                   reg_dir = file.path(registry_dir_scen1,
-                                                      "boruta-cor50")
+                                                      "boruta-cor")
                                 ),
                                 name = "jaccard_boruta50",
                                 overwrite = TRUE,
