@@ -1,7 +1,7 @@
 source("init.R", chdir = TRUE)
 source("../01-scenario1/init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
-if((partition == "xxxx") | account == "xxxx"){
+if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
   stop("Configure your batchtools account.")
 }
 
@@ -111,6 +111,7 @@ run_fdr_vita <- wrap_batchtools(reg_name = "fdr_empirical_vita",
                             config_file = config_file,
                             interactive_session = interactive_session)
 
+## Run this after that your jobs are completed
 ## =======================================
 ## Resume FDR's result for vita
 ## =======================================
@@ -192,6 +193,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "fdr_boruta50",
                                 config_file = config_file,
                                 interactive_session = interactive_session)
 
+
+## Run this after that your jobs are completed
 ## ----------------------------------------------
 ## Resume jaccard's result for vita for q = 10
 ## ----------------------------------------------
@@ -211,6 +214,7 @@ boruta_fdr_reg10 <- batchtools::reduceResultsList(
 boruta_fdr_DT10 <- data.table::rbindlist(boruta_fdr_reg10)
 
 
+## Run this after that your jobs are completed
 ## ----------------------------------------------
 ## Resume jaccard's result for vita for q = 50
 ## ----------------------------------------------

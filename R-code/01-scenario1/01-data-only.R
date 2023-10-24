@@ -1,7 +1,7 @@
 ## This file will generate data only
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
-if((partition == "xxxx") | account == "xxxx"){
+if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
   stop("Configure your batchtools account.")
 }
 ## Build jobs for alternative case

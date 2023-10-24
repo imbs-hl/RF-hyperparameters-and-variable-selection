@@ -1,7 +1,7 @@
 ## This file is for submitting jobs for evaluating Vita and Boruta in study 2.
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
-if((partition == "xxxx") | account == "xxxx"){
+if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
   stop("Configure your batchtools account.")
 }
 data("VEER1")
@@ -99,6 +99,7 @@ run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all_test",
                                  config_file = config_file,
                                  interactive_session = interactive_session)
 
+## Run this after that your jobs are completed
 ## *****************************************************************************
 ##                  Save Vita results
 ## *****************************************************************************
@@ -159,7 +160,7 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all_test",
                                    config_file = config_file,
                                    interactive_session = interactive_session)
 
-
+## Run this after that your jobs are completed
 ## *****************************************************************************
 ##                  Save Boruta results
 ## *****************************************************************************

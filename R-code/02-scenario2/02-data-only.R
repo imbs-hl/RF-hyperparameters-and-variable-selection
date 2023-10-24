@@ -1,7 +1,7 @@
 ## This file is for submitting jobs to generate data used in simulation study 2.
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
-if((partition == "xxxx") | account == "xxxx"){
+if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
   stop("Configure your batchtools account.")
 }
 
@@ -98,6 +98,8 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena2",
                                  ),
                                  config_file = config_file,
                                  interactive_session = interactive_session)
+
+## Run this after that your jobs are completed
 
 ## Load and saved simulated data
 load_data_reg2 <- batchtools::loadRegistry(
