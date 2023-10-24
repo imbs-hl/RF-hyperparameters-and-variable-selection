@@ -91,6 +91,7 @@ run_vita <- wrap_batchtools(reg_name = "spec_empirical_vita",
                             r_function = spec_empirical_function,
                             vec_args = all_param_setting_unique,
                             more_args = list(
+                              config_file = config_file,
                               all_param_settings = all_param_settings,
                               reg_dir = file.path(registry_dir_scen1, "vita-cor")
                             ),
@@ -114,7 +115,8 @@ run_vita <- wrap_batchtools(reg_name = "spec_empirical_vita",
 ## =======================================
 reg_vita_spec <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1,
-                       "spec_empirical_vita"), writeable = TRUE)
+                       "spec_empirical_vita"), writeable = TRUE,
+  conf.file = config_file)
 vita_spec_reg <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),
@@ -139,6 +141,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "spec_boruta10",
                                 r_function = spec_empirical_function,
                                 vec_args = all_param_setting_unique[.q == 10, ],
                                 more_args = list(
+                                  config_file = config_file,
                                   all_param_settings = all_param_settings[q == 10, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
                                 ),
@@ -165,6 +168,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "spec_boruta50",
                                 r_function = spec_empirical_function,
                                 vec_args = all_param_setting_unique[.q == 50, ],
                                 more_args = list(
+                                  config_file = config_file,
                                   all_param_settings = all_param_settings[q == 50, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor50")
                                 ),
@@ -188,7 +192,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "spec_boruta50",
 ## ----------------------------------------------
 ##
 reg_boruta_spec10 <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen1, "spec_boruta10"), writeable = TRUE)
+  file.dir = file.path(registry_dir_scen1, "spec_boruta10"), writeable = TRUE,
+  conf.file = config_file)
 boruta_spec_reg10 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),
@@ -206,7 +211,8 @@ boruta_spec_DT10 <- data.table::rbindlist(boruta_spec_reg10)
 ## ----------------------------------------------
 ##
 reg_boruta_spec50 <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen1, "spec_boruta50"), writeable = TRUE)
+  file.dir = file.path(registry_dir_scen1, "spec_boruta50"), writeable = TRUE,
+  conf.file = config_file)
 boruta_spec_reg50 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),

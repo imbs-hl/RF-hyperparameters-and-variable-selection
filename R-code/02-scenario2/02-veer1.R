@@ -104,7 +104,9 @@ run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all",
 ## *****************************************************************************
 ## Load registries
 reg_vita_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all"), writeable = TRUE)
+  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all"),
+  writeable = TRUE,
+  conf.file = config_file)
 njobs <- 22500
 vita_veer_res <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
@@ -160,7 +162,8 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
 ## Load registries
 reg_boruta_veer <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
-  writeable = TRUE)
+  writeable = TRUE,
+  conf.file = config_file)
 njobs <- 22500
 boruta_veer_res <- batchtools::reduceResultsList(
   ids = batchtools::findDone(

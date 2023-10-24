@@ -91,6 +91,7 @@ run_vita <- wrap_batchtools(reg_name = "jaccard_empirical_vita",
                             r_function = jaccard_empirical_function,
                             vec_args = all_param_setting_unique,
                             more_args = list(
+                              config_file = config_file,
                               all_param_settings = all_param_settings,
                               reg_dir = file.path(registry_dir_scen1,
                                                   "vita-cor")
@@ -115,7 +116,8 @@ run_vita <- wrap_batchtools(reg_name = "jaccard_empirical_vita",
 ## =======================================
 reg_vita_jaccard <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1,
-                       "jaccard_empirical_vita"), writeable = TRUE)
+                       "jaccard_empirical_vita"), writeable = TRUE,
+  conf.file = config_file)
 vita_jaccard_reg <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),
@@ -140,6 +142,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "jaccard_boruta10",
                                 r_function = jaccard_empirical_function,
                                 vec_args = all_param_setting_unique[.q == 10, ],
                                 more_args = list(
+                                  config_file = config_file,
                                   all_param_settings = all_param_settings[q == 10, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
                                 ),
@@ -166,6 +169,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "jaccard_boruta50",
                                 r_function = jaccard_empirical_function,
                                 vec_args = all_param_setting_unique[.q == 50, ],
                                 more_args = list(
+                                  config_file = config_file,
                                   all_param_settings = all_param_settings[q == 50, ],
                                   reg_dir = file.path(registry_dir_scen1,
                                                       "boruta-cor50")
@@ -191,7 +195,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "jaccard_boruta50",
 ##
 reg_boruta_jaccard10 <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1, "jaccard_boruta10"),
-  writeable = TRUE)
+  writeable = TRUE,
+  conf.file = config_file)
 boruta_jaccard_reg10 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),
@@ -210,7 +215,8 @@ boruta_jaccard_DT10 <- data.table::rbindlist(boruta_jaccard_reg10)
 ##
 reg_boruta_jaccard50 <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1,
-                       "jaccard_boruta50"), writeable = TRUE)
+                       "jaccard_boruta50"), writeable = TRUE,
+  conf.file = config_file)
 boruta_jaccard_reg50 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
     ids = 1:nrow(all_param_setting_unique),

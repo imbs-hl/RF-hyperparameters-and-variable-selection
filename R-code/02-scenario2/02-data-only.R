@@ -100,7 +100,9 @@ run_vita_veer <- wrap_batchtools(reg_name = "data-scena2",
 
 ## Load and saved simulated data
 load_data_reg2 <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "data-scena2"), writeable = TRUE)
+  file.dir = file.path(registry_dir_scen2, "data-scena2"),
+  writeable = TRUE,
+  conf.file = config_file)
 data_scenario2 <- batchtools::reduceResultsList(ids = 1:100,
                                                 reg = load_data_reg2)
 saveRDS(object = data_scenario2,

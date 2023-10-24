@@ -94,7 +94,8 @@ run_boruta <- wrap_batchtools(reg_name = "data-scena1",
 
 ## Load and saved simulated data
 load_data_reg <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen1, "data-scena1"), writeable = TRUE)
+  file.dir = file.path(registry_dir_scen1, "data-scena1"), writeable = TRUE,
+  conf.file = config_file)
 data_scenario1 <- batchtools::reduceResultsList(ids = 1:100,
                                                   reg = load_data_reg)
 saveRDS(object = data_scenario1,
