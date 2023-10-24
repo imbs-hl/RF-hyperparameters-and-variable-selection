@@ -29,7 +29,7 @@ sens_empirical_function <- function(reg_dir,
   ## Load registries
   my_reg <- batchtools::loadRegistry(
     file.dir = reg_dir, writeable = FALSE,
-    config.file = config_file)
+    conf.file = config_file)
   result_reg <- batchtools::reduceResultsList(
     ids = batchtools::findDone(
       ids = all_param_settings_subset$id,
