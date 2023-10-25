@@ -12,7 +12,6 @@
 *.fls
 *.lb
 *.fdb_latexmk
-RJwrapper.pdf
 *.pdf
 *.zip
 *.tar
