@@ -80,8 +80,8 @@ file.path(main_dir, "batchtools-config/batchtools.conf.R")
 ## Template file and cluster node name. Only useful in cluster session
 ## i.e. interactive_session = TRUE
 template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
-nodename <- "login001"
+nodename <- "xxxx" ## For me login001
 
-## SLURM partition and account
+## SLURM partition and account: not required in interactive session.
 partition = "xxxx"
 account = "xxxx"
