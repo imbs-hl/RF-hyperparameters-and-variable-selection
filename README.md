@@ -1,5 +1,5 @@
 # Effect of hyperparameters on variable selection in random forests
-Supplementary Material for "Effect of hyperparameters on variable selection in random forests".
+Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
 
 All results presented in the paper can be obtained by running the R scripts of this repository. We used the R version 3.5.0 to run our code.
 
