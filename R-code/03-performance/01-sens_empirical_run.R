@@ -53,8 +53,51 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == F
 #                                              (importance == "permutation" & holdout == FALSE), ]
 
 
-## We set the number of replicate to 50 for computation reasons
-seed <- 1:100
+## Just 1 replicates if the system is in the testing mode, and 100 otherwise.
+seed <- if(testing_mode){
+  ## Variation of min.node.size
+  nodesize.prop.var <- data.frame(min.node.size_prop = min.node.size_prop,
+                                  no.threads = no.threads,
+                                  replace = TRUE,
+                                  sample.fraction = 0.632,
+                                  mtry = 0.014,
+                                  num.trees = num.trees,
+                                  holdout = holdout)
+  ## Variation of replace
+  replace.var <- data.frame(min.node.size_prop = 0.01,
+                            no.threads = no.threads,
+                            replace = replace,
+                            sample.fraction = 0.632,
+                            mtry = 0.014,
+                            num.trees = num.trees,
+                            holdout = holdout)
+  ## Variation of sample.fraction
+  sample.fraction.var <- data.frame(min.node.size_prop = 0.01,
+                                    no.threads = no.threads,
+                                    replace = TRUE,
+                                    sample.fraction = sample.fraction,
+                                    mtry = 0.014,
+                                    num.trees = num.trees,
+                                    holdout = holdout)
+  ## Variation of mtry
+  mtry.var <- data.frame(min.node.size_prop = 0.01,
+                         no.threads = no.threads,
+                         replace = TRUE,
+                         sample.fraction = 0.632,
+                         mtry = mtry,
+                         num.trees = num.trees,
+                         holdout = holdout)
+  hyperparam_settings <- data.table::rbindlist(list(
+    nodesize.prop.var,
+    replace.var,
+    sample.fraction.var,
+    mtry.var
+  ))
+  1
+} else {
+  1:100
+} 
+
 k_seed <- data.frame(k = rep(k, each = length(seed)),
                      alpha = rep(alpha, each = length(rep(k, each = length(seed)))),
                      seed = seed)
@@ -124,7 +167,7 @@ run_vita <- wrap_batchtools(reg_name = "sens_empirical_vita",
 ## Resume FDR's result for vita
 ## =======================================
 reg_vita_sens <- batchtools::loadRegistry(
-  file.dir = file.path(config_file, "sens_empirical_vita"), writeable = TRUE,
+  file.dir = file.path(registry_dir_scen1, "sens_empirical_vita"), writeable = TRUE,
   conf.file = config_file)
 vita_sens_reg <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
@@ -152,7 +195,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                 more_args = list(
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 10, ],
-                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
+                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor")
                                 ),
                                 name = "sens_boruta",
                                 overwrite = TRUE,
@@ -180,7 +223,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
                                 more_args = list(
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 50, ],
-                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor50")
+                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor")
                                 ),
                                 name = "sens_boruta",
                                 overwrite = TRUE,

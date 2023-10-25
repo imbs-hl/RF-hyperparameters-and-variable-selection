@@ -233,9 +233,6 @@ sens_replace_plot <- plot_sens_replace_scen1(
 sens_replace_plot
 
 
-
-
-
 plot_jaccard_min_node_scen1 <- function(res_vita_file,
                                         res_boruta_file,
                                         default_param = c("mtry.prop" = 0.014,
@@ -359,7 +356,7 @@ plot_fdr_min_mode_scen1 <- function(res_vita_file,
                size = 0.5,
                color = "black",
                linetype = "dashed") +
-    xlab(label = "min.node.size") +
+    xlab(label = "min.node.size.prop") +
     ylab(label = "Empirical FDR") +
     theme(legend.position = "none",
           text = element_text(size = 14),
@@ -480,7 +477,7 @@ theme_set(theme_bw())
 MinReplace01
 
 theme_set(theme_bw())
-ggsave(filename = file.path(result_dir, "paper/MinReplace01.pdf"),
+ggsave(filename = file.path(result_dir_scen1, "MinReplace01.pdf"),
        plot = MinReplace01,
        width = 10, height = 7)
 

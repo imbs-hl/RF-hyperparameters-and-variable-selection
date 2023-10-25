@@ -68,7 +68,7 @@ dir.create(registry_dir, showWarnings = FALSE)
 ## =============================================================================
 ##
 ## Do the jobs should be ran in interactive session?
-interactive_session <- FALSE
+interactive_session <- TRUE
 ## Batchtools wrapper
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 ## Batchtools configuration file
