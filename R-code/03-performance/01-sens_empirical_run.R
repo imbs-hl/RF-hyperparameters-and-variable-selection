@@ -8,8 +8,8 @@ if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
 ## Build jobs for alternative case
 ## Parameter sets
 n <- 100
-q <- c(10, 50)
-g <- 1:6
+k <- c(10, 50)
+q <- 1:6
 p <- 5000
 null_case <- FALSE
 pValue <- 0.01
@@ -55,14 +55,14 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == F
 
 ## We set the number of replicate to 50 for computation reasons
 seed <- 1:100
-q_seed <- data.frame(q = rep(q, each = length(seed)),
-                     alpha = rep(alpha, each = length(rep(q, each = length(seed)))),
+k_seed <- data.frame(k = rep(k, each = length(seed)),
+                     alpha = rep(alpha, each = length(rep(k, each = length(seed)))),
                      seed = seed)
 
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 
-all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), k_seed)
 all_param_settings <- as.data.table(all_param_settings)
 
 all_param_setting_unique <- unique(all_param_settings,
@@ -73,7 +73,7 @@ all_param_setting_unique <- unique(all_param_settings,
                                           "mtry",
                                           "num.trees",
                                           "holdout",
-                                          "q"))
+                                          "k"))
 names(all_param_setting_unique) <- c(".min.node.size",
                                      "no.threads",
                                      ".replace",
@@ -81,7 +81,7 @@ names(all_param_setting_unique) <- c(".min.node.size",
                                      ".mtry.prop",
                                      "num.trees",
                                      "holdout",
-                                     ".q", "alpha", "seed")
+                                     ".k", "alpha", "seed")
 
 ## ****** Remove unecessary parameters
 all_param_setting_unique$no.threads <- NULL
@@ -143,15 +143,15 @@ saveRDS(object = vita_sens_DT,
         file = file.path(result_dir_scen1, "vita_cor_sens.RDS"))
 
 
-## Send Boruta jobs for q = 10
+## Send Boruta jobs for k = 10
 run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                 work_dir = working_dir,
                                 reg_dir = registry_dir_scen1,
                                 r_function = sens_empirical_function,
-                                vec_args = all_param_setting_unique[.q == 10, ],
+                                vec_args = all_param_setting_unique[.k == 10, ],
                                 more_args = list(
                                   config_file = config_file,
-                                  all_param_settings = all_param_settings[q == 10, ],
+                                  all_param_settings = all_param_settings[k == 10, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor10")
                                 ),
                                 name = "sens_boruta",
@@ -171,15 +171,15 @@ run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                 interactive_session = interactive_session)
 
 
-## Send Boruta jobs for q = 50
+## Send Boruta jobs for k = 50
 run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
                                 work_dir = working_dir,
                                 reg_dir = registry_dir_scen1,
                                 r_function = sens_empirical_function,
-                                vec_args = all_param_setting_unique[.q == 50, ],
+                                vec_args = all_param_setting_unique[.k == 50, ],
                                 more_args = list(
                                   config_file = config_file,
-                                  all_param_settings = all_param_settings[q == 50, ],
+                                  all_param_settings = all_param_settings[k == 50, ],
                                   reg_dir = file.path(registry_dir_scen1, "boruta-cor50")
                                 ),
                                 name = "sens_boruta",
@@ -200,7 +200,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
 
 ## Run this after that your jobs are completed
 ## ----------------------------------------------
-## Resume jaccard's result for vita for q = 10
+## Resume jaccard's result for vita for k = 10
 ## ----------------------------------------------
 ##
 reg_boruta_sens10 <- batchtools::loadRegistry(
@@ -220,7 +220,7 @@ boruta_sens_DT10 <- data.table::rbindlist(boruta_sens_reg10)
 
 
 ## ----------------------------------------------
-## Resume jaccard's result for vita for q = 50
+## Resume jaccard's result for vita for k = 50
 ## ----------------------------------------------
 ##
 reg_boruta_sens50 <- batchtools::loadRegistry(

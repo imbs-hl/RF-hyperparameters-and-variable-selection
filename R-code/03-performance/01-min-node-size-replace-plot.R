@@ -42,7 +42,7 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
   data_results[ , Methode := Method]
   data_results[ , Methode := as.character(Method)]
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results[ , mtry := as.factor(mtry)]
   data_results$Method <- factor(x = data_results$Method,
                                 levels = c("Vita", "Boruta"))
@@ -115,7 +115,7 @@ plot_fdr_replace_scen1 <- function(res_vita_file,
     data_results
   }
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results$Method <- factor(data_results$Method,
                                 levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR, na.rm = TRUE),
@@ -198,7 +198,7 @@ plot_sens_replace_scen1 <- function(res_vita_file,
   data_results[ , Methode := Method]
   data_results[ , Methode := as.character(Method)]
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results[ , mtry := as.factor(mtry)]
   data_results$Method <- factor(x = data_results$Method,
                                 levels = c("Vita", "Boruta"))
@@ -272,7 +272,7 @@ plot_jaccard_min_node_scen1 <- function(res_vita_file,
     data_results
   }
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results[ , mtry := as.factor(mtry)]
   data_results$Method <- factor(data_results$Method,
                                 levels = c("Vita", "Boruta"))
@@ -344,7 +344,7 @@ plot_fdr_min_mode_scen1 <- function(res_vita_file,
     data_results
   }
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results[ , mtry := as.factor(mtry)]
   data_results$Method <- factor(data_results$Method,
                                 levels = c("Vita", "Boruta"))
@@ -419,7 +419,7 @@ plot_jaccard_replace_scen1 <- function(res_vita_file,
     data_results
   }
   data_results[ , mtry := mtry.prop]
-  data_results[ , k := paste(sprintf("%s", q))]
+  data_results[ , k := paste(sprintf("%s", k))]
   data_results$Method <- factor(data_results$Method,
                                 levels = c("Vita", "Boruta"))
   data_results[ , Jaccard := mean(Jaccard),

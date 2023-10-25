@@ -6,7 +6,7 @@
 #' @param .replace Draw strategy is varying
 #' @param .sample.fraction Sample fraction is varying
 #' @param .mtry.prop Number of split candidate is varying
-#' @param .q Number of correlated variables 
+#' @param .k Number of correlated variables 
 sens_empirical_function <- function(reg_dir,
                                     config_file = config_file,
                                    all_param_settings = all_param_settings,
@@ -14,7 +14,7 @@ sens_empirical_function <- function(reg_dir,
                                    .replace = TRUE,
                                    .sample.fraction = 0.632,
                                    .mtry.prop = 0.01,
-                                   .q = 10){
+                                   .k = 10){
   source("init.R", chdir = TRUE)
   ## ************************************
   ## Load subset of parameter settings
@@ -25,7 +25,7 @@ sens_empirical_function <- function(reg_dir,
                                                     (replace ==  .replace) &
                                                     (sample.fraction ==  .sample.fraction) &
                                                     (mtry == .mtry.prop) &
-                                                    (q == .q),
+                                                    (k == .k),
   ]
   ## Load registries
   my_reg <- batchtools::loadRegistry(
@@ -55,7 +55,7 @@ sens_empirical_function <- function(reg_dir,
                replace = .replace,
                sample.fraction = .sample.fraction,
                mtry.prop = .mtry.prop,
-               q = .q,
+               k = .k,
                SENS = round(sens_adj, 5))
   )
 }

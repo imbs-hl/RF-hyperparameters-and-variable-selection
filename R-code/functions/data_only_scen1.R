@@ -2,8 +2,8 @@
 #' procedure
 #'
 #' @param n Number of individuals
-#' @param q Basis variable
-#' @param g Index of correlated variables
+#' @param k Basis variable
+#' @param q Index of correlated variables
 #' @param p Number of predictor variables
 #' @param null_case Logical variable indicating if a null case is simulated
 #' @param holdout Should the holdout variable importance be used?
@@ -17,8 +17,8 @@
 #' @param replace To be pass to Pomona
 #' @param sample.fraction Sample fraction
 data_only_scen1 <- function(n = 100,
-                            q = 10,
-                            g = 1:6,
+                            k = 10,
+                            q = 1:6,
                             p = 5000,
                             null_case = FALSE,
                             holdout = FALSE,
@@ -40,15 +40,15 @@ data_only_scen1 <- function(n = 100,
   ## Simulate data
   set.seed(seed = seed)
   train_data <- simulate_cor_bin(n = n,
+                                 k = k,
                                  q = q,
-                                 g = g,
                                  p = p,
                                  beta_seed = seed,
                                  null_case = null_case)
   res_data <- list(seed = seed,
                    n = n,
+                   k = k,
                    q = q,
-                   g = g,
                    p = p,
                    data = train_data)
   return(res_data)

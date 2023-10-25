@@ -8,8 +8,8 @@ if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
 
 ## Parameter sets for Boruta
 n <- 100
-q <- c(10, 50)
-g <- 1:6
+k <- c(10, 50)
+q <- 1:6
 p <- 5000
 null_case <- FALSE
 pValue <- 0.01
@@ -55,16 +55,16 @@ seed <- if(testing_mode){
   1:100
 } 
 
-q_seed <- data.frame(q = rep(q, each = length(seed)),
+k_seed <- data.frame(k = rep(k, each = length(seed)),
                      pValue = rep(pValue,
-                                  each = length(rep(q, each = length(seed)))),
+                                  each = length(rep(k, each = length(seed)))),
                      seed = seed)
 
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
                                        list(...))
 
 
-all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), q_seed)
+all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), k_seed)
 all_param_settings <- as.data.table(all_param_settings)
 ## Send jobs
 run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
@@ -74,7 +74,7 @@ run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                vec_args = all_param_settings,
                                more_args = list(
                                  n = n,
-                                 g = g,
+                                 q = q,
                                  p = p,
                                  null_case = null_case,
                                  doTrace = doTrace

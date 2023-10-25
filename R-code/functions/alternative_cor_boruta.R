@@ -2,8 +2,8 @@
 #' procedure
 #'
 #' @param n Number of individuals
-#' @param q Basis variable
-#' @param g Index of correlated variables
+#' @param k Basis variable
+#' @param q Index of correlated variables
 #' @param p Number of predictor variables
 #' @param null_case Logical variable indicating if a null case is simulated
 #' @param holdout Should the holdout variable importance be used?
@@ -11,15 +11,15 @@
 #' @param num.trees Number of decision trees to be used
 #' @param seed Seed to be used
 #' @param pValue p value threshold for each Boruta testing iteration
-#' @param mtry.prop Proportion of variables to be selected as split candidates
-#' @param nodesize.prop Proportion for minimal node size
+#' @param mtry.prop Proportion of variables to be selected as split candidates, called mtry in manuscript
+#' @param nodesize.prop Proportion for minimal node size, called min.node.size in manuscript.
 #' @param no.threads Number of threads
 #' @param type Either "classification" or "regression"
 #' @param replace To be pass to Pomona
 #' @param sample.fraction Sample fraction
 alternative_cor_boruta <- function(n = 100,
-                                   q = 10,
-                                   g = 1:6,
+                                   k = 10,
+                                   q = 1:6,
                                    p = 5000,
                                    null_case = FALSE,
                                    holdout = FALSE,
@@ -41,8 +41,8 @@ alternative_cor_boruta <- function(n = 100,
   ## Simulate data
   set.seed(seed = seed)
   train_data <- simulate_cor_bin(n = n,
+                                 k = k,
                                  q = q,
-                                 g = g,
                                  p = p,
                                  beta_seed = seed,
                                  null_case = null_case)
@@ -79,8 +79,8 @@ alternative_cor_boruta <- function(n = 100,
   ## Build result data.frame
   res_df <- data.frame(
     n = n,
-    q = q,
-    n_g = length(g),
+    k = k,
+    n_q = length(q),
     p = p,
     null_case = null_case,
     num.trees = num.trees,
@@ -91,8 +91,8 @@ alternative_cor_boruta <- function(n = 100,
     holdout = holdout,
     alpha = pValue,
     seed = seed,
-    varindex = c(rep(g, q), (q * length(g) + 1):p),
-    varname = paste("x", c(rep(g, q), (q * length(g) + 1):p), sep = ""),
+    varindex = c(rep(q, k), (k * length(q) + 1):p),
+    varname = paste("x", c(rep(q, k), (k * length(q) + 1):p), sep = ""),
     decision = finalDecision,
     p_adj_decision = as.character(p.adj.Decision),
     runtime = as.numeric(time_diff)

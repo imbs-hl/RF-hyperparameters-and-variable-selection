@@ -6,7 +6,7 @@
 #' @param .replace Draw strategy is varying
 #' @param .sample.fraction Sample fraction is varying
 #' @param .mtry.prop Number of split candidate is varying
-#' @param .q Number of correlated variables 
+#' @param .k Number of correlated variables 
 fdr_empirical_function <- function(reg_dir,
                                    config_file = config_file,
                                    all_param_settings = all_param_settings,
@@ -14,7 +14,7 @@ fdr_empirical_function <- function(reg_dir,
                                    .replace = TRUE,
                                    .sample.fraction = 0.632,
                                    .mtry.prop = 0.01,
-                                   .q = 10){
+                                   .k = 10){
   source("init.R", chdir = TRUE)
   ## ************************************
   ## Load subset of parameter settings
@@ -26,7 +26,7 @@ fdr_empirical_function <- function(reg_dir,
                                                     (replace ==  .replace) &
                                                     (sample.fraction ==  .sample.fraction) &
                                                     (mtry == .mtry.prop) &
-                                                    (q == .q),
+                                                    (k == .k),
   ]
   ## Load registries
   # print(head(all_param_settings_subset, n = 5))
@@ -57,17 +57,17 @@ fdr_empirical_function <- function(reg_dir,
                replace = .replace,
                sample.fraction = .sample.fraction,
                mtry.prop = .mtry.prop,
-               q = .q,
+               k = .k,
                FDR = round(fdr_adj, 5))
   )
 }
 
 if(FALSE){
-  tmp <- fdr_empirical_function(reg_dir = file.path("/imbs/home/cesaire/projects/urf_mtry_paper/tuning/R-code/registry/scenario1", "boruta-cor50"),
-                                all_param_settings = all_param_settings[q == 50, ],
+  tmp <- fdr_empirical_function(reg_dir = file.path(registry_dir_scen1, "boruta-cor50"),
+                                all_param_settings = all_param_settings[k == 50, ],
                                 .min.node.size = 0.01,
                                 .replace = TRUE,
                                 .sample.fraction = 0.2,
                                 .mtry.prop = 0.5,
-                                .q = 50)
+                                .k = 50)
 }
