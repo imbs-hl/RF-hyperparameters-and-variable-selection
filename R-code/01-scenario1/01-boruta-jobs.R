@@ -68,30 +68,30 @@ all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), k_seed)
 all_param_settings <- as.data.table(all_param_settings)
 ## Send jobs
 run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
-                               work_dir = working_dir,
-                               reg_dir = registry_dir_scen1,
-                               r_function = alternative_cor_boruta,
-                               vec_args = all_param_settings,
-                               more_args = list(
-                                 n = n,
-                                 q = q,
-                                 p = p,
-                                 null_case = null_case,
-                                 doTrace = doTrace
-                               ),
-                               name = "boruta-cor",
-                               overwrite = TRUE,
-                               memory = "1g",
-                               n_cpus = no.threads,
-                               walltime = "60",
+                              work_dir = working_dir,
+                              reg_dir = registry_dir_scen1,
+                              r_function = alternative_cor_boruta,
+                              vec_args = all_param_settings,
+                              more_args = list(
+                                n = n,
+                                q = q,
+                                p = p,
+                                null_case = null_case,
+                                doTrace = doTrace
+                              ),
+                              name = "boruta-cor",
+                              overwrite = TRUE,
+                              memory = "1g",
+                              n_cpus = no.threads,
+                              walltime = "60",
                               partition = partition, ## Set partition in init-global
                               account = account, ## Set account in init-global
-                               test_job = FALSE,
-                               wait_for_jobs = TRUE,
-                               packages = c(
-                                 "devtools",
-                                 "Pomona",
-                                 "data.table"
-                               ),
-                               config_file = config_file,
+                              test_job = FALSE,
+                              wait_for_jobs = TRUE,
+                              packages = c(
+                                "devtools",
+                                "Pomona",
+                                "data.table"
+                              ),
+                              config_file = config_file,
                               interactive_session = interactive_session)

@@ -235,7 +235,7 @@ boruta_jaccard_reg50 <- batchtools::reduceResultsList(
 boruta_jaccard_DT50 <- data.table::rbindlist(boruta_jaccard_reg50)
 
 boruta_jaccard_DT <- data.table::rbindlist(list(boruta_jaccard_DT10,
-                                            boruta_jaccard_DT50))
+                                                boruta_jaccard_DT50))
 
 
 boruta_jaccard_DT$Method <- "Boruta"

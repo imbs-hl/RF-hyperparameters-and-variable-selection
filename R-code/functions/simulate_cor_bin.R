@@ -27,7 +27,7 @@ simulate_cor_bin <- function(n = 100,
   y <- as.factor(rbinom(n = nrow(x1_6),
                         size = 1,
                         p = plogis(scale(as.matrix(x1_6[ , 1:length(beta)])) %*% beta)))
-
+  
   # check if there are enough observations in both classes
   while(min(table(y)) < 20){
     y <- as.factor(rbinom(n = nrow(x1_6),

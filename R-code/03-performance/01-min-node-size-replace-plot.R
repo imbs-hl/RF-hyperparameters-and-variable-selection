@@ -161,10 +161,10 @@ fdr_replace_plot
 ## ****** sensibility sample.fraction ******************************************
 
 plot_sens_replace_scen1 <- function(res_vita_file,
-                                        res_boruta_file,
-                                        default_param = c("mtry.prop" = 0.33,
-                                                          "replace" =  TRUE,
-                                                          "min.node.size" = 5)){
+                                    res_boruta_file,
+                                    default_param = c("mtry.prop" = 0.33,
+                                                      "replace" =  TRUE,
+                                                      "min.node.size" = 5)){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -237,10 +237,10 @@ sens_replace_plot
 
 
 plot_jaccard_min_node_scen1 <- function(res_vita_file,
-                                    res_boruta_file,
-                                    default_param = c("mtry.prop" = 0.014,
-                                                      "replace" =  TRUE,
-                                                      "min.node.size" = 1)){
+                                        res_boruta_file,
+                                        default_param = c("mtry.prop" = 0.014,
+                                                          "replace" =  TRUE,
+                                                          "min.node.size" = 1)){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -384,10 +384,10 @@ fdr_min_node_plot
 ## ******* Jaccard replace ************
 ## 
 plot_jaccard_replace_scen1 <- function(res_vita_file,
-                                           res_boruta_file,
-                                           default_param = c("mtry.prop" = 0.014,
-                                                             "replace" =  TRUE,
-                                                             "min.node.size" = 1)){
+                                       res_boruta_file,
+                                       default_param = c("mtry.prop" = 0.014,
+                                                         "replace" =  TRUE,
+                                                         "min.node.size" = 1)){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------

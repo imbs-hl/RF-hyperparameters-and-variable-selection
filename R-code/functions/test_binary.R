@@ -61,7 +61,7 @@ test_binary <- function(data,
     set.seed(seed = seed)
     train_data$data$y <- sample(train_data$data$y)
   }
-
+  
   ## Importance testing with Boruta
   my_data <- train_data$data
   my_data$data <- NULL

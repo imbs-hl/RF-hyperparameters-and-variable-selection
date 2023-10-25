@@ -49,9 +49,9 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
   data_results[ , SENS := mean(SENS, na.rm = TRUE),
                 by = c("mtry", "Method", "k")]
   data_results <- unique(x = data_results, 
-                                     by = c("mtry", "Method", "k"))
+                         by = c("mtry", "Method", "k"))
   print(data_results[data_results[ , .I[SENS == max(SENS)],
-                              by = c("Method", "k")]$V1])
+                                   by = c("Method", "k")]$V1])
   ## Plot
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(mtry),
@@ -69,7 +69,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
           # axis.ticks.x = element_blank(),
           # axis.text.x = element_blank()
           # plot.title = element_text(hjust = 0.5)
-          ) + labs(linetype = "k", shape = "k") +
+    ) + labs(linetype = "k", shape = "k") +
     guides(color = guide_legend(override.aes = list(size = 0.5),
                                 order = 1)) +
     ggtitle("(b)")
@@ -84,9 +84,9 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
 sens_mtry_plot <- plot_sens_mtry_scen1(
   res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
-                                            default_param = c("sample.fraction" = 0.632,
-                                                              "min.node.size" = 1,
-                                                              replace = TRUE))
+  default_param = c("sample.fraction" = 0.632,
+                    "min.node.size" = 1,
+                    replace = TRUE))
 sens_mtry_plot
 
 
@@ -356,10 +356,10 @@ fdr_sam_frac_plot
 
 
 plot_jaccard_mtry_scen1 <- function(res_vita_file,
-                                        res_boruta_file,
-                                        default_param = c("mtry.prop" = 0.014,
-                                                          "replace" =  TRUE,
-                                                          "min.node.size" = 1)){
+                                    res_boruta_file,
+                                    default_param = c("mtry.prop" = 0.014,
+                                                      "replace" =  TRUE,
+                                                      "min.node.size" = 1)){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -525,7 +525,7 @@ arrange_mtrySamp <- ggpubr::ggarrange(
                   fdr_sam_frac_plot, #(d)
                   sens_sample_frac_plot, #(e)
                   jaccard_sample_frac_plot #(f)
-                  ),
+  ),
   common.legend = TRUE,
   legend = "bottom",
   ncol = 3,

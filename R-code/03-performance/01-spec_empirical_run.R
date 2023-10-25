@@ -231,7 +231,7 @@ boruta_spec_reg50 <- batchtools::reduceResultsList(
 boruta_spec_DT50 <- data.table::rbindlist(boruta_spec_reg50)
 
 boruta_spec_DT <- data.table::rbindlist(list(boruta_spec_DT10,
-                                            boruta_spec_DT50))
+                                             boruta_spec_DT50))
 
 
 boruta_spec_DT$Method <- "Boruta"

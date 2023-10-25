@@ -131,32 +131,32 @@ saveRDS(object = vita_veer_res_DT,
 ## *****************************************************************************
 ##
 run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
-                                    work_dir = working_dir,
-                                    reg_dir = registry_dir_scen2,
-                                    r_function = test_binary,
-                                    vec_args = all_param_settings,
-                                    more_args = list(
-                                      data = data.frame(data_veer),
-                                      beta = betas,
-                                      n_beta = n_beta,
-                                      null_case = null_case,
-                                      pValue = 0.01,
-                                      doTrace = TRUE,
-                                      boruta_function = Pomona::var.sel.boruta
-                                    ),
-                                    name = "boruta_veer",
-                                    overwrite = TRUE,
-                                    memory = "10g",
-                                    n_cpus = no.threads,
-                                    walltime = "120",
+                                   work_dir = working_dir,
+                                   reg_dir = registry_dir_scen2,
+                                   r_function = test_binary,
+                                   vec_args = all_param_settings,
+                                   more_args = list(
+                                     data = data.frame(data_veer),
+                                     beta = betas,
+                                     n_beta = n_beta,
+                                     null_case = null_case,
+                                     pValue = 0.01,
+                                     doTrace = TRUE,
+                                     boruta_function = Pomona::var.sel.boruta
+                                   ),
+                                   name = "boruta_veer",
+                                   overwrite = TRUE,
+                                   memory = "10g",
+                                   n_cpus = no.threads,
+                                   walltime = "120",
                                    partition = partition, ## Set partition in init-global
                                    account = account, ## Set account in init-global
-                                    test_job = FALSE,
-                                    wait_for_jobs = TRUE,
-                                    packages = c(
-                                      "devtools",
-                                      "data.table"
-                                    ),
+                                   test_job = FALSE,
+                                   wait_for_jobs = TRUE,
+                                   packages = c(
+                                     "devtools",
+                                     "data.table"
+                                   ),
                                    config_file = config_file,
                                    interactive_session = interactive_session)
 

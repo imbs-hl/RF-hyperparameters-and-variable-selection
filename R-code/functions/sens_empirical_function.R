@@ -9,12 +9,12 @@
 #' @param .k Number of correlated variables 
 sens_empirical_function <- function(reg_dir,
                                     config_file = config_file,
-                                   all_param_settings = all_param_settings,
-                                   .min.node.size = 0.01,
-                                   .replace = TRUE,
-                                   .sample.fraction = 0.632,
-                                   .mtry.prop = 0.01,
-                                   .k = 10){
+                                    all_param_settings = all_param_settings,
+                                    .min.node.size = 0.01,
+                                    .replace = TRUE,
+                                    .sample.fraction = 0.632,
+                                    .mtry.prop = 0.01,
+                                    .k = 10){
   source("init.R", chdir = TRUE)
   ## ************************************
   ## Load subset of parameter settings
@@ -37,7 +37,7 @@ sens_empirical_function <- function(reg_dir,
       reg = my_reg
     ),
     reg = my_reg)
-
+  
   ## *******************************
   ##  sensitivity function
   ## *******************************
@@ -48,7 +48,7 @@ sens_empirical_function <- function(reg_dir,
   ## With adjustment
   sens_adj <- unlist(lapply(result_reg, function(i){
     return(my_sens(truth = (i$varindex %in% 1:3),
-                  selected = (i$decision == "Confirmed")))
+                   selected = (i$decision == "Confirmed")))
   }))
   return(
     data.table(min.node.size = .min.node.size,

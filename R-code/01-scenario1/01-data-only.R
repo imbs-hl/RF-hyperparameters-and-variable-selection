@@ -65,31 +65,31 @@ all_param_settings <- unique(all_param_settings, by = "seed")
 
 ## Send jobs
 run_boruta <- wrap_batchtools(reg_name = "data-scena1",
-                               work_dir = working_dir,
-                               reg_dir = registry_dir_scen1,
-                               r_function = data_only_scen1,
-                               vec_args = all_param_settings,
-                               more_args = list(
-                                 n = n,
-                                 q = q,
-                                 p = p,
-                                 null_case = null_case,
-                                 doTrace = 1
-                               ),
-                               name = "data-cor",
-                               overwrite = TRUE,
-                               memory = "1g",
-                               n_cpus = no.threads,
-                               walltime = "20",
-                               partition = partition, ## Set partition in init-global
-                               account = account, ## Set account in init-global
-                               test_job = FALSE,
-                               wait_for_jobs = TRUE,
-                               packages = c(
-                                 "devtools",
-                                 "Pomona",
-                                 "data.table"
-                               ),
+                              work_dir = working_dir,
+                              reg_dir = registry_dir_scen1,
+                              r_function = data_only_scen1,
+                              vec_args = all_param_settings,
+                              more_args = list(
+                                n = n,
+                                q = q,
+                                p = p,
+                                null_case = null_case,
+                                doTrace = 1
+                              ),
+                              name = "data-cor",
+                              overwrite = TRUE,
+                              memory = "1g",
+                              n_cpus = no.threads,
+                              walltime = "20",
+                              partition = partition, ## Set partition in init-global
+                              account = account, ## Set account in init-global
+                              test_job = FALSE,
+                              wait_for_jobs = TRUE,
+                              packages = c(
+                                "devtools",
+                                "Pomona",
+                                "data.table"
+                              ),
                               config_file = config_file,
                               interactive_session = interactive_session)
 
@@ -98,6 +98,6 @@ load_data_reg <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1, "data-scena1"), writeable = TRUE,
   conf.file = config_file)
 data_scenario1 <- batchtools::reduceResultsList(ids = 1:100,
-                                                  reg = load_data_reg)
+                                                reg = load_data_reg)
 saveRDS(object = data_scenario1,
         file = file.path(result_dir_scen1, "study1.rds"))

@@ -1,7 +1,11 @@
 ## See the batchtools package for more details about how to configure this file.
 ## https://mllg.github.io/batchtools/articles/batchtools.html#configuration-file-1
-makeClusterFunctionsSlurm <- function (template = "slurm", clusters = NULL, array.jobs = TRUE, 
-                                       nodename = "localhost", scheduler.latency = 1, fs.latency = 65) 
+makeClusterFunctionsSlurm <- function (template = "slurm",
+                                       clusters = NULL,
+                                       array.jobs = TRUE, 
+                                       nodename = "localhost",
+                                       scheduler.latency = 1,
+                                       fs.latency = 65) 
 {
   if (!is.null(clusters)) 
     assertString(clusters, min.chars = 1L)
@@ -35,8 +39,10 @@ makeClusterFunctionsSlurm <- function (template = "slurm", clusters = NULL, arra
     if (jc$array.jobs) {
       if (!array.jobs) 
         stop("Array jobs not supported by cluster function")
-      makeSubmitJobResult(status = 0L, batch.id = sprintf("%s_%i", 
-                                                          id, seq_row(jc$jobs)), log.file = logs)
+      makeSubmitJobResult(status = 0L,
+                          batch.id = sprintf("%s_%i", 
+                                                          id, seq_row(jc$jobs)),
+                          log.file = logs)
     }
     else {
       makeSubmitJobResult(status = 0L, batch.id = id)
@@ -67,19 +73,24 @@ makeClusterFunctionsSlurm <- function (template = "slurm", clusters = NULL, arra
     assertRegistry(reg, writeable = TRUE)
     assertString(batch.id)
     cfKillJob(reg, "scancel", c(sprintf("--clusters=%s", 
-                                        clusters), batch.id), nodename = nodename)
+                                        clusters), batch.id),
+              nodename = nodename)
   }
   removeResultFiles <- function(reg, updates, cache, ...) {
     if (length(updates$job.id)) {
-      result_files <- batchtools:::getResultFiles(reg = reg, ids = updates$job.id)
+      result_files <- batchtools:::getResultFiles(reg = reg,
+                                                  ids = updates$job.id)
       #file.remove(result_files)
     }
   }
   makeClusterFunctions(name = "Slurm", submitJob = submitJob, 
                        killJob = killJob, listJobsRunning = listJobsRunning, 
-                       listJobsQueued = listJobsQueued, array.var = "SLURM_ARRAY_TASK_ID", 
-                       store.job.collection = TRUE, store.job.files = !isLocalHost(nodename), 
-                       scheduler.latency = scheduler.latency, fs.latency = fs.latency,
+                       listJobsQueued = listJobsQueued,
+                       array.var = "SLURM_ARRAY_TASK_ID", 
+                       store.job.collection = TRUE,
+                       store.job.files = !isLocalHost(nodename), 
+                       scheduler.latency = scheduler.latency,
+                       fs.latency = fs.latency,
                        hooks = list(post.do.collection = removeResultFiles))
 }
 

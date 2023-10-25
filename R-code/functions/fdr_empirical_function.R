@@ -39,7 +39,7 @@ fdr_empirical_function <- function(reg_dir,
       reg = my_reg
     ),
     reg = my_reg)
-
+  
   ## *******************************
   ##  Jaccard function
   ## *******************************
@@ -63,7 +63,8 @@ fdr_empirical_function <- function(reg_dir,
 }
 
 if(FALSE){
-  tmp <- fdr_empirical_function(reg_dir = file.path(registry_dir_scen1, "boruta-cor50"),
+  tmp <- fdr_empirical_function(reg_dir = file.path(registry_dir_scen1,
+                                                    "boruta-cor50"),
                                 all_param_settings = all_param_settings[k == 50, ],
                                 .min.node.size = 0.01,
                                 .replace = TRUE,

@@ -86,30 +86,30 @@ all_param_setting_unique$holdout <- NULL
 
 ## Send jobs
 run_fdr_vita <- wrap_batchtools(reg_name = "fdr_empirical_vita",
-                            work_dir = working_dir,
-                            reg_dir = registry_dir_scen1,
-                            r_function = fdr_empirical_function,
-                            vec_args = all_param_setting_unique,
-                            more_args = list(
-                              config_file = config_file,
-                              all_param_settings = all_param_settings,
-                              reg_dir = file.path(registry_dir_scen1, "vita-cor")
-                            ),
-                            name = "fdr_vita",
-                            overwrite = TRUE,
-                            memory = "2g",
-                            n_cpus = 1,
-                            walltime = "5",
-                            partition = partition, ## Set partition in init-global
-                            account = account, ## Set account in init-global
-                            test_job = FALSE,
-                            wait_for_jobs = TRUE,
-                            packages = c(
-                              "devtools",
-                              "data.table"
-                            ),
-                            config_file = config_file,
-                            interactive_session = interactive_session)
+                                work_dir = working_dir,
+                                reg_dir = registry_dir_scen1,
+                                r_function = fdr_empirical_function,
+                                vec_args = all_param_setting_unique,
+                                more_args = list(
+                                  config_file = config_file,
+                                  all_param_settings = all_param_settings,
+                                  reg_dir = file.path(registry_dir_scen1, "vita-cor")
+                                ),
+                                name = "fdr_vita",
+                                overwrite = TRUE,
+                                memory = "2g",
+                                n_cpus = 1,
+                                walltime = "5",
+                                partition = partition, ## Set partition in init-global
+                                account = account, ## Set account in init-global
+                                test_job = FALSE,
+                                wait_for_jobs = TRUE,
+                                packages = c(
+                                  "devtools",
+                                  "data.table"
+                                ),
+                                config_file = config_file,
+                                interactive_session = interactive_session)
 
 ## Run this after that your jobs are completed
 ## =======================================

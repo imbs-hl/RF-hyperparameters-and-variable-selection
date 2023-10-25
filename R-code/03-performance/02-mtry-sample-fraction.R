@@ -53,7 +53,7 @@ sens02_mtry_prop <- function(
                               Method)]
   names(data_results)[names(data_results) == "V1"] <- "SENS"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , SENS := mean(SENS, na.rm = TRUE),
                 by = c("mtry", "Method")]
   print(data_results[data_results[ , .I[which.max(SENS)],
@@ -92,7 +92,7 @@ plot_sens2_mtry_prop <- sens02_mtry_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01,
                     "replace" = TRUE)
@@ -139,16 +139,16 @@ sens02_sam_frac_prop <- function(
   data_results[ , min.node.size := min.node.size_prop]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(SENS.adj, na.rm = TRUE),
-                            by = list(#mu,
-                              seed,
-                              replace,
-                              sample.fraction,
-                              min.node.size,
-                              holdout,
-                              Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "SENS"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , SENS := mean(SENS, na.rm = TRUE),
                 by = c("sample.fraction", "Method")]
   print(data_results[data_results[ , .I[which.max(SENS)],
@@ -187,7 +187,7 @@ plot_sens2_sample_frac_prop <- sens02_sam_frac_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
                     replace = TRUE)
@@ -237,17 +237,17 @@ fdr02_mtry_prop <- function(
   data_results[ , min.node.size := min.node.size_prop]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(FDR.adj, na.rm = TRUE),
-                            by = list(#mu,
-                              seed,
-                              replace,
-                              sample.fraction,
-                              mtry,
-                              min.node.size,
-                              holdout,
-                              Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  mtry,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "FDR"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR, na.rm = TRUE),
                 by = c("mtry", "Method")]
   print(data_results[data_results[ , .I[which.min(FDR)],
@@ -256,8 +256,8 @@ fdr02_mtry_prop <- function(
                          by = c("mtry", "Method"))
   ## Now plot sensitivity depending on hyperparameter
   plot_fdr <- ggplot(data_results,
-                      aes(x = as.numeric(as.factor(mtry)),
-                          y = FDR)) +
+                     aes(x = as.numeric(as.factor(mtry)),
+                         y = FDR)) +
     geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     geom_hline(yintercept = 0.05,
@@ -289,7 +289,7 @@ plot_fdr2_mtry_prop <- fdr02_mtry_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01,
                     "replace" = TRUE)
@@ -336,16 +336,16 @@ fdr02_sam_frac_prop <- function(
   data_results[ , min.node.size := min.node.size_prop]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(FDR.adj, na.rm = TRUE),
-                            by = list(#mu,
-                              seed,
-                              replace,
-                              sample.fraction,
-                              min.node.size,
-                              holdout,
-                              Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "FDR"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR, na.rm = TRUE),
                 by = c("sample.fraction", "Method")]
   print(data_results[data_results[ , .I[which.min(FDR)],
@@ -354,8 +354,8 @@ fdr02_sam_frac_prop <- function(
                          by = c("sample.fraction", "Method"))
   ## Now plot sensitivity depending on hyperparameter
   plot_fdr <- ggplot(data_results,
-                      aes(x = as.numeric(as.factor(sample.fraction)),
-                          y = FDR)) +
+                     aes(x = as.numeric(as.factor(sample.fraction)),
+                         y = FDR)) +
     geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
     geom_hline(yintercept = 0.05,
@@ -388,7 +388,7 @@ plot_fdr2_sample_frac_prop <- fdr02_sam_frac_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
                     replace = TRUE)
@@ -402,10 +402,10 @@ plot_fdr2_sample_frac_prop
 ##
 arrange_mtrySamp02 <- ggpubr::ggarrange(
   plotlist = list(
-                  plot_fdr2_mtry_prop, #(a)
-                  plot_sens2_mtry_prop, #(b)
-                  plot_fdr2_sample_frac_prop, #(c)
-                  plot_sens2_sample_frac_prop #(d)
+    plot_fdr2_mtry_prop, #(a)
+    plot_sens2_mtry_prop, #(b)
+    plot_fdr2_sample_frac_prop, #(c)
+    plot_sens2_sample_frac_prop #(d)
   ),
   common.legend = TRUE,
   legend = "bottom",

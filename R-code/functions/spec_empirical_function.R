@@ -37,7 +37,7 @@ spec_empirical_function <- function(reg_dir,
       reg = my_reg
     ),
     reg = my_reg)
-
+  
   ## *******************************
   ##  sensitivity function
   ## *******************************

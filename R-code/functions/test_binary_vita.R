@@ -63,20 +63,20 @@ test_binary_pomona <- function(data,
   my_data$y <- NULL
   timeStart <- Sys.time()
   testing_resf <- vita_function(x = my_data,
-                    y = train_data$data$y,
-                    p.t = alpha,
-                    fdr.adj = fdr.adj,
-                    ntree = num.trees,
-                    mtry.prop = mtry.prop,
-                    nodesize.prop = nodesize.prop,
-                    no.threads = no.threads,
-                    type = type,
-                    importance = importance,
-                    replace = replace,
-                    sample.fraction = sample.fraction,
-                    holdout = holdout,
-                    case.weights = NULL,
-                    seed = seed)
+                                y = train_data$data$y,
+                                p.t = alpha,
+                                fdr.adj = fdr.adj,
+                                ntree = num.trees,
+                                mtry.prop = mtry.prop,
+                                nodesize.prop = nodesize.prop,
+                                no.threads = no.threads,
+                                type = type,
+                                importance = importance,
+                                replace = replace,
+                                sample.fraction = sample.fraction,
+                                holdout = holdout,
+                                case.weights = NULL,
+                                seed = seed)
   timeEnd <- Sys.time()
   time_diff <- difftime(timeEnd, timeStart, units = 'mins')
   res <- data.frame(

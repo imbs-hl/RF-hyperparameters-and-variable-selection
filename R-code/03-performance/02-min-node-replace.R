@@ -42,17 +42,17 @@ sens02_min_node_prop <- function(
   data_results[ , min.node.size := as.factor(min.node.size_prop)]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(SENS.adj, na.rm = TRUE),
-                            by = list(#mu,
-                              seed,
-                              replace,
-                              sample.fraction,
-                              mtry,
-                              min.node.size,
-                              holdout,
-                              Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  mtry,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "SENS"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , SENS := mean(SENS, na.rm = TRUE),
                 by = c("min.node.size", "Method")]
   data_results <- unique(x = data_results, 
@@ -88,7 +88,7 @@ plot_sens2_min_node_prop <- sens02_min_node_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry.prop" = 0.01,
                     "replace" = TRUE)
@@ -135,16 +135,16 @@ sens02_replace_prop <- function(
   data_results[ , min.node.size := min.node.size_prop]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(SENS.adj, na.rm = TRUE),
-                            by = list(#mu,
-                              seed,
-                              replace,
-                              sample.fraction,
-                              min.node.size,
-                              holdout,
-                              Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "SENS"
   data_results$Method <- factor(x = data_results$Method,
-                            levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , SENS := mean(SENS, na.rm = TRUE),
                 by = c("replace", "Method")]
   data_results <- unique(x = data_results, 
@@ -175,7 +175,7 @@ plot_sens2_replace <- sens02_replace_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
                     sample.fraction = 0.632)
@@ -225,17 +225,17 @@ fdr02_min_node_prop <- function(
   data_results[ , min.node.size := round(min.node.size_prop, 2)]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(FDR.adj, na.rm = TRUE),
-                           by = list(#mu,
-                             seed,
-                             replace,
-                             sample.fraction,
-                             mtry,
-                             min.node.size,
-                             holdout,
-                             Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  mtry,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "FDR"
   data_results$Method <- factor(x = data_results$Method,
-                           levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR, na.rm = TRUE),
                 by = c("min.node.size", "Method")]
   data_results <- unique(x = data_results, 
@@ -278,7 +278,7 @@ plot_fdr2_min_node_prop <- fdr02_min_node_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry" = 0.01,
                     "replace" = TRUE)
@@ -325,16 +325,16 @@ fdr02_replace <- function(
   data_results[ , min.node.size := min.node.size_prop]
   ## ********** Power with BH adjustment *************
   data_results <- data_results[ , mean(FDR.adj, na.rm = TRUE),
-                           by = list(#mu,
-                             seed,
-                             replace,
-                             sample.fraction,
-                             min.node.size,
-                             holdout,
-                             Method)]
+                                by = list(#mu,
+                                  seed,
+                                  replace,
+                                  sample.fraction,
+                                  min.node.size,
+                                  holdout,
+                                  Method)]
   names(data_results)[names(data_results) == "V1"] <- "FDR"
   data_results$Method <- factor(x = data_results$Method,
-                           levels = c("Vita", "Boruta"))
+                                levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR, na.rm = TRUE),
                 by = c("replace", "Method")]
   data_results <- unique(x = data_results, 
@@ -372,7 +372,7 @@ plot_fdr2_replace <- fdr02_replace(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
   res_boruta_file = file.path(result_dir_scen2,
-                                "boruta_veer_mean_res.RDS"),
+                              "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
                     "sample.fraction" = 0.632)
