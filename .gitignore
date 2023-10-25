@@ -13,8 +13,12 @@
 *.lb
 *.fdb_latexmk
 RJwrapper.pdf
-RJ*.pdf
+*.pdf
 *.zip
 *.tar
 .Rproj.user
 *.rda
+tmp/*
+BMC/*
+bmc-tmp/*
+Cover_letter.docx
