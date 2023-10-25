@@ -166,7 +166,7 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all_test",
 ## *****************************************************************************
 ## Load registries
 reg_boruta_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
+  file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all_test"),
   writeable = TRUE,
   conf.file = config_file)
 njobs <- nrow(all_param_settings)

@@ -7,15 +7,15 @@
 #' @param default_param Set up parameters to be kept constant
 sens02_min_node_prop <- function(
   res_vita_file,
-  res_vita_new_file,
+  res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01)
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_vita_new_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   ## *********** Filter data results according **********
@@ -87,7 +87,7 @@ sens02_min_node_prop <- function(
 plot_sens2_min_node_prop <- sens02_min_node_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
-  res_vita_new_file = file.path(result_dir_scen2,
+  res_boruta_file = file.path(result_dir_scen2,
                                 "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry.prop" = 0.01,
@@ -99,15 +99,15 @@ plot_sens2_min_node_prop
 
 sens02_replace_prop <- function(
   res_vita_file,
-  res_vita_new_file,
+  res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01)
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_vita_new_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********
@@ -174,7 +174,7 @@ sens02_replace_prop <- function(
 plot_sens2_replace <- sens02_replace_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
-  res_vita_new_file = file.path(result_dir_scen2,
+  res_boruta_file = file.path(result_dir_scen2,
                                 "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
@@ -189,15 +189,15 @@ plot_sens2_replace
 ##
 fdr02_min_node_prop <- function(
   res_vita_file,
-  res_vita_new_file,
+  res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01)
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_vita_new_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********
@@ -277,7 +277,7 @@ fdr02_min_node_prop <- function(
 plot_fdr2_min_node_prop <- fdr02_min_node_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
-  res_vita_new_file = file.path(result_dir_scen2,
+  res_boruta_file = file.path(result_dir_scen2,
                                 "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry" = 0.01,
@@ -289,15 +289,15 @@ plot_fdr2_min_node_prop
 
 fdr02_replace <- function(
   res_vita_file,
-  res_vita_new_file,
+  res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01)
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_vita_new_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********
@@ -371,7 +371,7 @@ fdr02_replace <- function(
 plot_fdr2_replace <- fdr02_replace(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
-  res_vita_new_file = file.path(result_dir_scen2,
+  res_boruta_file = file.path(result_dir_scen2,
                                 "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
@@ -399,6 +399,6 @@ arrange_MinReplace02 <- ggpubr::ggarrange(
 
 arrange_MinReplace02
 
-ggsave(filename = file.path(result_dir, "MinReplace02.pdf"),
+ggsave(filename = file.path(result_dir_scen2, "MinReplace02.pdf"),
        plot = arrange_MinReplace02,
        width = 7, height = 7)

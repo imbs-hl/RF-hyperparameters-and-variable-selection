@@ -416,6 +416,6 @@ arrange_mtrySamp02 <- ggpubr::ggarrange(
 
 arrange_mtrySamp02
 
-ggsave(filename = file.path(result_dir_sen2, "MtrySampFrac02.pdf"),
+ggsave(filename = file.path(result_dir_scen2, "MtrySampFrac02.pdf"),
        plot = arrange_mtrySamp02,
        width = 7, height = 6)
