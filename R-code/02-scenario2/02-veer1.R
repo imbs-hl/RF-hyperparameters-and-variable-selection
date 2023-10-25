@@ -130,7 +130,7 @@ saveRDS(object = vita_veer_res_DT,
 ##                             Boruta Pomona
 ## *****************************************************************************
 ##
-run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all_test",
+run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
                                     work_dir = working_dir,
                                     reg_dir = registry_dir_scen2,
                                     r_function = test_binary,
@@ -166,7 +166,7 @@ run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all_test",
 ## *****************************************************************************
 ## Load registries
 reg_boruta_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all_test"),
+  file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
   writeable = TRUE,
   conf.file = config_file)
 njobs <- nrow(all_param_settings)
