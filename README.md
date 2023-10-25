@@ -31,8 +31,7 @@ Only run files in this directory once your submitted jobs from ```01-scenario1``
 - Use ```01-jaccard_empirical_run.R``` to submit jobs to estimate the stability for Vita and Boruta for simulation study 1.
 - Use ```01-sens_empirical_run.R``` to submit jobs to estimate the sensitivity for Vita and Boruta for simulation study 1.
 - Use ```01-spec_empirical_run.R``` to submit jobs to estimate the specificity for Vita and Boruta for simulation study 1.
-
-To generate the figures from study 1 in the article, run the files ```01-mtry-sample-fraction-plot.R``` and ```01-min-node-size-replace-plot.R```.
+- To generate the figures from study 1 in the article, run the files ```01-mtry-sample-fraction-plot.R``` and ```01-min-node-size-replace-plot.R```.
 
 ### Study 2
 Only run files in this directory once your submitted jobs from ```02-scenario2``` are done.
