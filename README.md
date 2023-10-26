@@ -1,6 +1,5 @@
 # Effect of hyperparameters on variable selection in random forests
-*Maintained by Cesaire J. K. Fouodo* 
-
+*Maintained by Cesaire J. K. Fouodo*; 
 *Email: cesaire.kuetefouodo(@)uni-luebeck.de*
 
 Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
