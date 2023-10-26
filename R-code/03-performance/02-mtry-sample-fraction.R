@@ -13,11 +13,11 @@ sens02_mtry_prop <- function(
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_boruta_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
-  
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   ## *********** Filter data results according **********
   data_results <- if("sample.fraction" %in% names(default_param)){
     data_results[sample.fraction == default_param["sample.fraction"], ]
@@ -109,11 +109,11 @@ sens02_sam_frac_prop <- function(
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_boruta_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
-  
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   ## *********** Filter data results according **********
   data_results <- if("mtry.prop" %in% names(default_param)){
     data_results[mtry.prop == default_param["mtry.prop"], ]
@@ -163,7 +163,7 @@ sens02_sam_frac_prop <- function(
     geom_line(aes(colour = Method)) +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(0.475, 0.575)) +
+    ylim(c(0.473, 0.575)) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -207,11 +207,11 @@ fdr02_mtry_prop <- function(
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_boruta_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
-  
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   ## *********** Filter data results according **********
   data_results <- if("sample.fraction" %in% names(default_param)){
     data_results[sample.fraction == default_param["sample.fraction"], ]
@@ -306,11 +306,11 @@ fdr02_sam_frac_prop <- function(
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
-  vita_new_data <- readRDS(res_boruta_file)
+  boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
-                                            vita_new_data)))
+                                            boruta_data)))
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
-  
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   ## *********** Filter data results according **********
   data_results <- if("mtry.prop" %in% names(default_param)){
     data_results[mtry.prop == default_param["mtry.prop"], ]

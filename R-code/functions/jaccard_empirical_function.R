@@ -50,7 +50,6 @@ jaccard_empirical_function <- function(reg_dir,
   result_list_adj <- lapply(result_reg, function(i){
     return(i$p_adj_decision)
   })
-  print(result_list_adj)
   dist_adj <- unlist(lapply(combn(result_list_adj, 2, simplify = FALSE),
                             function(x) {
                               my_jaccard(a = x[[1]], b = x[[2]])

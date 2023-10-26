@@ -57,7 +57,7 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab(label = "min.node.size.prop") +
     ylab("Empirical sensitivity") +
-    ylim(c(0.40, 0.56)) +
+    ylim(c(0.398, 0.56)) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -212,7 +212,7 @@ plot_sens_replace_scen1 <- function(res_vita_file,
     geom_point(aes(colour = Method)) +
     xlab(label = "replace") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(0.40, 0.56)) +
+    ylim(c(0.398, 0.56)) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",

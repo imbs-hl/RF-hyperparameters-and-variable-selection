@@ -108,6 +108,7 @@ sens02_replace_prop <- function(
   boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
                                             boruta_data)))
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********
@@ -198,6 +199,7 @@ fdr02_min_node_prop <- function(
   boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
                                             boruta_data)))
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********
@@ -298,6 +300,7 @@ fdr02_replace <- function(
   boruta_data <- readRDS(res_boruta_file)
   data_results <- data.table(rbindlist(list(vita_data,
                                             boruta_data)))
+  data_results$min.node.size_prop <- round(data_results$min.node.size_prop, 2)
   data_results$mtry.prop <- round(data_results$mtry.prop, 2)
   
   ## *********** Filter data results according **********

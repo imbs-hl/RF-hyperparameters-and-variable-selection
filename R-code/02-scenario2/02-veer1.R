@@ -25,17 +25,14 @@ subsetsize = 100
 null_case = FALSE
 independence = TRUE
 alpha <- 0.05
-## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
-seed <- seed <- if(testing_mode){
-  1:10
-} else {
-  1:100
-} 
+
 effect_seed<- ifelse(testing_mode, 11:20, 101:200)
 ## Random forests hyperparameter settings
 replace <- c(TRUE, FALSE)
 sample.fraction <- c(0.200, 0.400, 0.632, 0.800, 1.000)
-mtry <- c(0.5, 0.33, 0.25, 0.1, sqrt(p) / p)
+mtry.prop <- c(0.5, 0.33, 0.25, 0.1, sqrt(p) / p)
+## Named min.node.size.prob in the manuscript and nodesize here
+## for implementation reasons i.e. to be passed to Pomona
 nodesize.prop <- c(0.01, 0.05, 0.1, 0.2, 1/n)#seq(from = 1/n, to = 21/n, 3/n)
 num.trees <- p*3
 
@@ -44,7 +41,7 @@ holdout <- FALSE
 hyperparam_settings <- expand.grid(nodesize.prop,
                                    replace,
                                    sample.fraction,
-                                   mtry,
+                                   mtry.prop,
                                    num.trees,
                                    holdout)
 names(hyperparam_settings) <- c("nodesize.prop",
@@ -55,6 +52,51 @@ names(hyperparam_settings) <- c("nodesize.prop",
                                 "holdout")
 hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
 hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
+
+## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
+seed <- seed <- if(testing_mode){
+  ## Variation of min.node.size
+  nodesize.prop.var <- data.frame(nodesize.prop = nodesize.prop,
+                                  no.threads = no.threads,
+                                  replace = TRUE,
+                                  sample.fraction = 0.632,
+                                  mtry.prop = sqrt(p) / p,
+                                  num.trees = num.trees,
+                                  holdout = holdout)
+  ## Variation of replace
+  replace.var <- data.frame(nodesize.prop = 1/n,
+                            no.threads = no.threads,
+                            replace = replace,
+                            sample.fraction = 0.632,
+                            mtry.prop = sqrt(p) / p,
+                            num.trees = num.trees,
+                            holdout = holdout)
+  ## Variation of sample.fraction
+  sample.fraction.var <- data.frame(nodesize.prop = 1/n,
+                                    no.threads = no.threads,
+                                    replace = TRUE,
+                                    sample.fraction = sample.fraction,
+                                    mtry.prop = sqrt(p) / p,
+                                    num.trees = num.trees,
+                                    holdout = holdout)
+  ## Variation of mtry
+  mtry.var <- data.frame(nodesize.prop = 1/n,
+                         no.threads = no.threads,
+                         replace = TRUE,
+                         sample.fraction = 0.632,
+                         mtry.prop = mtry.prop,
+                         num.trees = num.trees,
+                         holdout = holdout)
+  hyperparam_settings <- data.table::rbindlist(list(
+    nodesize.prop.var,
+    replace.var,
+    sample.fraction.var,
+    mtry.var
+  ))
+  1:3
+} else {
+  1:100
+} 
 
 q_seed <- data.frame(seed = seed, effect_seed = effect_seed,
                      alpha = rep(alpha, each = length(seed)))
@@ -69,7 +111,7 @@ all_param_settings <- as.data.table(all_param_settings)
 ## *****************************************************************************
 ##
 
-run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all_test",
+run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all",
                                  work_dir = working_dir,
                                  reg_dir = registry_dir_scen2,
                                  r_function = test_binary_pomona,
@@ -105,7 +147,7 @@ run_vita_veer <- wrap_batchtools(reg_name = "vita_veer_mean_all_test",
 ## *****************************************************************************
 ## Load registries
 reg_vita_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all_test"),
+  file.dir = file.path(registry_dir_scen2, "vita_veer_mean_all"),
   writeable = TRUE,
   conf.file = config_file)
 njobs <- nrow(all_param_settings)

@@ -93,7 +93,7 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1
+  1:3
 } else {
   1:100
 } 
@@ -195,9 +195,10 @@ run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                 more_args = list(
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 10, ],
-                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor")
+                                  reg_dir = file.path(registry_dir_scen1,
+                                                      "boruta-cor10")
                                 ),
-                                name = "sens_boruta",
+                                name = "sens_boruta10",
                                 overwrite = TRUE,
                                 memory = "2g",
                                 n_cpus = 1,
@@ -223,9 +224,10 @@ run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
                                 more_args = list(
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 50, ],
-                                  reg_dir = file.path(registry_dir_scen1, "boruta-cor")
+                                  reg_dir = file.path(registry_dir_scen1,
+                                                      "boruta-cor50")
                                 ),
-                                name = "sens_boruta",
+                                name = "sens_boruta50",
                                 overwrite = TRUE,
                                 memory = "2g",
                                 n_cpus = 1,

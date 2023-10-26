@@ -86,7 +86,7 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1
+  1:3
 } else {
   1:100
 } 
@@ -189,7 +189,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "fdr_boruta10",
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 10, ],
                                   reg_dir = file.path(registry_dir_scen1,
-                                                      "boruta-cor")
+                                                      "boruta-cor10")
                                 ),
                                 name = "fdr_boruta10",
                                 overwrite = TRUE,
@@ -218,7 +218,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "fdr_boruta50",
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 50, ],
                                   reg_dir = file.path(registry_dir_scen1,
-                                                      "boruta-cor")
+                                                      "boruta-cor50")
                                 ),
                                 name = "fdr_boruta50",
                                 overwrite = TRUE,
@@ -247,7 +247,7 @@ reg_boruta_fdr10 <- batchtools::loadRegistry(
   conf.file = config_file)
 boruta_fdr_reg10 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
-    ids = 1:nrow(all_param_setting_unique),
+    ids = 1:nrow(all_param_setting_unique[.k == 10, ]),
     reg = reg_boruta_fdr10
   ),
   reg = reg_boruta_fdr10)
@@ -267,7 +267,7 @@ reg_boruta_fdr50 <- batchtools::loadRegistry(
   conf.file = config_file)
 boruta_fdr_reg50 <- batchtools::reduceResultsList(
   ids = batchtools::findDone(
-    ids = 1:nrow(all_param_setting_unique),
+    ids = 1:nrow(all_param_setting_unique[.k == 50, ]),
     reg = reg_boruta_fdr50
   ),
   reg = reg_boruta_fdr50)

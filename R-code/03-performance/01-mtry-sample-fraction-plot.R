@@ -61,7 +61,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(NA, 0.56)) +
+    ylim(c(NA, 0.58)) +
     # ylim(0.32, 0.57) +
     theme(legend.position = "none",
           text = element_text(size = 14),
@@ -156,7 +156,7 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
     #            linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
-    ylim(0.30, 0.56) +
+    ylim(0.30, 0.58) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -244,7 +244,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
-    ylim(0, 0.20) +
+    ylim(0, 0.235) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -328,6 +328,7 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical FDR") +
+    ylim(0, 0.235) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -347,7 +348,7 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
 ## ******* fdr sample.fraction *************************************************
 
 fdr_sam_frac_plot <- plot_fdr_sample_frac_scen1(
-  res_vita_file = file.path(result_dir_scen1, "01-scenario/vita_cor_fdr.RDS"),
+  res_vita_file = file.path(result_dir_scen1, "vita_cor_fdr.RDS"),
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
@@ -406,7 +407,7 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab("mtry.prop") +
     ylab("Empirical stability") +
-    ylim(c(0.980, 0.998)) +
+    ylim(c(0.978, 0.998)) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -487,7 +488,7 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method, linetype = k)) +
     xlab("sample.fraction") +
     ylab(label = "Empirical stability") +
-    ylim(c(0.980, 0.998)) +
+    ylim(c(0.978, 0.998)) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot",

@@ -64,11 +64,12 @@ fdr_empirical_function <- function(reg_dir,
 
 if(FALSE){
   tmp <- fdr_empirical_function(reg_dir = file.path(registry_dir_scen1,
-                                                    "boruta-cor50"),
-                                all_param_settings = all_param_settings[k == 50, ],
+                                                    "boruta-cor"),
+                                all_param_settings = all_param_settings[k == 10, ],
+                                config_file = config_file,
                                 .min.node.size = 0.01,
                                 .replace = TRUE,
-                                .sample.fraction = 0.2,
-                                .mtry.prop = 0.5,
-                                .k = 50)
+                                .sample.fraction = 0.632,
+                                .mtry.prop = 0.014,
+                                .k = 10)
 }

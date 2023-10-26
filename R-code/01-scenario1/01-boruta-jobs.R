@@ -48,7 +48,7 @@ hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
 hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
                                                replace == FALSE), ]
 
-## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
+## Just few replicates if the system is in the testing mode, and 100 otherwise.
 seed <- if(testing_mode){
   ## Variation of min.node.size
   nodesize.prop.var <- data.frame(nodesize.prop = nodesize.prop,
@@ -88,7 +88,7 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1
+  1:2
 } else {
   1:100
 } 
@@ -105,11 +105,11 @@ expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
 all_param_settings <- expand.grid.df(as.data.frame(hyperparam_settings), k_seed)
 all_param_settings <- as.data.table(all_param_settings)
 ## Send jobs
-run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
+run_boruta10 <- wrap_batchtools(reg_name = "boruta-cor10",
                               work_dir = working_dir,
                               reg_dir = registry_dir_scen1,
                               r_function = alternative_cor_boruta,
-                              vec_args = all_param_settings,
+                              vec_args = all_param_settings[k == 10, ],
                               more_args = list(
                                 n = n,
                                 q = q,
@@ -117,7 +117,7 @@ run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                                 null_case = null_case,
                                 doTrace = doTrace
                               ),
-                              name = "boruta-cor",
+                              name = "boruta-cor10",
                               overwrite = TRUE,
                               memory = "1g",
                               n_cpus = no.threads,
@@ -133,3 +133,33 @@ run_boruta <- wrap_batchtools(reg_name = "boruta-cor",
                               ),
                               config_file = config_file,
                               interactive_session = interactive_session)
+
+
+run_boruta50 <- wrap_batchtools(reg_name = "boruta-cor50",
+                                work_dir = working_dir,
+                                reg_dir = registry_dir_scen1,
+                                r_function = alternative_cor_boruta,
+                                vec_args = all_param_settings[k == 50, ],
+                                more_args = list(
+                                  n = n,
+                                  q = q,
+                                  p = p,
+                                  null_case = null_case,
+                                  doTrace = doTrace
+                                ),
+                                name = "boruta-cor50",
+                                overwrite = TRUE,
+                                memory = "1g",
+                                n_cpus = no.threads,
+                                walltime = "60",
+                                partition = partition, ## Set partition in init-global
+                                account = account, ## Set account in init-global
+                                test_job = FALSE,
+                                wait_for_jobs = TRUE,
+                                packages = c(
+                                  "devtools",
+                                  "Pomona",
+                                  "data.table"
+                                ),
+                                config_file = config_file,
+                                interactive_session = interactive_session)
