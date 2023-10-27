@@ -1,4 +1,5 @@
 ## This file will generate data only
+setwd(file.path(main_dir, "01-scenario1"))
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
 if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){

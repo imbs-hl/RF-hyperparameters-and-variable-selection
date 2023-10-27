@@ -38,15 +38,8 @@ pacman::p_load(
 ## =============================================================================
 ##      Dirs
 ## =============================================================================
-## Set the main directory here
-user <- Sys.info()[["user"]]
-main_dir <- if(user == "fouodo"){
-  ## On my local computer
-  "/Users/fouodo/projects/RF-hyperparameters-and-variable-selection/R-code"
-} else {
-  ## On our remote cluster
-  "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selection/R-code" 
-}
+
+main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selection/R-code"
 
 result_dir <- file.path(main_dir, "results")
 dir.create(result_dir, showWarnings = FALSE)
