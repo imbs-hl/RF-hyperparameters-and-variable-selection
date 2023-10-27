@@ -19,8 +19,8 @@ In the testing mode, an interactive session can be used; however, it can require
 # Scenario 1
 
 ## Run replicates
-source("01-scenario1/01-boruta-jobs.R")
 source("01-scenario1/01-vita-jobs.R")
+source("01-scenario1/01-boruta-jobs.R")
 ## Estimate performance measures
 source("03-perfroamnce/01-fdr_empirical_run.R")
 source("03-perfroamnce/01-jaccard_empirical_run.R")
