@@ -2,7 +2,7 @@
 setwd(file.path(main_dir, "01-scenario1"))
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
-if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
+if(((is.null(partition)) | is.null(account)) & (!interactive_session)){
   stop("Configure your batchtools account.")
 }
 ## Build jobs for alternative case
