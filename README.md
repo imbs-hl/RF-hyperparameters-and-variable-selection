@@ -2,7 +2,7 @@
 
 Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
 
-All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the \texttt{R} version 3.5.0. The scripts can be run either in a testing or normal mode.
+All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the R version 3.5.0. The scripts can be run either in a testing or normal mode.
 
 Use this command to clone the git repository:
 
