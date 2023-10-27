@@ -2,7 +2,7 @@
 
 Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
 
-All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the R version 3.5.0. The scripts can be run either in a testing or normal mode.
+All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the R version 3.5.0. The scripts can be run either in a testing or normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15. We share our ```batchtools```'s configuration files to be potentially used and configured to fit the user's computational platform.
 
 Use this command to clone the git repository:
 
@@ -10,7 +10,7 @@ Use this command to clone the git repository:
 
 ## Testing mode
 
-In the testing mode, an interactive session can be used. The script is set in testing mode as default. To run the script in testing mode:
+The script is set in testing mode as default. An interactive session can be used, and batchtools will run in an interactive mode. To run the script in testing mode:
 
 - In the file ```init.global.R```, set the variable ```main_dir``` to your the directory ```R-code``` of your cloned repository.
 - Set your current working directory in R to the directory ```R-code``` of your cloned repository.
@@ -24,6 +24,8 @@ source("init-global.R")
 source("01-scenario1/01-vita-jobs.R")
 source("01-scenario1/01-boruta-jobs.R")
 ## Estimate performance measures
+## Note: In very rare situations, batchtools can generate this error: Error in mcfork(detached) : unable to create a pipe.
+## In this situation, restarting your session or starting a new one can help.
 source("03-performance/01-fdr_empirical_run.R")
 source("03-performance/01-jaccard_empirical_run.R")
 source("03-performance/01-sens_empirical_run.R")
@@ -47,7 +49,7 @@ Figures are saved in ```R-code/results```.
 
 ## Normal mode
 
-The normal mode reproduces the results of the manuscript. We recommend running the code on a high-performance computer (HPC) in normal mode. In our case, simulations are parallelized using the R package ```batchtools``` version 0.9.15 and with a SLURM cluster scheduler. We share our ```batchtools```'s configuration files to be potentially used and configured to fit the user's computational platform.
+The normal mode reproduces the results of the manuscript. We recommend running the code on a high-performance computer (HPC) in normal mode. In our case,  we used a SLURM cluster scheduler.
 
 ### init-global.R
 - Ensure the required R packages are installed.
