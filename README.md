@@ -2,7 +2,7 @@
 
 Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
 
-All results presented in the paper can be obtained by running the R scripts of this repository. We used the R version 3.5.0 to run our code. The scripts can be run either in a testing or normal mode.
+All results presented in the paper can be obtained by running the R scripts of this repository. We used the \texttt{R} version 3.5.0 to run our code. The scripts can be run either in a testing or normal mode.
 
 Use this command to clone the git repository:
 
@@ -13,7 +13,7 @@ Use this command to clone the git repository:
 In the testing mode, an interactive session can be used; however, it can require about one hour of computation time for just a minimal number of replicates. The script is set in testing mode as default. To run the script in testing mode:
 
 - In file ```init.global.R```, set the variable ```main_dir``` to your the directory ```R-code``` of your cloned repository.
-- Set your current working directory to the directory ```R-code``` of your cloned repository.
+- Set your current working directory in \texttt{R} to the directory ```R-code``` of your cloned repository.
 - Run the following code:
 
 ```R
