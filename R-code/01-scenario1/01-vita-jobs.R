@@ -126,7 +126,7 @@ run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                 partition = partition, ## Set partition in init-global
                                 account = account, ## Set account in init-global
                                 test_job = FALSE,
-                                wait_for_jobs = TRUE,
+                                wait_for_jobs = FALSE,
                                 packages = c(
                                   "devtools",
                                   "Pomona",
