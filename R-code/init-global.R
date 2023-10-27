@@ -29,8 +29,8 @@ if(!interactive_session){
   template <- "path/to/batchtools/template/file"
   ##  (e.g. SLURM) Node, partition and account (See batchtools for details)
   nodename <- "node_name"
-  partition = "partition_name"
-  account = "your_account"
+  partition <- "partition_name"
+  account <- "your_account"
 } else {
   ## Do not modify this line
   config_file <- file.path(main_dir, "batchtools-config/batchtools.multicore.R")
