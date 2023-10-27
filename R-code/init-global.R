@@ -19,7 +19,7 @@ main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selecti
 ## Otherwise, configure your batchtools system.
 
 ## +++++++++++++++++++++++++++++++#
-## batchtools configurations      #
+## batchtools' configurations     #
 ## +++++++++++++++++++++++++++++++#
 ##
 if(!interactive_session){
