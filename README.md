@@ -90,4 +90,4 @@ Figures are saved in ```R-code/results```.
 ## Generate data only
 Use the files ```01-data-only.R``` and ```02-data-only.R``` to generate the simulated data only. For each study, 100 replicates will be generated. We also provide simulated data at Zenodo under DOI: 10.5281/zenodo.8308235.
 
-<p align="center";style="font-size:50%;"><em>Developed and maintained by Cesaire J. K. Fouodo; cesaire.kuetefouodo(@)uni-luebeck.de</em></p>
+<p align="center";style="font-size:25%;"><em>Developed and maintained by Cesaire J. K. Fouodo; cesaire.kuetefouodo(@)uni-luebeck.de</em></p>
