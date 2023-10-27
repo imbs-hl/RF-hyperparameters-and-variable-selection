@@ -2,7 +2,7 @@
 ##                    Set global configurations
 ## ****************************************************************************/
 ## Note: This part need to be checked by the user to ensure variables match with 
-## indication mentioned in the Readme file.
+## indications mentioned in the Readme file.
 
 ## Do the scripts will be run in testing or in normal mode?
 testing_mode <- TRUE
