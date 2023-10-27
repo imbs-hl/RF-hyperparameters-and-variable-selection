@@ -4,9 +4,21 @@ Supplementary materials for "Effect of hyperparameters on variable selection in 
 
 All results presented in the paper can be obtained by running the R scripts of this repository. We used the R version 3.5.0 to run our code. The scripts can be run either in a testing or normal mode.
 
-In the testing mode, an interactive session can be used; however, it can require a longer computation time, and just a minimal number of replicates will be run.
+In the testing mode, an interactive session can be used; however, it can require about one hour of computation time for just a minimal number of replicates. The script is set in testing mode as default. To run the script in testing mode:
 
-In the normal mode, all replicates will be run and the manuscript results will be reproduced. We recommend running the code on a high-performance computer (HPC) in normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15 and, in our case, with a SLURM cluster scheduler.  We share our ```batchtools```'s configuration files to be used and configured to fit the user's computational platform. User configuration is required only for the normal mode, not the testing mode.
+- clone the git repository: ```git clone git@github.com:imbs-hl/RF-hyperparameters-and-variable-selection.git```
+- In file ```init.global.R```, set the variable ```main_dir``` to your the directory ```R-code``` of your cloned repository.
+- Run the following code:
+
+```R
+# Test
+```
+# execute code if the date is later than a specified day
+do_it = Sys.Date() > '2018-02-14'
+```
+
+
+In the normal mode, all replicates will be run, and the manuscript results will be reproduced. We recommend running the code on a high-performance computer (HPC) in normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15 and, in our case, with a SLURM cluster scheduler.  We share our ```batchtools```'s configuration files to be used and configured to fit the user's computational platform. User configuration is required only for the normal mode, not the testing mode.
 
 ## init-global.R
 - Ensure the required R packages are installed.
