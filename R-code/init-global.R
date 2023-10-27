@@ -39,7 +39,7 @@ if(!interactive_session){
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 
 ## Set your current working directory to "R-code" and go back to the Readme.
-## ************************** End of configuration ****************************/
+## ********************** End of global configuration *************************/
 
 
 ## ****************************************************************************/
