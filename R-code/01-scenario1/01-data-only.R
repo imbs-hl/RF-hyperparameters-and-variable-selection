@@ -102,3 +102,5 @@ data_scenario1 <- batchtools::reduceResultsList(ids = 1:100,
                                                 reg = load_data_reg)
 saveRDS(object = data_scenario1,
         file = file.path(result_dir_scen1, "study1.rds"))
+## Re-set the current directory.
+setwd(main_dir)

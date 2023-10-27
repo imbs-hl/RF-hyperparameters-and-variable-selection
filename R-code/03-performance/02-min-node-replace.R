@@ -406,3 +406,5 @@ arrange_MinReplace02
 ggsave(filename = file.path(result_dir_scen2, "MinReplace02.pdf"),
        plot = arrange_MinReplace02,
        width = 7, height = 7)
+## Re-set the current directory.
+setwd(main_dir)

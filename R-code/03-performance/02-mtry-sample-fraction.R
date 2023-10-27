@@ -420,3 +420,5 @@ arrange_mtrySamp02
 ggsave(filename = file.path(result_dir_scen2, "MtrySampFrac02.pdf"),
        plot = arrange_mtrySamp02,
        width = 7, height = 6)
+## Re-set the current directory.
+setwd(main_dir)

@@ -541,5 +541,6 @@ theme_set(theme_bw())
 ggsave(filename = file.path(result_dir_scen1, "MtrySampFrac01.pdf"),
        plot = arrange_mtrySamp,
        width = 10, height = 7)
-
+## Re-set the current directory.
+setwd(main_dir)
 

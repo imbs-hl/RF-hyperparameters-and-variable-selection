@@ -284,3 +284,5 @@ boruta_spec_DT$Method <- "Boruta"
 
 saveRDS(object = boruta_spec_DT,
         file = file.path(result_dir_scen1, "boruta_cor_spec.RDS"))
+## Re-set the current directory.
+setwd(main_dir)

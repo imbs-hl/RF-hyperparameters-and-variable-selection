@@ -134,4 +134,5 @@ run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                 ),
                                 config_file = config_file,
                                 interactive_session = interactive_session)
-
+## Re-set the current directory.
+setwd(main_dir)

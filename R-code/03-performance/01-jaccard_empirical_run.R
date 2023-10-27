@@ -287,3 +287,5 @@ boruta_jaccard_DT$Method <- "Boruta"
 
 saveRDS(object = boruta_jaccard_DT,
         file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"))
+## Re-set the current directory.
+setwd(main_dir)

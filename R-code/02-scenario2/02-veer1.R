@@ -227,4 +227,5 @@ boruta_veer_res_DT$Method <- "Boruta"
 boruta_veer_res_DT$min.node.size_prop <- boruta_veer_res_DT$nodesize.prop
 saveRDS(object = boruta_veer_res_DT,
         file = file.path(result_dir_scen2, "boruta_veer_mean_res.RDS"))
-
+## Re-set the current directory.
+setwd(main_dir)

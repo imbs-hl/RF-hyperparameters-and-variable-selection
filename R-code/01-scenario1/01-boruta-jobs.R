@@ -164,3 +164,5 @@ run_boruta50 <- wrap_batchtools(reg_name = "boruta-cor50",
                                 ),
                                 config_file = config_file,
                                 interactive_session = interactive_session)
+## Re-set the current directory.
+setwd(main_dir)
