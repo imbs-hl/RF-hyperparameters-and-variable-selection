@@ -92,4 +92,4 @@ Use the files ```01-data-only.R``` and ```02-data-only.R``` to generate the simu
 
 <p align="center";style="font-size:25%;margin-bottom:0;"><em>Developed and maintained by</em></p>
 <p align="center";style="font-size:10%;margin : 0; padding-top:0;"><em>Cesaire J. K. Fouodo</em></p>
-<p align="center";style="font-size:10%;margin : 0; padding-top:0;"><em>cesaire.kuetefouodo(@)uni-luebeck.de</em></p>
+<p align="center";style="font-size:10%;padding-top:0;"><em>cesaire.kuetefouodo(@)uni-luebeck.de</em></p>
