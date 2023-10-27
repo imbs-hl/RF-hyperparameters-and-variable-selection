@@ -13,6 +13,7 @@ Use this command to clone the git repository:
 In the testing mode, an interactive session can be used; however, it can require about one hour of computation time for just a minimal number of replicates. The script is set in testing mode as default. To run the script in testing mode:
 
 - In file ```init.global.R```, set the variable ```main_dir``` to your the directory ```R-code``` of your cloned repository.
+- Set your current working directory to the directory ```R-code``` of your cloned repository.
 - Run the following code:
 
 ```R
