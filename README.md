@@ -38,9 +38,9 @@ source("03-performance/01-min-node-size-replace-plot.R")
 source("02-scenario2/02-veer1.R")
 
 ## Estimate and plot results
-## Run replicates
+
 source("03-performance/02-mtry-sample-fraction.R")
-source("03-performance/02-min-node-replace")
+source("03-performance/02-min-node-replace.R")
 ```
 
 Figures are saved in ```R-code/results```.
