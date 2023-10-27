@@ -32,8 +32,9 @@ if(!interactive_session){
   partition <- "partition_name"
   account <- "your_account"
 } else {
-  ## Do not modify this line
+  ## Do not modify this part
   config_file <- file.path(main_dir, "batchtools-config/batchtools.multicore.R")
+  template <- nodename <- partition <- account <- NULL
 }
 ## Batchtools wrapper. Do not motify this line
 source(file.path(file.path(main_dir, "functions"),
