@@ -45,9 +45,9 @@ source("03-performance/02-min-node-replace")
 
 Figures are saved in ```R-code/results```.
 
-## Testing mode
+## Normal mode
 
-In the normal mode, all replicates will be run, and the manuscript results will be reproduced. We recommend running the code on a high-performance computer (HPC) in normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15 and, in our case, with a SLURM cluster scheduler.  We share our ```batchtools```'s configuration files to be used and configured to fit the user's computational platform. User configuration is required only for the normal mode, not the testing mode.
+The normal mode reproduces the results of the manuscript. We recommend running the code on a high-performance computer (HPC) in normal mode. In our case, simulations are parallelized using the R package ```batchtools``` version 0.9.15 and with a SLURM cluster scheduler. We share our ```batchtools```'s configuration files to be potentially used and configured to fit the user's computational platform.
 
 ### init-global.R
 - Ensure the required R packages are installed.
