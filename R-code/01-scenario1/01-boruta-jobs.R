@@ -1,4 +1,5 @@
 ## Prepare and send the jobs for simulation study 1 and Boruta selection
+setwd(file.path(main_dir, "01-scenario1"))
 ## method to the remote cluster.
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
@@ -88,7 +89,7 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1:3
+  1:2
 } else {
   1:100
 } 

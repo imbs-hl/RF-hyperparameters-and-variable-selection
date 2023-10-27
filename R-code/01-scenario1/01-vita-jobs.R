@@ -1,4 +1,5 @@
 ## Prepare and send the jobs for simulation study 1 and Vita selection
+setwd(file.path(main_dir, "01-scenario1"))
 ## method to the remote cluster.
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.

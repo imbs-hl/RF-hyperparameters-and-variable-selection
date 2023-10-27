@@ -1,3 +1,4 @@
+setwd(file.path(main_dir, "03-performance"))
 #' Functions in this file are used to generate the plots shows in the paper. The
 #' have the same parameters described as followed. mtry and sample.fraction are
 #' varying.
