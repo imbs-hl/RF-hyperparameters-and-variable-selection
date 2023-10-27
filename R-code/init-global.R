@@ -36,7 +36,6 @@ account = "xxxx"
 
 ## End of configuration.
 ## Set your current working directory to "R-code" and go back to the Readme.
-## Otherwise, configure your batchtools system.
 ## ****************************************************************************/
 
 
