@@ -1,5 +1,5 @@
 ## This file is for submitting jobs to generate data used in simulation study 2.
-setwd(file.path(main_dir, "01-scenario1"))
+setwd(file.path(main_dir, "02-scenario2"))
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.
 if(((partition == "xxxx") | account == "xxxx") & (!interactive_session)){
