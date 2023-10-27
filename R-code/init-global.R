@@ -6,10 +6,13 @@
 
 ## Do the scripts will be run in testing or in normal mode?
 testing_mode <- TRUE
+
 ## Do the jobs should be ran in interactive session?
 interactive_session <- TRUE
+
 ## Set the main directory
 main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selection/R-code"
+
 ## Note: If you are in interactive session, you are done with configuration. Set
 ## your current working directory to "R-code" and go back to the Readme.
 ## Otherwise, configure your batchtools system.
@@ -20,19 +23,20 @@ main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selecti
 ## Configuration file: Skip config_file in testing mode. Otherwise replace
 ## "xxxx" by the correct path if your in normal mode.
 ## Example: config_file <-file.path(main_dir, "batchtools-config/batchtools.conf.R")
-config_file <- if(interactive_session){
-  file.path(main_dir, "batchtools-config/batchtools.multicore.R")
+if(!interactive_session){
+  ## Template file
+  ## Example: template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
+  config_file <- "path/to/batchtools/config/file"
+  template <- "path/to/batchtools/template/file"
+  ##  (e.g. SLURM) Node, partition and account (See batchtools for details)
+  nodename <- "node_name"
+  partition = "partition_name"
+  account = "your_account"
 } else {
-  "xxxx"
+  config_file <- file.path(main_dir, "batchtools-config/batchtools.multicore.R")
 }
-## Template file
-## Example: template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
-template <- "xxxx"
-## Cluster node name
-nodename <- "xxxx"
-## SLURM partition and account
-partition = "xxxx"
-account = "xxxx"
+## Batchtools wrapper. Do not motify this line
+source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 
 ## End of configuration.
 ## Set your current working directory to "R-code" and go back to the Readme.
@@ -86,5 +90,3 @@ pacman::p_load(
   caret,
   ComplexUpset
 )
-## Batchtools wrapper
-source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
