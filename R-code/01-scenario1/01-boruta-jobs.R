@@ -126,7 +126,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "boruta-cor10",
                               partition = partition, ## Set partition in init-global
                               account = account, ## Set account in init-global
                               test_job = FALSE,
-                              wait_for_jobs = TRUE,
+                              wait_for_jobs = FALSE,
                               packages = c(
                                 "devtools",
                                 "Pomona",
@@ -156,7 +156,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "boruta-cor50",
                                 partition = partition, ## Set partition in init-global
                                 account = account, ## Set account in init-global
                                 test_job = FALSE,
-                                wait_for_jobs = TRUE,
+                                wait_for_jobs = FALSE,
                                 packages = c(
                                   "devtools",
                                   "Pomona",
