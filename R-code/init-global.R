@@ -7,7 +7,7 @@
 ## Do the scripts will be run in testing or in normal mode?
 testing_mode <- TRUE
 
-## Do the jobs should be ran in interactive session?
+## Do the jobs should be run in interactive session?
 interactive_session <- TRUE
 
 ## Set the main directory
