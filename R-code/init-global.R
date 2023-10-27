@@ -13,16 +13,15 @@ interactive_session <- TRUE
 ## Set the main directory
 main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selection/R-code"
 
-## Note: If you are in interactive session, you are done with configuration. Set
-## your current working directory to "R-code" and go back to the Readme.
+## Set your current working directory to "R-code" (setwd("path/to/R-code"))
+
+## Note: If you are in interactive session, you are done with configuration. 
 ## Otherwise, configure your batchtools system.
 
 ## +++++++++++++++++++++++++++++++#
-## batchtools configuration       #
+## batchtools configurations      #
 ## +++++++++++++++++++++++++++++++#
-## Configuration file: Skip config_file in testing mode. Otherwise replace
-## "xxxx" by the correct path if your in normal mode.
-## Example: config_file <-file.path(main_dir, "batchtools-config/batchtools.conf.R")
+##
 if(!interactive_session){
   ## Template file
   ## Example: template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
