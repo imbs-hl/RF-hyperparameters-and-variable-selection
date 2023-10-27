@@ -38,8 +38,8 @@ if(!interactive_session){
 ## Batchtools wrapper. Do not motify this line
 source(file.path(functions_dir, "batchtoolswrapper.R"), chdir = TRUE)
 
-## End of configuration.
 ## Set your current working directory to "R-code" and go back to the Readme.
+## ************************** End of configuration ****************************/
 
 
 ## ****************************************************************************/
