@@ -4,11 +4,14 @@ Supplementary materials for "Effect of hyperparameters on variable selection in 
 
 All results presented in the paper can be obtained by running the R scripts of this repository. We used the R version 3.5.0 to run our code. The scripts can be run either in a testing or normal mode.
 
+Use this command to clone the git repository:
+
+- clone the git repository: ```git clone git@github.com:imbs-hl/RF-hyperparameters-and-variable-selection.git```
+
 ## Testing mode
 
 In the testing mode, an interactive session can be used; however, it can require about one hour of computation time for just a minimal number of replicates. The script is set in testing mode as default. To run the script in testing mode:
 
-- clone the git repository: ```git clone git@github.com:imbs-hl/RF-hyperparameters-and-variable-selection.git```
 - In file ```init.global.R```, set the variable ```main_dir``` to your the directory ```R-code``` of your cloned repository.
 - Run the following code:
 
