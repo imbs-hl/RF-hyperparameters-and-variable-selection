@@ -4,6 +4,8 @@ Supplementary materials for "Effect of hyperparameters on variable selection in 
 
 All results presented in the paper can be obtained by running the R scripts of this repository. We used the R version 3.5.0 to run our code. The scripts can be run either in a testing or normal mode.
 
+## Testing mode
+
 In the testing mode, an interactive session can be used; however, it can require about one hour of computation time for just a minimal number of replicates. The script is set in testing mode as default. To run the script in testing mode:
 
 - clone the git repository: ```git clone git@github.com:imbs-hl/RF-hyperparameters-and-variable-selection.git```
@@ -11,19 +13,42 @@ In the testing mode, an interactive session can be used; however, it can require
 - Run the following code:
 
 ```R
-# Test
+# Scenario 1
+
+## Run replicates
+source("01-scenario1/01-boruta-jobs.R")
+source("01-scenario1/01-vita-jobs.R")
+## Estimate performance measures
+source("03-perfroamnce/01-fdr_empirical_run.R")
+source("03-perfroamnce/01-jaccard_empirical_run.R")
+source("03-perfroamnce/01-sens_empirical_run.R")
+source("03-perfroamnce/01-spec_empirical_run.R")
+## Plot results
+source("03-perfroamnce/01-mtry-sample-fraction-plot.R")
+source("03-perfroamnce/01-min-node-size-replace-plot.R")
+
+# Scenario 2
+
+## Run replicates
+source("02-scenario2/02-veer1.R")
+
+## Estimate and plot results
+## Run replicates
+source("03-performance/02-mtry-sample-fraction.R")
+source("03-performance/02-min-node-replace")
 ```
+
+Figures are saved in ```R-code/results```.
+
+## Testing mode
 
 In the normal mode, all replicates will be run, and the manuscript results will be reproduced. We recommend running the code on a high-performance computer (HPC) in normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15 and, in our case, with a SLURM cluster scheduler.  We share our ```batchtools```'s configuration files to be used and configured to fit the user's computational platform. User configuration is required only for the normal mode, not the testing mode.
 
-## init-global.R
+### init-global.R
 - Ensure the required R packages are installed.
 - Set the main directory (```man_dir```) to the directory ```R-code```.
-- Set the computation mode: ```testing_mode = TRUE``` (for testing, default) or ```testing_mode = FALSE``` (for normal).
+- Set the computation mode: ```testing_mode = FALSE``` (for normal).
 - Set the global variable ```interactive_session = TRUE``` (default) if you want to test the code in an interactive session, and ```interactive_session = FALSE``` if you want to run it in a cluster session. Note that the Boruta jobs will take longer than the Vita ones.
-
-This is required for normal mode on HPC and can be skipped in testing mode:
-
 - Configure your batchtools' resources accordingly: the path to your batchtools' configuration file, your scheduler (e.g. SLURM) partition, and your user account. Please ensure the partition (See batchtools) you use allows you the ```walltime``` (see batchtools) you set.
 - Set the path of your scheduler template file in ```template``` and the name of your cluster node in ```nodename```. 
 - Ensure you set the correct R library path in your scheduler template file.
@@ -54,6 +79,8 @@ Only run files in this directory once your submitted jobs from ```01-scenario1``
 Only run files in this directory once your submitted jobs from ```02-scenario2``` are done.
 
 To generate the figures from study 2 in the article, run the files ```02-mtry-sample-fraction.R``` and ```02-min-node-replace```.
+
+Figures are saved in ```R-code/results```.
 
 ## Generate data only
 Use the files ```01-data-only.R``` and ```02-data-only.R``` to generate the simulated data only. For each study, 100 replicates will be generated. We also provide simulated data at Zenodo under DOI: 10.5281/zenodo.8308235.
