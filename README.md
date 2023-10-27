@@ -19,6 +19,7 @@ In the testing mode, an interactive session can be used; however, it can require
 # Scenario 1
 
 ## Run replicates
+source("init-global.R")
 source("01-scenario1/01-vita-jobs.R")
 source("01-scenario1/01-boruta-jobs.R")
 ## Estimate performance measures
