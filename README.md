@@ -13,10 +13,6 @@ In the testing mode, an interactive session can be used; however, it can require
 ```R
 # Test
 ```
-# execute code if the date is later than a specified day
-do_it = Sys.Date() > '2018-02-14'
-```
-
 
 In the normal mode, all replicates will be run, and the manuscript results will be reproduced. We recommend running the code on a high-performance computer (HPC) in normal mode. Simulations are parallelized using the R package ```batchtools``` version 0.9.15 and, in our case, with a SLURM cluster scheduler.  We share our ```batchtools```'s configuration files to be used and configured to fit the user's computational platform. User configuration is required only for the normal mode, not the testing mode.
 
