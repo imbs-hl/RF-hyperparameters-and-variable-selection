@@ -112,7 +112,7 @@ wrap_batchtools <- function(reg_name,
         resources = list(
           name = name,
           ntasks = 1, 
-          ncpus = n_cpus, 
+          ncpus = 1, 
           memory = memory,
           walltime = walltime),
         reg = reg)
