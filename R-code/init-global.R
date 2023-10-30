@@ -32,8 +32,14 @@ if(!interactive_session){
   partition <- "partition_name"
   account <- "your_account"
 } else {
-  ## Do not modify this part
-  config_file <- file.path(main_dir, "batchtools-config/batchtools.multicore.R")
+  ## Do not modify this "else" block!
+  config_file <- if(.Platform$OS.type == "unix") {
+    ## Unix platform
+    file.path(main_dir, "batchtools-config/batchtools.multicore.R")
+  } else {
+    ## Windows platform
+    file.path(main_dir, "batchtools-config/batchtools.multicore.socket.R")
+  }
   template <- nodename <- partition <- account <- NULL
 }
 ## Batchtools wrapper. Do not motify this line
