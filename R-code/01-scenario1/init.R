@@ -16,3 +16,5 @@ source(file.path(functions_dir, "filterout.R"))
 source(file.path(functions_dir, "data_only_scen1.R"))
 result_dir_scen1 <- file.path(result_dir, "01-scenario1")
 dir.create(result_dir_scen1, showWarnings = FALSE, recursive = TRUE)
+## Wait for Batch jobs or note?
+wait_for_jobs <- ifelse(interactive_session, FALSE, TRUE)
