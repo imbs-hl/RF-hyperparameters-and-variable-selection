@@ -53,7 +53,7 @@ source(file.path(file.path(main_dir, "functions"),
 ## ****************************************************************************/
 ##                  Set directory paths                                       */
 ## ****************************************************************************/
-result_dir <- file.path(main_dir, "results")
+result_dir <- file.path(dirname(main_dir), "results")
 dir.create(result_dir, showWarnings = FALSE)
 
 img_dir <- file.path(main_dir, "img")

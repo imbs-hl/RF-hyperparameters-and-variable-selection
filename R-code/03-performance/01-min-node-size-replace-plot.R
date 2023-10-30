@@ -4,12 +4,14 @@ setwd(file.path(main_dir, "03-performance"))
 #'
 #' @param res_vita_file Vita results for scenario 1 in RDS format
 #' @param res_boruta_file Vita results for scenario 1 in RDS format
+#' @param testing_mode TRUE for testing mode. Used to adjusted y-axis range in some plots, but not always necessary.
 #' @param default_param Set up parameters to be kept constant
 plot_sens_min_node_scen1 <- function(res_vita_file,
                                      res_boruta_file,
                                      default_param = c("mtry.prop" = 0.33,
                                                        "replace" =  TRUE,
-                                                       "min.node.size" = 1)){
+                                                       "min.node.size" = 1),
+                                     testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -51,6 +53,11 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
   print(data_results[data_results[ , .I[which.max(SENS)],
                                    by = c("Method", "k")]$V1])
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.398, 0.56)
+  }
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(min.node.size),
                          y = SENS, shape = k, linetype = k)) +
@@ -58,7 +65,7 @@ plot_sens_min_node_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab(label = "min.node.size.prop") +
     ylab("Empirical sensitivity") +
-    ylim(c(0.398, 0.56)) +
+    ylim(y_lim[1], y_lim[2]) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -73,7 +80,8 @@ sens_min_node_plot <- plot_sens_min_node_scen1(res_vita_file = file.path(result_
                                                res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
                                                default_param = c("sample.fraction" = 0.632,
                                                                  "mtry.prop" = 0.014,
-                                                                 replace = TRUE))
+                                                                 replace = TRUE),
+                                               testing_mode = testing_mode)
 sens_min_node_plot
 
 ## =============================================================================
@@ -84,7 +92,8 @@ plot_fdr_replace_scen1 <- function(res_vita_file,
                                    res_boruta_file,
                                    default_param = c("mtry.prop" = 0.33,
                                                      "replace" =  TRUE,
-                                                     "min.node.size" = 5)){
+                                                     "min.node.size" = 5),
+                                   testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -125,6 +134,12 @@ plot_fdr_replace_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   
   ## Plot
+  y_lim <- if(testing_mode){
+    ## testing_mode not required here
+    c(NA, NA)
+  } else {
+    c(NA, NA)
+  }
   fdr_all <- ggplot(data_results,
                     aes(x = replace,
                         y = FDR)) +
@@ -155,7 +170,8 @@ fdr_replace_plot <- plot_fdr_replace_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "sample.fraction" = 0.632))
+                    "sample.fraction" = 0.632),
+  testing_mode = testing_mode)
 fdr_replace_plot
 
 
@@ -165,7 +181,8 @@ plot_sens_replace_scen1 <- function(res_vita_file,
                                     res_boruta_file,
                                     default_param = c("mtry.prop" = 0.33,
                                                       "replace" =  TRUE,
-                                                      "min.node.size" = 5)){
+                                                      "min.node.size" = 5),
+                                    testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -207,13 +224,18 @@ plot_sens_replace_scen1 <- function(res_vita_file,
   print(data_results[data_results[ , .I[which.max(SENS)],
                                    by = c("Method", "k")]$V1])
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.398, 0.56)
+  }
   sens_all <- ggplot(data_results,
                      aes(x = replace,
                          y = SENS, shape = k)) +
     geom_point(aes(colour = Method)) +
     xlab(label = "replace") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(0.398, 0.56)) +
+    ylim(y_lim[1], y_lim[2]) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -230,7 +252,8 @@ sens_replace_plot <- plot_sens_replace_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "sample.fraction" = 0.632))
+                    "sample.fraction" = 0.632),
+  testing_mode = testing_mode)
 sens_replace_plot
 
 
@@ -238,7 +261,8 @@ plot_jaccard_min_node_scen1 <- function(res_vita_file,
                                         res_boruta_file,
                                         default_param = c("mtry.prop" = 0.014,
                                                           "replace" =  TRUE,
-                                                          "min.node.size" = 1)){
+                                                          "min.node.size" = 1),
+                                        testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -277,6 +301,7 @@ plot_jaccard_min_node_scen1 <- function(res_vita_file,
   data_results[ , Jaccard := mean(Jaccard), by = c("min.node.size",
                                                    "Method", "k")]
   ## Plot
+  ## Testing mode not necessary
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(min.node.size),
                             y = Jaccard, shape = k, linetype = k)) +
@@ -301,7 +326,8 @@ jaccard_min_node_plot <- plot_jaccard_min_node_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry.prop" = 0.014,
-                    "replace" = TRUE))
+                    "replace" = TRUE),
+  testing_mode = testing_mode)
 jaccard_min_node_plot
 
 
@@ -310,7 +336,8 @@ plot_fdr_min_mode_scen1 <- function(res_vita_file,
                                     res_boruta_file,
                                     default_param = c("mtry.prop" = 0.33,
                                                       "replace" =  TRUE,
-                                                      "min.node.size" = 5)){
+                                                      "min.node.size" = 5),
+                                    testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -348,6 +375,7 @@ plot_fdr_min_mode_scen1 <- function(res_vita_file,
                                 levels = c("Vita", "Boruta"))
   data_results[ , FDR := mean(FDR), by = c("min.node.size", "Method", "k")]
   ## Plot
+  ## testing_mode node required here
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(min.node.size),
                         y = FDR, shape = k, linetype = k)) +
@@ -375,7 +403,8 @@ fdr_min_node_plot <- plot_fdr_min_mode_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "mtry.prop" = 0.014,
-                    replace = TRUE))
+                    replace = TRUE),
+  testing_mode = testing_mode)
 fdr_min_node_plot
 
 
@@ -385,7 +414,8 @@ plot_jaccard_replace_scen1 <- function(res_vita_file,
                                        res_boruta_file,
                                        default_param = c("mtry.prop" = 0.014,
                                                          "replace" =  TRUE,
-                                                         "min.node.size" = 1)){
+                                                         "min.node.size" = 1),
+                                       testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -423,6 +453,7 @@ plot_jaccard_replace_scen1 <- function(res_vita_file,
   data_results[ , Jaccard := mean(Jaccard),
                 by = c("sample.fraction", "Method", "k")]
   ## Plot
+  ## testing_mode not necessary
   jaccard_all <- ggplot(data_results,
                         aes(x = replace,
                             y = Jaccard,
@@ -450,7 +481,8 @@ jaccard_replace_plot <- plot_jaccard_replace_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "sample.fraction" = 0.632))
+                    "sample.fraction" = 0.632),
+  testing_mode = testing_mode)
 jaccard_replace_plot
 
 

@@ -1,4 +1,7 @@
 ## This file will generate data only
+if(basename(getwd()) == "R-code"){
+  source("init-global.R", chdir = TRUE)
+}
 setwd(file.path(main_dir, "01-scenario1"))
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.

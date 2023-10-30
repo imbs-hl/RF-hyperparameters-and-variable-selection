@@ -1,4 +1,7 @@
 ## Prepare and send the jobs for simulation study 1 and Vita selection
+if(basename(getwd()) == "R-code"){
+  source("init-global.R", chdir = TRUE)
+}
 setwd(file.path(main_dir, "01-scenario1"))
 ## method to the remote cluster.
 source("init.R", chdir = TRUE)

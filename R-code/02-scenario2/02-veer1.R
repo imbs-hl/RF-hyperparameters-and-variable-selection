@@ -1,4 +1,7 @@
 ## This file is for submitting jobs for evaluating Vita and Boruta in study 2.
+if(basename(getwd()) == "R-code"){
+  source("init-global.R", chdir = TRUE)
+}
 setwd(file.path(main_dir, "02-scenario2"))
 source("init.R", chdir = TRUE)
 ## Ensure partition and account are set up.

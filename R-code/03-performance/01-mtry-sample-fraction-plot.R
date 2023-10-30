@@ -4,12 +4,14 @@ setwd(file.path(main_dir, "03-performance"))
 #'
 #' @param res_vita_file Vita results for scenario 1 in RDS format
 #' @param res_boruta_file Vita results for scenario 1 in RDS format
+#' #' @param testing_mode TRUE for testing mode. Used to adjusted y-axis range in some plots, but not always necessary.
 #' @param default_param Set up parameters to be kept constant
 plot_sens_mtry_scen1 <- function(res_vita_file,
                                  res_boruta_file,
                                  default_param = c("mtry.prop" = 0.33,
                                                    "replace" =  TRUE,
-                                                   "min.node.size" = 5)){
+                                                   "min.node.size" = 5),
+                                 testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -54,6 +56,11 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
   print(data_results[data_results[ , .I[SENS == max(SENS)],
                                    by = c("Method", "k")]$V1])
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(NA, 0.58)
+  }
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(mtry),
                          y = SENS,
@@ -62,7 +69,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(NA, 0.58)) +
+    ylim(y_lim[1], y_lim[2]) +
     # ylim(0.32, 0.57) +
     theme(legend.position = "none",
           text = element_text(size = 14),
@@ -87,7 +94,8 @@ sens_mtry_plot <- plot_sens_mtry_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size" = 1,
-                    replace = TRUE))
+                    replace = TRUE),
+  testing_mode = testing_mode)
 sens_mtry_plot
 
 
@@ -102,7 +110,8 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
                                         res_boruta_file,
                                         default_param = c("mtry.prop" = 0.33,
                                                           "replace" =  TRUE,
-                                                          "min.node.size" = 5)){
+                                                          "min.node.size" = 5),
+                                        testing_mode){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -146,6 +155,11 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
   print(data_results[data_results[ , .I[SENS == max(SENS)],
                                    by = c("Method", "k")]$V1])
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.30, 0.58)
+  }
   sens_all <- ggplot(data_results,
                      aes(x = as.numeric(factor(sample.fraction)),
                          y = SENS, shape = k, linetype = k)) +
@@ -157,7 +171,7 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
     #            linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
-    ylim(0.30, 0.58) +
+    ylim(y_lim[1], y_lim[2]) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -183,7 +197,8 @@ sens_sample_frac_plot <- plot_sens_sample_frac_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "replace" = TRUE))
+                    "replace" = TRUE),
+  testing_mode = testing_mode)
 sens_sample_frac_plot
 
 
@@ -192,7 +207,8 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                                 res_boruta_file,
                                 default_param = c("mtry.prop" = 0.33,
                                                   "replace" =  TRUE,
-                                                  "min.node.size" = 5)){
+                                                  "min.node.size" = 5),
+                                testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -234,6 +250,11 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
   print(data_results[data_results[ , .I[FDR == min(FDR)],
                                    by = c("Method", "k")]$V1])
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0, 0.235)
+  }
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(mtry),
                         y = FDR, shape = k, linetype = k)) +
@@ -245,7 +266,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
-    ylim(0, 0.235) +
+    ylim(y_lim[1], y_lim[2]) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -268,14 +289,16 @@ fdr_mtry_plot <- plot_fdr_mtry_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size" = 1,
-                    replace = TRUE))
+                    replace = TRUE),
+  testing_mode = testing_mode)
 fdr_mtry_plot
 
 plot_fdr_sample_frac_scen1 <- function(res_vita_file,
                                        res_boruta_file,
                                        default_param = c("mtry.prop" = 0.33,
                                                          "replace" =  TRUE,
-                                                         "min.node.size" = 5)){
+                                                         "min.node.size" = 5),
+                                       testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -318,6 +341,11 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0, 0.235)
+  }
   fdr_all <- ggplot(data_results,
                     aes(x = as.numeric(factor(sample.fraction)),
                         y = FDR, shape = k, linetype = k)) +
@@ -329,7 +357,7 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical FDR") +
-    ylim(0, 0.235) +
+    ylim(y_lim[1], y_lim[2]) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -353,7 +381,8 @@ fdr_sam_frac_plot <- plot_fdr_sample_frac_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "replace" = TRUE))
+                    "replace" = TRUE),
+  testing_mode = testing_mode)
 fdr_sam_frac_plot
 
 
@@ -361,7 +390,8 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
                                     res_boruta_file,
                                     default_param = c("mtry.prop" = 0.014,
                                                       "replace" =  TRUE,
-                                                      "min.node.size" = 1)){
+                                                      "min.node.size" = 1),
+                                    testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -401,6 +431,11 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
   data_results <- unique(x = data_results, 
                          by = c("mtry", "Method", "k"))
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.978, 0.990)
+  }
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(mtry),
                             y = Jaccard, shape = k, linetype = k)) +
@@ -408,7 +443,7 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab("mtry.prop") +
     ylab("Empirical stability") +
-    ylim(c(0.978, 0.998)) +
+    ylim(c(y_lim[1], y_lim[2])) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -431,7 +466,8 @@ jaccard_vita_mtry_plot <- plot_jaccard_mtry_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size" = 1,
-                    "replace" = TRUE))
+                    "replace" = TRUE),
+  testing_mode = testing_mode)
 jaccard_vita_mtry_plot
 
 
@@ -442,7 +478,8 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
                                            res_boruta_file,
                                            default_param = c("mtry.prop" = 0.014,
                                                              "replace" =  TRUE,
-                                                             "min.node.size" = 1)){
+                                                             "min.node.size" = 1),
+                                           testing_mode = TRUE){
   ## --------------------------------------------
   ##    Load result files
   ## --------------------------------------------
@@ -482,6 +519,11 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
   data_results <- unique(x = data_results, 
                          by = c("sample.fraction", "Method", "k"))
   ## Plot
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.978, 0.998)
+  }
   jaccard_all <- ggplot(data_results,
                         aes(x = as.numeric(factor(sample.fraction)),
                             y = Jaccard, shape = k)) +
@@ -489,7 +531,7 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method, linetype = k)) +
     xlab("sample.fraction") +
     ylab(label = "Empirical stability") +
-    ylim(c(0.978, 0.998)) +
+    ylim(c(y_lim[1], y_lim[2])) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -512,7 +554,8 @@ jaccard_sample_frac_plot <- plot_jaccard_sample_frac_scen1(
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
   default_param = c("mtry.prop" = 0.014,
                     "min.node.size" = 1,
-                    "replace" = TRUE))
+                    "replace" = TRUE),
+  testing_mode = testing_mode)
 jaccard_sample_frac_plot
 
 
