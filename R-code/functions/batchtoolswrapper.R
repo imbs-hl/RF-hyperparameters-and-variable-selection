@@ -8,18 +8,20 @@
 #' @param more_args [list] Static arguments, handed to more.args of \code{\link{batchtools:batchMap}}
 #' @param overwrite [logical] TRUE deletes the registry to force re-execution of
 #'     jobs, default is FALSE
-#' @param memory [string] set memory needed for batch job, example '8G'
+#' @param memory [string] Set memory needed for batch job, example '8G'
 #' @param packages [string vector] r string vector of package names that are required
-#' @param work_dir [string] working directory
-#' @param reg_dir [string] registry name
-#' @param n_cpus [integer] number of cpus
-#' @param walltime [integer] walltime
-#' @param partition [string] partition to be used
-#' @param account [string] account to be used
-#' @param test_job [boolean] if TRUE, then test the first jobs only
-#' @param wait_for_jobs [boolean] if TRUE, then wait for jobs
-#' @param config_file [string] path to the configuration file
-#' @param name [string] chunk name to appeared in swatch (SLURM)
+#' @param work_dir [string] Working directory
+#' @param reg_dir [string] Registry name
+#' @param n_cpus [integer] Number of cpus
+#' @param walltime [integer] Walltime
+#' @param partition [string] Partition to be used
+#' @param account [string] Account to be used
+#' @param test_job [boolean] If TRUE, then test the first jobs only
+#' @param wait_for_jobs [boolean] If TRUE, then wait for jobs
+#' @param config_file [string] Path to the configuration file
+#' @param name [string] Chunk name to appeared in swatch (SLURM)
+#' @param sleep [integer] Parameter to control the duration to sleep between temporary errors.
+#' @param interactive_session 
 #'
 #' @return Nothing, throws an error if not all jobs are finished 
 wrap_batchtools <- function(reg_name,
@@ -33,6 +35,7 @@ wrap_batchtools <- function(reg_name,
                             memory = memory,
                             n_cpus = 1,
                             walltime = walltime,
+                            sleep = 3,
                             partition = partition,
                             account = account,
                             test_job = FALSE,
@@ -114,7 +117,8 @@ wrap_batchtools <- function(reg_name,
           ntasks = 1, 
           ncpus = n_cpus, 
           memory = memory,
-          walltime = walltime),
+          walltime = walltime,
+          sleep = sleep),
         reg = reg)
     }
     if(wait_for_jobs){
