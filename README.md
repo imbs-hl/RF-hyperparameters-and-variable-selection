@@ -2,7 +2,7 @@
 
 Supplementary materials for "Effect of hyperparameters on variable selection in random forests".
 
-All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the R version 3.5.0. The scripts can be run either in a testing or normal mode. The testing mode runs only few replicates, whereas the normal is designed to reproduce the results of the manuscript. Simulations are parallelized using the R package ```batchtools``` version 0.9.15. We share our ```batchtools```'s configuration files to be potentially used and configured to fit the user's computational platform.
+All results presented in the paper can be obtained by running the R scripts of this repository. We ran our code using the R version 3.5.0. The scripts can be run either in a testing or normal mode. The testing mode runs only a small number of replicates, whereas the normal is designed to reproduce the manuscript results. Simulations are parallelized using the R package ```batchtools``` version 0.9.15. We share our ```batchtools```'s configuration files to be potentially used and configured to fit the user's computational platform.
 
 Use this command to clone the git repository:
 

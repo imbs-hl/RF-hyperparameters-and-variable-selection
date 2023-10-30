@@ -23,7 +23,7 @@ main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selecti
 ## +++++++++++++++++++++++++++++++#
 ##
 if(!interactive_session){
-  ## Template file
+  ## Provide a configuration and a template file
   ## Example: template <- file.path(main_dir, "batchtools-config/.batchtools.slurm.tmpl")
   config_file <- "path/to/batchtools/config/file"
   template <- "path/to/batchtools/template/file"
@@ -76,7 +76,7 @@ if(!("Pomona" %in% installed.packages())){
   devtools::install_github("imbs-hl/Pomona")
 }
 if(!("pacman" %in% installed.packages())){
-  install.apckages("pacman")
+  install.packages("pacman")
 }
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
