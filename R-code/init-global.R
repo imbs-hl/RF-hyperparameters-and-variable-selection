@@ -82,8 +82,8 @@ pacman::p_load(
   ranger,
   Boruta,
   data.table,
-  ggplot2,
   ggpubr,
+  ggplot2,
   lemon, ## For positioning the ggplot legend
   tikzDevice,
   batchtools,

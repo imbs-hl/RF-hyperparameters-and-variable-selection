@@ -1,4 +1,6 @@
 source("../init-global.R", chdir = TRUE)
+source("../01-scenario1/init.R", chdir = TRUE)
+source("../02-scenario2/init.R", chdir = TRUE)
 ## =====================
 ## functions
 ## =====================
