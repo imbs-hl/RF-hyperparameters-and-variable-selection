@@ -83,6 +83,7 @@ pacman::p_load(
   Boruta,
   data.table,
   ggplot2,
+  ggpubr,
   lemon, ## For positioning the ggplot legend
   tikzDevice,
   batchtools,
