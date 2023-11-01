@@ -1,1 +1,0 @@
-cluster.functions = batchtools::makeClusterFunctionsSocket(ncpus = 2)
