@@ -24,11 +24,6 @@ source("init-global.R")
 source("01-scenario1/01-vita-jobs.R")
 source("01-scenario1/01-boruta-jobs.R")
 ## Estimate performance measures
-## Note: In very rare situations, batchtools can generate this error:
-## Error in mcfork(detached): unable to create a pipe.
-## In this situation, restarting your session or starting a new one will help.
-## From our experience, this issue is related to the function mcapply used by 
-## batchtools for parallelization.
 source("03-performance/01-fdr_empirical_run.R")
 source("03-performance/01-jaccard_empirical_run.R")
 source("03-performance/01-sens_empirical_run.R")

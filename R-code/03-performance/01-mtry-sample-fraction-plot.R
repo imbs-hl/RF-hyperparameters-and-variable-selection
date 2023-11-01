@@ -69,7 +69,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
-    ylim(y_lim[1], y_lim[2]) +
+    coord_cartesian(ylim = y_lim) +
     # ylim(0.32, 0.57) +
     theme(legend.position = "none",
           text = element_text(size = 14),
@@ -357,7 +357,7 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical FDR") +
-    ylim(y_lim[1], y_lim[2]) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -443,7 +443,7 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method)) +
     xlab("mtry.prop") +
     ylab("Empirical stability") +
-    ylim(c(y_lim[1], y_lim[2])) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -531,7 +531,7 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
     geom_line(aes(colour = Method, linetype = k)) +
     xlab("sample.fraction") +
     ylab(label = "Empirical stability") +
-    ylim(c(y_lim[1], y_lim[2])) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot",
