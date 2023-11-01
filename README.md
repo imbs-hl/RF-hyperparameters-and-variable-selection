@@ -44,6 +44,7 @@ source("03-performance/02-min-node-replace.R")
 ```
 
 Figures are saved in ```results```.
+Note: Results of Vita may not mimic the tendency shown in the manuscript because the method is unstable.
 
 ## Normal mode
 
