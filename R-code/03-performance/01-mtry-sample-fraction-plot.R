@@ -1,4 +1,5 @@
 setwd(file.path(main_dir, "03-performance"))
+source("init.R", chdir = TRUE)
 #' Functions in this file are used to generate the plots shows in the paper. The
 #' have the same parameters described as followed.
 #'
