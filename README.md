@@ -43,7 +43,7 @@ source("03-performance/02-mtry-sample-fraction.R")
 source("03-performance/02-min-node-replace.R")
 ```
 
-Figures are saved in ```R-code/results```.
+Figures are saved in ```results```.
 
 ## Normal mode
 
@@ -85,7 +85,7 @@ Only run files in this directory once your submitted jobs from ```02-scenario2``
 
 To generate the figures from study 2 in the article, run the files ```02-mtry-sample-fraction.R``` and ```02-min-node-replace```.
 
-Figures are saved in ```R-code/results```.
+Figures are saved in ```results```.
 
 ## Generate data only
 Use the files ```01-data-only.R``` and ```02-data-only.R``` to generate the simulated data only. For each study, 100 replicates will be generated. We also provide simulated data at Zenodo under DOI: 10.5281/zenodo.8308235.
