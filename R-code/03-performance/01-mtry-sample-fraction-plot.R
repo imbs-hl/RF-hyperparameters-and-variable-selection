@@ -171,7 +171,7 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
     #            linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
-    ylim(y_lim[1], y_lim[2]) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
@@ -266,7 +266,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                linetype = "dashed") +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
-    ylim(y_lim[1], y_lim[2]) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
