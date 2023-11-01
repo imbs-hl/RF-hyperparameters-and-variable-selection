@@ -5,12 +5,14 @@ setwd(file.path(main_dir, "03-performance"))
 #'
 #' @param res_vita_file Vita results for scenario 2 in RDS format
 #' @param res_boruta_file Vita results for scenario 2 in RDS format
+#' @param testing_mode TRUE  in testing mode
 #' @param default_param Set up parameters to be kept constant
 sens02_mtry_prop <- function(
   res_vita_file,
   res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
-                    "min.node.size_prop" = 0.01)
+                    "min.node.size_prop" = 0.01),
+  testing_mode = TRUE
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
@@ -62,6 +64,11 @@ sens02_mtry_prop <- function(
   data_results <- unique(x = data_results, 
                          by = c("mtry", "Method"))
   ## Now plot sensitivity depending on hyperparameter
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.475, 0.575)
+  }
   plot_sens <- ggplot(data_results,
                       aes(x = as.numeric(factor(mtry)),
                           y = SENS)) +
@@ -69,7 +76,7 @@ sens02_mtry_prop <- function(
     geom_line(aes(colour = Method)) +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(0.475, 0.575)) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "bottom",
           text = element_text(size = 14),
           plot.title.position = "plot"#,
@@ -96,7 +103,8 @@ plot_sens2_mtry_prop <- sens02_mtry_prop(
                               "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01,
-                    "replace" = TRUE)
+                    "replace" = TRUE),
+  testing_mode = testing_mode
 )
 
 plot_sens2_mtry_prop
@@ -106,7 +114,8 @@ sens02_sam_frac_prop <- function(
   res_vita_file,
   res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
-                    "min.node.size_prop" = 0.01)
+                    "min.node.size_prop" = 0.01),
+  testing_mode = TRUE
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
@@ -157,6 +166,11 @@ sens02_sam_frac_prop <- function(
   data_results <- unique(x = data_results, 
                          by = c("sample.fraction", "Method"))
   ## Now plot sensitivity depending on hyperparameter
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.473, 0.575)
+  }
   plot_sens <- ggplot(data_results,
                       aes(x = as.numeric(as.factor(sample.fraction)),
                           y = SENS)) +
@@ -164,7 +178,7 @@ sens02_sam_frac_prop <- function(
     geom_line(aes(colour = Method)) +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
-    ylim(c(0.473, 0.575)) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot"
@@ -191,7 +205,8 @@ plot_sens2_sample_frac_prop <- sens02_sam_frac_prop(
                               "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
-                    replace = TRUE)
+                    replace = TRUE),
+  testing_mode = testing_mode
 )
 
 plot_sens2_sample_frac_prop
@@ -204,7 +219,8 @@ fdr02_mtry_prop <- function(
   res_vita_file,
   res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
-                    "min.node.size_prop" = 0.01)
+                    "min.node.size_prop" = 0.01),
+  testing_mode = TRUE
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
@@ -256,6 +272,11 @@ fdr02_mtry_prop <- function(
   data_results <- unique(x = data_results, 
                          by = c("mtry", "Method"))
   ## Now plot sensitivity depending on hyperparameter
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.005, 0.0575)
+  }
   plot_fdr <- ggplot(data_results,
                      aes(x = as.numeric(as.factor(mtry)),
                          y = FDR)) +
@@ -267,7 +288,7 @@ fdr02_mtry_prop <- function(
                linetype = "dashed") +
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
-    ylim(c(0.005, 0.0575)) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "bottom",
           text = element_text(size = 14),
           plot.title.position = "plot"#,
@@ -293,7 +314,8 @@ plot_fdr2_mtry_prop <- fdr02_mtry_prop(
                               "boruta_veer_mean_res.RDS"),
   default_param = c("sample.fraction" = 0.632,
                     "min.node.size_prop" = 0.01,
-                    "replace" = TRUE)
+                    "replace" = TRUE),
+  testing_mode = testing_mode
 )
 
 plot_fdr2_mtry_prop
@@ -303,7 +325,8 @@ fdr02_sam_frac_prop <- function(
   res_vita_file,
   res_boruta_file,
   default_param = c("sample.fraction" = 0.632,
-                    "min.node.size_prop" = 0.01)
+                    "min.node.size_prop" = 0.01),
+  testing_mode = TRUE
 ){
   ## ************ load result data **********************
   vita_data <- readRDS(res_vita_file)
@@ -354,6 +377,11 @@ fdr02_sam_frac_prop <- function(
   data_results <- unique(x = data_results, 
                          by = c("sample.fraction", "Method"))
   ## Now plot sensitivity depending on hyperparameter
+  y_lim <- if(testing_mode){
+    c(NA, NA)
+  } else {
+    c(0.005, 0.0575)
+  }
   plot_fdr <- ggplot(data_results,
                      aes(x = as.numeric(as.factor(sample.fraction)),
                          y = FDR)) +
@@ -365,7 +393,7 @@ fdr02_sam_frac_prop <- function(
                linetype = "dashed") +
     xlab("sample.fraction") +
     ylab(label = "Empirical FDR") +
-    ylim(c(0.005, 0.0575)) +
+    coord_cartesian(ylim = y_lim) +
     theme(legend.position = "bottom",
           text = element_text(size = 14),
           plot.title.position = "plot"#,
@@ -392,7 +420,8 @@ plot_fdr2_sample_frac_prop <- fdr02_sam_frac_prop(
                               "boruta_veer_mean_res.RDS"),
   default_param = c("mtry.prop" = 0.01,
                     "min.node.size_prop" = 0.01,
-                    replace = TRUE)
+                    replace = TRUE),
+  testing_mode = testing_mode
 )
 
 plot_fdr2_sample_frac_prop
