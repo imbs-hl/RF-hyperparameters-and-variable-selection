@@ -176,59 +176,67 @@ saveRDS(object = vita_veer_res_DT,
 ##                             Boruta Pomona
 ## *****************************************************************************
 ##
-run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
-                                   work_dir = working_dir,
-                                   reg_dir = registry_dir_scen2,
-                                   r_function = test_binary,
-                                   vec_args = all_param_settings,
-                                   more_args = list(
-                                     data = data.frame(data_veer),
-                                     beta = betas,
-                                     n_beta = n_beta,
-                                     null_case = null_case,
-                                     pValue = 0.01,
-                                     doTrace = TRUE,
-                                     boruta_function = Pomona::var.sel.boruta
-                                   ),
-                                   name = "boruta_veer",
-                                   overwrite = TRUE,
-                                   memory = "1g",
-                                   n_cpus = no.threads,
-                                   walltime = "120",
-                                   partition = partition, ## Set partition in init-global
-                                   account = account, ## Set account in init-global
-                                   test_job = FALSE,
-                                   wait_for_jobs = TRUE,
-                                   packages = c(
-                                     "devtools",
-                                     "data.table"
-                                   ),
-                                   config_file = config_file,
-                                   interactive_session = interactive_session)
-
-## Run this after that your jobs are completed
-## *****************************************************************************
-##                  Save Boruta results
-## *****************************************************************************
-## Load registries
-reg_boruta_veer <- batchtools::loadRegistry(
-  file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
-  writeable = TRUE,
-  conf.file = config_file)
-njobs <- nrow(all_param_settings)
-boruta_veer_res <- batchtools::reduceResultsList(
-  ids = batchtools::findDone(
-    ids = 1:njobs,
-    reg = reg_boruta_veer
-  ),
-  reg = reg_boruta_veer)
-
-## resume filtered results
-boruta_veer_res_DT <- data.table::rbindlist(filter_out_empirical(boruta_veer_res))
-
-boruta_veer_res_DT$Method <- "Boruta"
-boruta_veer_res_DT$min.node.size_prop <- boruta_veer_res_DT$nodesize.prop
-saveRDS(object = boruta_veer_res_DT,
-        file = file.path(result_dir_scen2, "boruta_veer_mean_res.RDS"))
+if(!testing_mode){
+  run_boruta_veer <- wrap_batchtools(reg_name = "boruta_veer_mean_all",
+                                     work_dir = working_dir,
+                                     reg_dir = registry_dir_scen2,
+                                     r_function = test_binary,
+                                     vec_args = all_param_settings,
+                                     more_args = list(
+                                       data = data.frame(data_veer),
+                                       beta = betas,
+                                       n_beta = n_beta,
+                                       null_case = null_case,
+                                       pValue = 0.01,
+                                       doTrace = TRUE,
+                                       boruta_function = Pomona::var.sel.boruta
+                                     ),
+                                     name = "boruta_veer",
+                                     overwrite = TRUE,
+                                     memory = "1g",
+                                     n_cpus = no.threads,
+                                     walltime = "120",
+                                     partition = partition, ## Set partition in init-global
+                                     account = account, ## Set account in init-global
+                                     test_job = FALSE,
+                                     wait_for_jobs = TRUE,
+                                     packages = c(
+                                       "devtools",
+                                       "data.table"
+                                     ),
+                                     config_file = config_file,
+                                     interactive_session = interactive_session)
+  
+  ## Run this after that your jobs are completed
+  ## *****************************************************************************
+  ##                  Save Boruta results
+  ## *****************************************************************************
+  ## Load registries
+  reg_boruta_veer <- batchtools::loadRegistry(
+    file.dir = file.path(registry_dir_scen2, "boruta_veer_mean_all"),
+    writeable = TRUE,
+    conf.file = config_file)
+  njobs <- nrow(all_param_settings)
+  boruta_veer_res <- batchtools::reduceResultsList(
+    ids = batchtools::findDone(
+      ids = 1:njobs,
+      reg = reg_boruta_veer
+    ),
+    reg = reg_boruta_veer)
+  
+  ## resume filtered results
+  boruta_veer_res_DT <- data.table::rbindlist(filter_out_empirical(boruta_veer_res))
+  
+  boruta_veer_res_DT$Method <- "Boruta"
+  boruta_veer_res_DT$min.node.size_prop <- boruta_veer_res_DT$nodesize.prop
+  saveRDS(object = boruta_veer_res_DT,
+          file = file.path(result_dir_scen2, "boruta_veer_mean_res.RDS"))
+} else {
+  ## Only Vita in testing mode; that is, we mimic Boruta results
+  vita_veer_res_DT$Method <- "Boruta"
+  saveRDS(object = vita_veer_res_DT,
+          file = file.path(result_dir_scen2, "boruta_veer_mean_res.RDS"))
+  
+}
 ## Re-set the current directory.
 setwd(main_dir)

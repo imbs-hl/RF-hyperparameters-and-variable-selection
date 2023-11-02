@@ -423,7 +423,7 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
   } else {
     data_results
   }
-  data_results[ , mtry := mtry.prop]
+  data_results[ , mtry := as.numeric(mtry.prop)]
   data_results[ , k := paste(sprintf("%s", k))]
   data_results[ , mtry := as.factor(mtry)]
   data_results$Method <- factor(data_results$Method,

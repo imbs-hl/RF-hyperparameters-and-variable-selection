@@ -191,7 +191,8 @@ run_boruta10 <- wrap_batchtools(reg_name = "fdr_boruta10",
                                   all_param_settings = all_param_settings[k == 10, ],
                                   reg_dir = file.path(registry_dir_scen1,
                                                       ## Only Vita results in
-                                                      ## testing mode
+                                                      ## testing mode; that is, 
+                                                      ## we mimic Boruta results
                                                       ifelse(testing_mode,
                                                              "vita-cor",
                                                              "boruta-cor10"))
@@ -224,7 +225,8 @@ run_boruta50 <- wrap_batchtools(reg_name = "fdr_boruta50",
                                   all_param_settings = all_param_settings[k == 50, ],
                                   reg_dir = file.path(registry_dir_scen1,
                                                       ## Only Vita results in
-                                                      ## testing mode
+                                                      ## testing mode; that is, 
+                                                      ## we mimic Boruta results
                                                       ifelse(testing_mode,
                                                              "vita-cor",
                                                              "boruta-cor50"))
@@ -288,7 +290,7 @@ boruta_fdr_DT50 <- data.table::rbindlist(boruta_fdr_reg50)
 boruta_fdr_DT <- data.table::rbindlist(list(boruta_fdr_DT10,
                                             boruta_fdr_DT50))
 
-## Only Vita in testing mode
+## Only Vita in testing mode; that is, we mimic Boruta results
 boruta_fdr_DT$Method <- ifelse(testing_mode, "Vita", "Boruta")
 
 saveRDS(object = boruta_fdr_DT,

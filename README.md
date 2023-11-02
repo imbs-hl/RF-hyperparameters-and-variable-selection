@@ -22,7 +22,6 @@ The script is set in testing mode as default. An interactive session can be used
 ## Run replicates
 source("init-global.R")
 source("01-scenario1/01-vita-jobs.R")
-source("01-scenario1/01-boruta-jobs.R")
 ## Estimate performance measures
 source("03-performance/01-fdr_empirical_run.R")
 source("03-performance/01-jaccard_empirical_run.R")
@@ -30,7 +29,6 @@ source("03-performance/01-sens_empirical_run.R")
 source("03-performance/01-spec_empirical_run.R")
 ## Plot results
 source("03-performance/01-mtry-sample-fraction-plot.R")
-source("03-performance/01-min-node-size-replace-plot.R")
 
 # Scenario 2
 
