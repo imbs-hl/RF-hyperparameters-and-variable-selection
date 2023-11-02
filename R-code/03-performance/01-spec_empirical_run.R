@@ -190,7 +190,11 @@ run_boruta10 <- wrap_batchtools(reg_name = "spec_boruta10",
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 10, ],
                                   reg_dir = file.path(registry_dir_scen1,
-                                                      "boruta-cor10")
+                                                      ## Only Vita results in
+                                                      ## testing mode
+                                                      ifelse(!testing_mode,
+                                                             "vita-cor",
+                                                             "boruta-cor10"))
                                 ),
                                 name = "spec_boruta10",
                                 overwrite = TRUE,
@@ -219,7 +223,11 @@ run_boruta50 <- wrap_batchtools(reg_name = "spec_boruta50",
                                   config_file = config_file,
                                   all_param_settings = all_param_settings[k == 50, ],
                                   reg_dir = file.path(registry_dir_scen1,
-                                                      "boruta-cor50")
+                                                      ## Only Vita results in
+                                                      ## testing mode
+                                                      ifelse(!testing_mode,
+                                                             "vita-cor",
+                                                             "boruta-cor50"))
                                 ),
                                 name = "spec_boruta50",
                                 overwrite = TRUE,
