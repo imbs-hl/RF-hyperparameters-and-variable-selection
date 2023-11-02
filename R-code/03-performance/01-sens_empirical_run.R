@@ -199,7 +199,7 @@ run_boruta10 <- wrap_batchtools(reg_name = "sens_boruta10",
                                   reg_dir = file.path(registry_dir_scen1,
                                                       ## Only Vita results in
                                                       ## testing mode
-                                                      ifelse(!testing_mode,
+                                                      ifelse(testing_mode,
                                                              "vita-cor",
                                                              "boruta-cor10"))
                                 ),
@@ -232,7 +232,7 @@ run_boruta50 <- wrap_batchtools(reg_name = "sens_boruta50",
                                   reg_dir = file.path(registry_dir_scen1,
                                                       ## Only Vita results in
                                                       ## testing mode
-                                                      ifelse(!testing_mode,
+                                                      ifelse(testing_mode,
                                                              "vita-cor",
                                                              "boruta-cor50"))
                                 ),

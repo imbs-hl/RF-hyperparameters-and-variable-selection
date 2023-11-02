@@ -123,7 +123,7 @@ run_vita_cor <- wrap_batchtools(reg_name = "vita-cor",
                                 ),
                                 name = "vita-cor",
                                 overwrite = TRUE,
-                                memory = "2g",
+                                memory = "1g",
                                 n_cpus = no.threads,
                                 walltime = "20",
                                 partition = partition, ## Set partition in init-global

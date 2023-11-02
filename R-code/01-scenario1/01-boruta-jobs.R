@@ -87,9 +87,9 @@ seed <- if(testing_mode){
                                     num.trees = num.trees,
                                     holdout = holdout)
   hyperparam_settings <- data.table::rbindlist(list(
-    # nodesize.prop.var,
+    nodesize.prop.var,
     replace.var,
-    # sample.fraction.var,
+    sample.fraction.var,
     mtry.var
   ))
   1
