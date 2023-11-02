@@ -91,11 +91,13 @@ seed <- if(testing_mode){
 } else {
   1:100
 } 
-
+## k_seed prepares seeds for correlation settings. This will be extended to 
+## hyperparameter settings. So that, the same seeds will be set to each hyper-
+## parameter setting.
 k_seed <- data.frame(k = rep(k, each = length(seed)),
                      alpha = rep(alpha, each = length(rep(k, each = length(seed)))),
                      seed = seed)
-
+## Same as expand.grid, but without setting duplicates.
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 
@@ -158,7 +160,7 @@ run_vita <- wrap_batchtools(reg_name = "jaccard_empirical_vita",
 
 ## Run this after that your jobs are completed
 ## =======================================
-## Resume FDR's result for vita
+## Resume Jaccard's result for vita
 ## =======================================
 reg_vita_jaccard <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen1,

@@ -101,9 +101,12 @@ seed <- seed <- if(testing_mode){
 } else {
   1:100
 } 
-
+## k_seed prepares seeds for correlation settings. This will be extended to 
+## hyperparameter settings. So that, the same seeds will be set to each hyper-
+## parameter setting.
 q_seed <- data.frame(seed = seed, effect_seed = effect_seed,
                      alpha = rep(alpha, each = length(seed)))
+## Same as expand.grid, but without setting duplicates.
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 

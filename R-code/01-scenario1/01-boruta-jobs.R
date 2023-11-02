@@ -92,16 +92,18 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1
+  1:5
 } else {
   1:100
 } 
-
+## k_seed prepares seeds for correlation settings. This will be extended to 
+## hyperparameter settings. So that, the same seeds will be set to each hyper-
+## parameter setting.
 k_seed <- data.frame(k = rep(k, each = length(seed)),
                      pValue = rep(pValue,
                                   each = length(rep(k, each = length(seed)))),
                      seed = seed)
-
+## Same as expand.grid, but without setting duplicates.
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL),
                                        list(...))
 

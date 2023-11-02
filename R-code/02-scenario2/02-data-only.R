@@ -56,9 +56,12 @@ names(hyperparam_settings) <- c("nodesize.prop",
 hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
 hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
 
-## We set the number of replicate to 50 for computation reasons
+## k_seed prepares seeds for correlation settings. This will be extended to 
+## hyperparameter settings. So that, the same seeds will be set to each hyper-
+## parameter setting.
 q_seed <- data.frame(seed = seed, effect_seed = effect_seed,
                      alpha = rep(alpha, each = length(seed)))
+## Same as expand.grid, but without setting duplicates.
 expand.grid.df <- function(...) Reduce(function(...) merge(..., by=NULL), list(...))
 
 
