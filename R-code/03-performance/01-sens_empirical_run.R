@@ -94,7 +94,7 @@ seed <- if(testing_mode){
     sample.fraction.var,
     mtry.var
   ))
-  1
+  1:5
 } else {
   1:100
 } 
