@@ -288,8 +288,8 @@ boruta_fdr_DT50 <- data.table::rbindlist(boruta_fdr_reg50)
 boruta_fdr_DT <- data.table::rbindlist(list(boruta_fdr_DT10,
                                             boruta_fdr_DT50))
 
-
-boruta_fdr_DT$Method <- "Boruta"
+## Only Vita in testing mode
+boruta_fdr_DT$Method <- ifelse(testing_mode, "Vita", "Boruta")
 
 saveRDS(object = boruta_fdr_DT,
         file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"))
