@@ -61,6 +61,10 @@ sens02_min_node_prop <- function(
                 by = c("min.node.size", "Method")]
   data_results <- unique(x = data_results, 
                          by = c("min.node.size", "Method"))
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   print(data_results[data_results[ , .I[which.max(SENS)],
                                    by = c("Method")]$V1])
   ## Now plot sensitivity depending on hyperparameter
@@ -156,6 +160,10 @@ sens02_replace_prop <- function(
                          by = c("replace", "Method"))
   print(data_results[data_results[ , .I[which.max(SENS)],
                                    by = c("Method")]$V1])
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   ## Now plot sensitivity depending on hyperparameter
   plot_sens <- ggplot(data_results,
                       aes(x = replace,

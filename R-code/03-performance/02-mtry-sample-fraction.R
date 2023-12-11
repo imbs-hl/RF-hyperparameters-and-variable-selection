@@ -69,6 +69,10 @@ sens02_mtry_prop <- function(
   } else {
     c(0.475, 0.575)
   }
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   plot_sens <- ggplot(data_results,
                       aes(x = as.numeric(factor(mtry)),
                           y = SENS)) +
@@ -164,6 +168,10 @@ sens02_sam_frac_prop <- function(
                                    by = c("Method")]$V1])
   data_results <- unique(x = data_results, 
                          by = c("sample.fraction", "Method"))
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   ## Now plot sensitivity depending on hyperparameter
   y_lim <- if(testing_mode){
     c(NA, NA)
@@ -269,6 +277,10 @@ fdr02_mtry_prop <- function(
                                    by = c("Method")]$V1])
   data_results <- unique(x = data_results, 
                          by = c("mtry", "Method"))
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   ## Now plot sensitivity depending on hyperparameter
   y_lim <- if(testing_mode){
     c(NA, NA)
@@ -374,6 +386,10 @@ fdr02_sam_frac_prop <- function(
                                    by = c("Method")]$V1])
   data_results <- unique(x = data_results, 
                          by = c("sample.fraction", "Method"))
+  ## Only vita is required in testing mode.
+  if(testing_mode){
+    data_results <- data_results[Method == "Vita", ]
+  }
   ## Now plot sensitivity depending on hyperparameter
   y_lim <- if(testing_mode){
     c(NA, NA)
