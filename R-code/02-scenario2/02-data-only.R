@@ -42,7 +42,7 @@ num.trees <- p*3
 holdout <- FALSE
 
 ## Just few replicates if the system is in the testing mode, and 100 otherwise.
-seed <- seed <- if(testing_mode){
+seed <- if(testing_mode){
   ## Variation of min.node.size
   nodesize.prop.var <- data.frame(nodesize.prop = nodesize.prop,
                                   no.threads = no.threads,
@@ -156,7 +156,7 @@ load_data_reg2 <- batchtools::loadRegistry(
   file.dir = file.path(registry_dir_scen2, "data-scena2"),
   writeable = TRUE,
   conf.file = config_file)
-data_scenario2 <- batchtools::reduceResultsList(ids = 1:100,
+data_scenario2 <- batchtools::reduceResultsList(ids = seed,
                                                 reg = load_data_reg2)
 saveRDS(object = data_scenario2,
         file = file.path(result_dir_scen2, "study2.rds"))
