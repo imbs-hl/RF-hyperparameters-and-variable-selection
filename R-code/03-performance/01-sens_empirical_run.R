@@ -56,30 +56,6 @@ hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == F
 
 ## Just 1 replicates if the system is in the testing mode, and 100 otherwise.
 seed <- if(testing_mode){
-  ## Variation of min.node.size
-  nodesize.prop.var <- data.frame(min.node.size_prop = min.node.size_prop,
-                                  no.threads = no.threads,
-                                  replace = TRUE,
-                                  sample.fraction = 0.632,
-                                  mtry = 0.014,
-                                  num.trees = num.trees,
-                                  holdout = holdout)
-  ## Variation of replace
-  replace.var <- data.frame(min.node.size_prop = 0.01,
-                            no.threads = no.threads,
-                            replace = replace,
-                            sample.fraction = 0.632,
-                            mtry = 0.014,
-                            num.trees = num.trees,
-                            holdout = holdout)
-  ## Variation of sample.fraction
-  sample.fraction.var <- data.frame(min.node.size_prop = 0.01,
-                                    no.threads = no.threads,
-                                    replace = TRUE,
-                                    sample.fraction = sample.fraction,
-                                    mtry = 0.014,
-                                    num.trees = num.trees,
-                                    holdout = holdout)
   ## Variation of mtry
   mtry.var <- data.frame(min.node.size_prop = 0.01,
                          no.threads = no.threads,
