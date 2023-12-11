@@ -19,22 +19,23 @@ The script is set in testing mode as default. An interactive session can be used
 ```R
 # Scenario 1
 
-## Run replicates
 source("init-global.R")
+## Simulate data
+source("01-scenario1/01-data-only.R")
+## Test the Vita approach
 source("01-scenario1/01-vita-jobs.R")
-## Estimate performance measures
+## Estimate of the FDR
 source("03-performance/01-fdr_empirical_run.R")
-
 ## Plot results
 source("03-performance/01-mtry-sample-fraction-plot.R")
 
 # Scenario 2
 
-## Run replicates
+## Simulate data
+source("02-scenario2/02-data-only.R")
+## Test the Vita approach
 source("02-scenario2/02-veer1.R")
-
-## Estimate and plot results
-
+## Estimate the FDR and plot results
 source("03-performance/02-mtry-sample-fraction.R")
 ```
 
