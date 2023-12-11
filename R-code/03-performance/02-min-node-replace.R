@@ -1,3 +1,6 @@
+if(testing_mode){
+  warning("This script is designed for execution in normal mode.")
+}
 setwd(file.path(main_dir, "03-performance"))
 #' Functions in this file are used to generate the plots shows in the paper. The
 #' have the same parameters described as followed. replace and min.node.size are

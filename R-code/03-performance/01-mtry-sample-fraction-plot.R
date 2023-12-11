@@ -89,17 +89,16 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     labels = names(table(data_results$mtry.prop)))
   return(sens_all)
 }
-
-sens_mtry_plot <- plot_sens_mtry_scen1(
-  res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
-  res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
-  default_param = c("sample.fraction" = 0.632,
-                    "min.node.size" = 1,
-                    replace = TRUE),
-  testing_mode = testing_mode)
-sens_mtry_plot
-
-
+if(!testing_mode){
+  sens_mtry_plot <- plot_sens_mtry_scen1(
+    res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
+    res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
+    default_param = c("sample.fraction" = 0.632,
+                      "min.node.size" = 1,
+                      replace = TRUE),
+    testing_mode = testing_mode)
+  sens_mtry_plot
+}
 
 ## =============================================================================
 ##                                sample.fraction
@@ -193,15 +192,16 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
   return(sens_all)
 }
 
-sens_sample_frac_plot <- plot_sens_sample_frac_scen1(
-  res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
-  res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
-  default_param = c("mtry.prop" = 0.014,
-                    "min.node.size" = 1,
-                    "replace" = TRUE),
-  testing_mode = testing_mode)
-sens_sample_frac_plot
-
+if(!testing_mode){
+  sens_sample_frac_plot <- plot_sens_sample_frac_scen1(
+    res_vita_file = file.path(result_dir_scen1, "vita_cor_sens.RDS"),
+    res_boruta_file = file.path(result_dir_scen1, "boruta_cor_sens.RDS"),
+    default_param = c("mtry.prop" = 0.014,
+                      "min.node.size" = 1,
+                      "replace" = TRUE),
+    testing_mode = testing_mode)
+  sens_sample_frac_plot
+}
 
 ## New plot FDR
 plot_fdr_mtry_scen1 <- function(res_vita_file,
@@ -376,16 +376,16 @@ plot_fdr_sample_frac_scen1 <- function(res_vita_file,
 }
 
 ## ******* fdr sample.fraction *************************************************
-
-fdr_sam_frac_plot <- plot_fdr_sample_frac_scen1(
-  res_vita_file = file.path(result_dir_scen1, "vita_cor_fdr.RDS"),
-  res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
-  default_param = c("mtry.prop" = 0.014,
-                    "min.node.size" = 1,
-                    "replace" = TRUE),
-  testing_mode = testing_mode)
-fdr_sam_frac_plot
-
+if(!testing_mode){
+  fdr_sam_frac_plot <- plot_fdr_sample_frac_scen1(
+    res_vita_file = file.path(result_dir_scen1, "vita_cor_fdr.RDS"),
+    res_boruta_file = file.path(result_dir_scen1, "boruta_cor_fdr.RDS"),
+    default_param = c("mtry.prop" = 0.014,
+                      "min.node.size" = 1,
+                      "replace" = TRUE),
+    testing_mode = testing_mode)
+  fdr_sam_frac_plot
+}
 
 plot_jaccard_mtry_scen1 <- function(res_vita_file,
                                     res_boruta_file,
@@ -461,7 +461,7 @@ plot_jaccard_mtry_scen1 <- function(res_vita_file,
   return(jaccard_all)
 }
 
-
+if(!testing_mode){
 jaccard_vita_mtry_plot <- plot_jaccard_mtry_scen1(
   res_vita_file = file.path(result_dir_scen1, "vita_cor_jaccard.RDS"),
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
@@ -470,8 +470,7 @@ jaccard_vita_mtry_plot <- plot_jaccard_mtry_scen1(
                     "replace" = TRUE),
   testing_mode = testing_mode)
 jaccard_vita_mtry_plot
-
-
+}
 
 ## ******* sample.fraction vita ************
 ## 
@@ -549,7 +548,7 @@ plot_jaccard_sample_frac_scen1 <- function(res_vita_file,
   return(jaccard_all)
 }
 
-
+if(!testing_mode){
 jaccard_sample_frac_plot <- plot_jaccard_sample_frac_scen1(
   res_vita_file = file.path(result_dir_scen1, "vita_cor_jaccard.RDS"),
   res_boruta_file = file.path(result_dir_scen1, "boruta_cor_jaccard.RDS"),
@@ -558,33 +557,39 @@ jaccard_sample_frac_plot <- plot_jaccard_sample_frac_scen1(
                     "replace" = TRUE),
   testing_mode = testing_mode)
 jaccard_sample_frac_plot
-
+}
 
 ## =============================================================================
 ##                      ## Arrange plots
 ## =============================================================================
 ##
-arrange_mtrySamp <- ggpubr::ggarrange(
-  plotlist = list(fdr_mtry_plot, #(a)
-                  sens_mtry_plot, #(b)
-                  jaccard_vita_mtry_plot, #(c)
-                  fdr_sam_frac_plot, #(d)
-                  sens_sample_frac_plot, #(e)
-                  jaccard_sample_frac_plot #(f)
-  ),
-  common.legend = TRUE,
-  legend = "bottom",
-  ncol = 3,
-  nrow = 2,
-  align = "hv"
-)
+if(testing_mode){
+  ggsave(filename = file.path(result_dir_scen1, "MtryTest12.pdf"),
+         plot = fdr_mtry_plot,
+         width = 3, height = 3)
+} else {
+  arrange_mtrySamp <- ggpubr::ggarrange(
+    plotlist = list(fdr_mtry_plot, #(a)
+                    sens_mtry_plot, #(b)
+                    jaccard_vita_mtry_plot, #(c)
+                    fdr_sam_frac_plot, #(d)
+                    sens_sample_frac_plot, #(e)
+                    jaccard_sample_frac_plot #(f)
+    ),
+    common.legend = TRUE,
+    legend = "bottom",
+    ncol = 3,
+    nrow = 2,
+    align = "hv"
+  )
+  
+  arrange_mtrySamp
+  theme_set(theme_bw())
+  ggsave(filename = file.path(result_dir_scen1, "MtrySampFrac01.pdf"),
+         plot = arrange_mtrySamp,
+         width = 10, height = 7)
+}
 
-arrange_mtrySamp
-
-theme_set(theme_bw())
-ggsave(filename = file.path(result_dir_scen1, "MtrySampFrac01.pdf"),
-       plot = arrange_mtrySamp,
-       width = 10, height = 7)
 ## Re-set the current directory.
 setwd(main_dir)
 

@@ -24,9 +24,7 @@ source("init-global.R")
 source("01-scenario1/01-vita-jobs.R")
 ## Estimate performance measures
 source("03-performance/01-fdr_empirical_run.R")
-source("03-performance/01-jaccard_empirical_run.R")
-source("03-performance/01-sens_empirical_run.R")
-source("03-performance/01-spec_empirical_run.R")
+
 ## Plot results
 source("03-performance/01-mtry-sample-fraction-plot.R")
 

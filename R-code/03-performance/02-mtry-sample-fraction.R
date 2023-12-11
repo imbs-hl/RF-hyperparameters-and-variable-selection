@@ -95,20 +95,19 @@ sens02_mtry_prop <- function(
   return(plot_sens)
 }
 
-
-plot_sens2_mtry_prop <- sens02_mtry_prop(
-  res_vita_file = file.path(result_dir_scen2,
-                            "vita_veer_mean_res.RDS"),
-  res_boruta_file = file.path(result_dir_scen2,
-                              "boruta_veer_mean_res.RDS"),
-  default_param = c("sample.fraction" = 0.632,
-                    "min.node.size_prop" = 0.01,
-                    "replace" = TRUE),
-  testing_mode = testing_mode
-)
-
-plot_sens2_mtry_prop
-
+if(!testing_mode){
+  plot_sens2_mtry_prop <- sens02_mtry_prop(
+    res_vita_file = file.path(result_dir_scen2,
+                              "vita_veer_mean_res.RDS"),
+    res_boruta_file = file.path(result_dir_scen2,
+                                "boruta_veer_mean_res.RDS"),
+    default_param = c("sample.fraction" = 0.632,
+                      "min.node.size_prop" = 0.01,
+                      "replace" = TRUE),
+    testing_mode = testing_mode
+  )
+  plot_sens2_mtry_prop
+}
 
 sens02_sam_frac_prop <- function(
   res_vita_file,
@@ -197,7 +196,7 @@ sens02_sam_frac_prop <- function(
   return(plot_sens)
 }
 
-
+if(!testing_mode){
 plot_sens2_sample_frac_prop <- sens02_sam_frac_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
@@ -208,9 +207,8 @@ plot_sens2_sample_frac_prop <- sens02_sam_frac_prop(
                     replace = TRUE),
   testing_mode = testing_mode
 )
-
 plot_sens2_sample_frac_prop
-
+}
 ## ***********************************************
 ##            FDR
 ## ***********************************************
@@ -412,7 +410,7 @@ fdr02_sam_frac_prop <- function(
   return(plot_fdr)
 }
 
-
+if(!testing_mode){
 plot_fdr2_sample_frac_prop <- fdr02_sam_frac_prop(
   res_vita_file = file.path(result_dir_scen2,
                             "vita_veer_mean_res.RDS"),
@@ -423,31 +421,37 @@ plot_fdr2_sample_frac_prop <- fdr02_sam_frac_prop(
                     replace = TRUE),
   testing_mode = testing_mode
 )
-
 plot_fdr2_sample_frac_prop
-
+}
 ## =============================================================================
 ##                      ## Arrange plots
 ## =============================================================================
 ##
-arrange_mtrySamp02 <- ggpubr::ggarrange(
-  plotlist = list(
-    plot_fdr2_mtry_prop, #(a)
-    plot_sens2_mtry_prop, #(b)
-    plot_fdr2_sample_frac_prop, #(c)
-    plot_sens2_sample_frac_prop #(d)
-  ),
-  common.legend = TRUE,
-  legend = "bottom",
-  ncol = 2,
-  nrow = 2,
-  align = "hv"
-)
+if(testing_mode){
+  ggsave(filename = file.path(result_dir_scen2, "MtryTest02.pdf"),
+         plot = plot_fdr2_mtry_prop,
+         width = 3, height = 3)
+} else {
+  arrange_mtrySamp02 <- ggpubr::ggarrange(
+    plotlist = list(
+      plot_fdr2_mtry_prop, #(a)
+      plot_sens2_mtry_prop, #(b)
+      plot_fdr2_sample_frac_prop, #(c)
+      plot_sens2_sample_frac_prop #(d)
+    ),
+    common.legend = TRUE,
+    legend = "bottom",
+    ncol = 2,
+    nrow = 2,
+    align = "hv"
+  )
+  
+  arrange_mtrySamp02
+  
+  ggsave(filename = file.path(result_dir_scen2, "MtrySampFrac02.pdf"),
+         plot = arrange_mtrySamp02,
+         width = 7, height = 6)
+}
 
-arrange_mtrySamp02
-
-ggsave(filename = file.path(result_dir_scen2, "MtrySampFrac02.pdf"),
-       plot = arrange_mtrySamp02,
-       width = 7, height = 6)
 ## Re-set the current directory.
 setwd(main_dir)
