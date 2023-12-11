@@ -42,7 +42,7 @@ num.trees <- p*3
 
 holdout <- FALSE
 
-## Just 10 replicates if the system is in the testing mode, and 100 otherwise.
+## Just few replicates if the system is in the testing mode, and 100 otherwise.
 seed <- seed <- if(testing_mode){
   ## Variation of min.node.size
   nodesize.prop.var <- data.frame(nodesize.prop = nodesize.prop,
@@ -98,7 +98,6 @@ seed <- seed <- if(testing_mode){
                                   "holdout")
   hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
   hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
-  
   1:100
 } 
 ## k_seed prepares seeds for correlation settings. This will be extended to 

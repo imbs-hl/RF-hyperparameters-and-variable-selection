@@ -41,21 +41,64 @@ num.trees <- p*3
 
 holdout <- FALSE
 
-hyperparam_settings <- expand.grid(nodesize.prop,
-                                   replace,
-                                   sample.fraction,
-                                   mtry,
-                                   num.trees,
-                                   holdout)
-names(hyperparam_settings) <- c("nodesize.prop",
-                                "replace",
-                                "sample.fraction",
-                                "mtry.prop",
-                                "num.trees",
-                                "holdout")
-hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
-hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
-
+## Just few replicates if the system is in the testing mode, and 100 otherwise.
+seed <- seed <- if(testing_mode){
+  ## Variation of min.node.size
+  nodesize.prop.var <- data.frame(nodesize.prop = nodesize.prop,
+                                  no.threads = no.threads,
+                                  replace = TRUE,
+                                  sample.fraction = 0.632,
+                                  mtry.prop = sqrt(p) / p,
+                                  num.trees = num.trees,
+                                  holdout = holdout)
+  ## Variation of replace
+  replace.var <- data.frame(nodesize.prop = 1/n,
+                            no.threads = no.threads,
+                            replace = replace,
+                            sample.fraction = 0.632,
+                            mtry.prop = sqrt(p) / p,
+                            num.trees = num.trees,
+                            holdout = holdout)
+  ## Variation of sample.fraction
+  sample.fraction.var <- data.frame(nodesize.prop = 1/n,
+                                    no.threads = no.threads,
+                                    replace = TRUE,
+                                    sample.fraction = sample.fraction,
+                                    mtry.prop = sqrt(p) / p,
+                                    num.trees = num.trees,
+                                    holdout = holdout)
+  ## Variation of mtry
+  mtry.var <- data.frame(nodesize.prop = 1/n,
+                         no.threads = no.threads,
+                         replace = TRUE,
+                         sample.fraction = 0.632,
+                         mtry.prop = mtry.prop,
+                         num.trees = num.trees,
+                         holdout = holdout)
+  hyperparam_settings <- data.table::rbindlist(list(
+    nodesize.prop.var,
+    replace.var,
+    sample.fraction.var,
+    mtry.var
+  ))
+  1:5
+} else {
+  hyperparam_settings <- expand.grid(nodesize.prop,
+                                     replace,
+                                     sample.fraction,
+                                     mtry.prop,
+                                     num.trees,
+                                     holdout)
+  names(hyperparam_settings) <- c("nodesize.prop",
+                                  "replace",
+                                  "sample.fraction",
+                                  "mtry.prop",
+                                  "num.trees",
+                                  "holdout")
+  hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
+  hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 & replace == FALSE), ]
+  1:100
+}
 ## k_seed prepares seeds for correlation settings. This will be extended to 
 ## hyperparameter settings. So that, the same seeds will be set to each hyper-
 ## parameter setting.

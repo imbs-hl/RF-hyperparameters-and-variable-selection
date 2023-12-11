@@ -32,26 +32,6 @@ num.trees <- 1e4
 importance = "impurity_corrected"
 holdout = FALSE
 
-hyperparam_settings <- expand.grid(nodesize.prop,
-                                   no.threads,
-                                   replace,
-                                   sample.fraction,
-                                   mtry,
-                                   num.trees,
-                                   holdout)
-names(hyperparam_settings) <- c("nodesize.prop",
-                                "no.threads",
-                                "replace",
-                                "sample.fraction",
-                                "mtry",
-                                "num.trees",
-                                "holdout")
-hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
-## Exclude settings with sample.fraction == 1 & replace == FALSE
-hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
-                                               replace == FALSE), ]
-
-
 ## Just some replicates if the system is in the testing mode, and 100 otherwise.
 seed <- if(testing_mode){
   ## Variation of mtry
@@ -64,6 +44,24 @@ seed <- if(testing_mode){
                                     holdout = holdout)
   1:5
 } else {
+  hyperparam_settings <- expand.grid(nodesize.prop,
+                                     no.threads,
+                                     replace,
+                                     sample.fraction,
+                                     mtry,
+                                     num.trees,
+                                     holdout)
+  names(hyperparam_settings) <- c("nodesize.prop",
+                                  "no.threads",
+                                  "replace",
+                                  "sample.fraction",
+                                  "mtry",
+                                  "num.trees",
+                                  "holdout")
+  hyperparam_settings <- data.table::as.data.table(hyperparam_settings)
+  ## Exclude settings with sample.fraction == 1 & replace == FALSE
+  hyperparam_settings <- hyperparam_settings[!(sample.fraction == 1 &
+                                                 replace == FALSE), ]
   1:100
 } 
 ## k_seed prepares seeds for correlation settings. This will be extended to 
