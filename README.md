@@ -6,7 +6,7 @@ All results presented in the paper can be obtained by running the R scripts of t
 
 Use this command to clone the git repository:
 
-```git clone git@github.com:imbs-hl/RF-hyperparameters-and-variable-selection.git```
+```git clone https://github.com/imbs-hl/RF-hyperparameters-and-variable-selection.git```
 
 ## Testing mode
 

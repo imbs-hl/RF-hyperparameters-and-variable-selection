@@ -11,7 +11,10 @@ testing_mode <- TRUE
 interactive_session <- TRUE
 
 ## Set the main directory
-main_dir <- "/imbs/home/cesaire/projects/RF-hyperparameters-and-variable-selection/R-code"
+if(!("this.path" %in% installed.packages())){
+  install.packages("this.path")
+}
+main_dir <- this.path::this.dir()
 
 ## Set your current working directory to "R-code" (setwd("path/to/R-code"))
 
