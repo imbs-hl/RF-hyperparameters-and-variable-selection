@@ -564,7 +564,7 @@ jaccard_sample_frac_plot
 ## =============================================================================
 ##
 if(testing_mode){
-  ggsave(filename = file.path(result_dir_scen1, "MtryTest12.pdf"),
+  ggsave(filename = file.path(result_dir_scen1, "MtryTest1.pdf"),
          plot = fdr_mtry_plot,
          width = 3, height = 3)
 } else {

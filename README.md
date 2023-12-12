@@ -17,31 +17,30 @@ The script is set in testing mode as default. An interactive session can be used
 - Run the following code:
 
 ```R
-# Scenario 1
-
 source("init-global.R")
-## Simulate data
+# Scenario 1: simulation of five replicates of scenario 1 as described in the manuscript, with $k = 10$.
+## Simulate data: data sets and meta information will be stored in a single rds object, which can be found under results/scenario1/study1.rds
 source("01-scenario1/01-data-only.R")
-## Test the Vita approach
+## Test the Vita approach: results of the variable selection will be saved in the bacthtools registry called "vita-cor" indicated by the function wrap_batchtools.
 source("01-scenario1/01-vita-jobs.R")
-## Estimate of the FDR
+## Estimate of the FDR: variable selection results will be loaded from the registry to estimate the FDR.
 source("03-performance/01-fdr_empirical_run.R")
-## Plot results
+## Plot: results will be stored in results/scenario1/MtryTest1.pdf
 source("03-performance/01-mtry-sample-fraction-plot.R")
 
-# Scenario 2
+# Scenario 2: simulation of five replicates of scenario 2 as described in the manuscript.
 
-## Simulate data
+## Simulate data: simulated data will be stored in results/scenario2/study2.rds
 source("02-scenario2/02-data-only.R")
-## Test the Vita approach
+## Test the Vita approach: variable selection results will be saved in the batchtools registry called vita_veer_mean_all.
 source("02-scenario2/02-veer1.R")
-## Estimate the FDR and plot results
+## Estimate the FDR and plot results: variable selection results will be loaded from the registry to estimate the FDR, and results will be plotted and saved in results/scenario2/MtryTest2.pdf.
 source("03-performance/02-mtry-sample-fraction.R")
 ```
 
 Figures are saved in ```results```.
 
-Note: Results of Vita may not mimic the tendency shown in the manuscript in testing mode because the method is unstable.
+Note: Vita's results may not mimic the tendency shown in the manuscript in testing mode because the method is unstable.
 
 ## Normal mode
 

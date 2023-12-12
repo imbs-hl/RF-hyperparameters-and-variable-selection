@@ -444,7 +444,7 @@ plot_fdr2_sample_frac_prop
 ## =============================================================================
 ##
 if(testing_mode){
-  ggsave(filename = file.path(result_dir_scen2, "MtryTest02.pdf"),
+  ggsave(filename = file.path(result_dir_scen2, "MtryTest2.pdf"),
          plot = plot_fdr2_mtry_prop,
          width = 3, height = 3)
 } else {
