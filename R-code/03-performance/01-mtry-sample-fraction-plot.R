@@ -240,7 +240,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   ## Plot
   y_lim <- if(testing_mode){
-    legend_position <- "none"
+    legend_position <- "bottom"
     c(NA, NA)
   } else {
     c(0, 0.235)
