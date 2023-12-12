@@ -555,7 +555,7 @@ jaccard_sample_frac_plot
 if(testing_mode){
   ggsave(filename = file.path(result_dir_scen1, "MtryTest1.pdf"),
          plot = fdr_mtry_plot,
-         width = 3, height = 3)
+         width = 4, height = 4)
 } else {
   arrange_mtrySamp <- ggpubr::ggarrange(
     plotlist = list(fdr_mtry_plot, #(a)
