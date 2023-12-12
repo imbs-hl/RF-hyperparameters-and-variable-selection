@@ -37,8 +37,6 @@ source("02-scenario2/02-veer1.R")
 source("03-performance/02-mtry-sample-fraction.R")
 ```
 
-Figures are saved in ```results```.
-
 Note: Vita's results may not mimic the tendency shown in the manuscript in testing mode because the method is unstable.
 
 ## Normal mode
