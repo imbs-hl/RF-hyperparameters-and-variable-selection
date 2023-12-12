@@ -58,6 +58,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   ## Plot
   y_lim <- if(testing_mode){
+    legend_position <- "bottom"
     c(NA, NA)
   } else {
     c(NA, 0.58)
@@ -71,13 +72,9 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
     coord_cartesian(ylim = y_lim) +
-    # ylim(0.32, 0.57) +
-    theme(legend.position = "none",
+    theme(legend.position = legend_position,
           text = element_text(size = 14),
           plot.title.position = "plot",
-          # axis.ticks.x = element_blank(),
-          # axis.text.x = element_blank()
-          # plot.title = element_text(hjust = 0.5)
     ) + labs(linetype = "k", shape = "k") +
     guides(color = guide_legend(override.aes = list(size = 0.5),
                                 order = 1)) +
@@ -165,20 +162,12 @@ plot_sens_sample_frac_scen1 <- function(res_vita_file,
                          y = SENS, shape = k, linetype = k)) +
     geom_point(aes(colour = Method)) +
     geom_line(aes(colour = Method)) +
-    # geom_hline(yintercept = 0.05,
-    #            size = 0.5,
-    #            color = "black",
-    #            linetype = "dashed") +
     xlab(label = "sample.fraction") +
     ylab(label = "Empirical sensitivity") +
     coord_cartesian(ylim = y_lim) +
     theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
-          # axis.ticks.y = element_blank(),
-          # axis.text.y = element_blank(),
-          # axis.ticks.x = element_blank(),
-          # axis.text.x = element_blank(),
           plot.margin = margin(0.25,1,0.25,0, "cm")
     ) +
     ggtitle("(e)") +
@@ -582,7 +571,6 @@ if(testing_mode){
     nrow = 2,
     align = "hv"
   )
-  
   arrange_mtrySamp
   theme_set(theme_bw())
   ggsave(filename = file.path(result_dir_scen1, "MtrySampFrac01.pdf"),

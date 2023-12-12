@@ -159,7 +159,6 @@ plot_fdr_replace_scen1 <- function(res_vita_file,
           text = element_text(size = 14),
           plot.title.position = "plot",
           plot.margin = margin(0.22,1,0.22,0, "cm")
-          # plot.title = element_text(hjust = 0.5)
     ) + labs(linetype = "k", shape = "k") +
     guides(color = guide_legend(override.aes = list(size = 0.5),
                                 order = 1)) +
@@ -316,7 +315,6 @@ plot_jaccard_min_node_scen1 <- function(res_vita_file,
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot",
-          # plot.title = element_text(hjust = 0.5)
     ) + labs(linetype = "k", shape = "k") +
     guides(color = guide_legend(override.aes = list(size = 0.5),
                                 order = 1)) +
@@ -463,14 +461,11 @@ plot_jaccard_replace_scen1 <- function(res_vita_file,
                             y = Jaccard,
                             shape = k)) +
     geom_point(aes(colour = Method)) +
-    # geom_line(aes(linetype = k, colour = Method)) +
     xlab("replace") +
     ylab(label = "Empirical stability") +
     theme(legend.position = "right",
           text = element_text(size = 14),
           plot.title.position = "plot",
-          # axis.ticks.y = element_blank(),
-          # axis.text.y = element_blank(),
           plot.margin = margin(0.22,1,0.22,0, "cm")
     ) + labs(linetype = "k", shape = "k") +
     guides(color = guide_legend(override.aes = list(size = 0.5),

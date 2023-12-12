@@ -17,7 +17,7 @@ The script is set in testing mode as default. An interactive session can be used
 
 ```R
 source("init-global.R")
-# Scenario 1: simulation of five replicates of scenario 1 as described in the manuscript, with $k = 10$.
+# Scenario 1: simulation of five replicates of scenario 1 as described in the manuscript.
 ## Simulate data: data sets and meta information will be stored in a single rds object, which can be found under results/scenario1/study1.rds
 source("01-scenario1/01-data-only.R")
 ## Test the Vita approach: results of the variable selection will be saved in the bacthtools registry called "vita-cor" indicated by the function wrap_batchtools.
