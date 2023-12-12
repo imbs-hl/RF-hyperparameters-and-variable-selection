@@ -58,7 +58,6 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   ## Plot
   y_lim <- if(testing_mode){
-    legend_position <- "bottom"
     c(NA, NA)
   } else {
     c(NA, 0.58)
@@ -72,7 +71,7 @@ plot_sens_mtry_scen1 <- function(res_vita_file,
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical sensitivity") +
     coord_cartesian(ylim = y_lim) +
-    theme(legend.position = legend_position,
+    theme(legend.position = "none",
           text = element_text(size = 14),
           plot.title.position = "plot",
     ) + labs(linetype = "k", shape = "k") +
@@ -241,6 +240,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
                                    by = c("Method", "k")]$V1])
   ## Plot
   y_lim <- if(testing_mode){
+    legend_position <- "none"
     c(NA, NA)
   } else {
     c(0, 0.235)
@@ -257,7 +257,7 @@ plot_fdr_mtry_scen1 <- function(res_vita_file,
     xlab(label = "mtry.prop") +
     ylab(label = "Empirical FDR") +
     coord_cartesian(ylim = y_lim) +
-    theme(legend.position = "none",
+    theme(legend.position = legend_position,
           text = element_text(size = 14),
           plot.title.position = "plot"
     ) +
@@ -571,6 +571,7 @@ if(testing_mode){
     nrow = 2,
     align = "hv"
   )
+  
   arrange_mtrySamp
   theme_set(theme_bw())
   ggsave(filename = file.path(result_dir_scen1, "MtrySampFrac01.pdf"),
