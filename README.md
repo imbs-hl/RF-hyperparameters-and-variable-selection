@@ -28,7 +28,6 @@ source("03-performance/01-fdr_empirical_run.R")
 source("03-performance/01-mtry-sample-fraction-plot.R")
 
 # Scenario 2: simulation of five replicates of scenario 2 as described in the manuscript.
-
 ## Simulate data: simulated data will be stored in results/scenario2/study2.rds
 source("02-scenario2/02-data-only.R")
 ## Test the Vita approach: variable selection results will be saved in the batchtools registry called vita_veer_mean_all.
