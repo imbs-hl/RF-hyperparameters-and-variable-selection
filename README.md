@@ -29,7 +29,7 @@ The script is set in testing mode as default. Scenario 1 simulations are conduct
  - ```null_case```: The flag indicating whether the null case is simulated, i.e., no relationship between predictor variables and the response variable.
  - ```data```: The simulated dataset (as ```data.frame```).
 
-An interactive session can be used, and batchtools can also be run in an interactive mode. To run the script in testing mode:
+An interactive session can be used to run the script in testing mode, and batchtools can also be run in an interactive mode.
 
 - Set your current working directory in R to the directory ```R-code``` of your cloned repository.
 - Run the following code:
