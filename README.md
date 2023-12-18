@@ -10,7 +10,26 @@ Use this command to clone the git repository:
 
 ## Testing mode
 
-The script is set in testing mode as default. An interactive session can be used, and batchtools can also be run in an interactive mode. To run the script in testing mode:
+The script is set in testing mode as default. Scenario 1 simulations are conducted for $k = 10$ and $k = 50$. For scenarios 1 and 2, the script will generate similar figures to figures 1-(a) and 2-(a) of the manuscript; that is, for each value of  ```mtry```, the mean value of the estimated FDR. The estimated FDR in each replicate is calculated with the significant threshold of $0.05$ and using the adjusted empirical $p$-values of the Vita testing method.  Simulated data and related meta information are also stored in the testing mode. For scenario 1, a list containing the following information is stored for each replicate.
+
+- ```seed``` The seed value for initializing the random number generator.
+- ```k```: The size of the correlation block.
+- ```q```: The indexes of the correlated variables $q$.
+- ```p```: The total number of predictor variables $p$.
+- ```data```: The simulated dataset (as ```data.frame```).
+
+ For scenario 2, a list containing the following information is stored for each replicate.
+ 
+ - ```betas```: The effect values.
+ - ```n_beta```: The number of effect variables.
+ - ```effect_seed```: The seed.
+ - ```subset```: The subset of effect predictor variables.
+ - ```subsetsize```: The size of the subset of effect predictor variables.
+ - ```independence```: The flag indicating whether predictor variables are independent.
+ - ```null_case```: The flag indicating whether the null case is simulated, i.e., no relationship between predictor variables and the response variable.
+ - ```data```: The simulated dataset (as ```data.frame```).
+
+An interactive session can be used, and batchtools can also be run in an interactive mode. To run the script in testing mode:
 
 - Set your current working directory in R to the directory ```R-code``` of your cloned repository.
 - Run the following code:
