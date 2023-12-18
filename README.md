@@ -10,7 +10,7 @@ Use this command to clone the git repository:
 
 ## Testing mode
 
-The script is set in testing mode as default. Scenario 1 simulations are conducted for $k = 10$ and $k = 50$. For scenarios 1 and 2, the script will generate similar figures to figures 1-(a) and 2-(a) of the manuscript; that is, for each value of  ```mtry```, the mean value of the estimated FDR. The estimated FDR in each replicate is calculated with the significant threshold of $0.05$ and using the adjusted empirical $p$-values of the Vita testing method, stored as a ```data.frame``` also containing values of the hyperparameters used to grow the random forest.  Simulated data and related meta information are also stored in the testing mode. For scenario 1, a list containing the following information is stored for each replicate.
+The script is set in testing mode as default. Scenario 1 simulations are conducted for $k = 10$ and $k = 50$. For scenarios 1 and 2, the script will generate similar figures to figures 1-(a) and 2-(a) of the manuscript; that is, for each value of  ```mtry```, the mean value of the estimated FDR. The estimated FDR in each replicate is calculated with the significant threshold of $0.05$ and using the adjusted empirical $p$-values of the Vita testing method, stored as a ```data.frame```, which also contains values of the hyperparameters used to grow the random forest.  Simulated data and related meta information are also stored in the testing mode. For scenario 1, a list containing the following information is stored for each replicate.
 
 - ```seed``` The seed value for initializing the random number generator.
 - ```k```: The size of the correlation block.
